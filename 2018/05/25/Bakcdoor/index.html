@@ -8,21 +8,30 @@
 
 <title>
   
-    Hello World
+    CherryGk&#39;s Blog
   
 </title>
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="##i春秋”百度杯” 十月份Backdoor Write up 首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](5.png)  猜想是还原版本： git checkout 734d08 然后再看看： ![](6.png)  果然是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/05/25/hello-world/index.html">
+<meta property="og:title" content="CherryGk&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2018/05/25/Bakcdoor/index.html">
 <meta property="og:site_name" content="CherryGk&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="##i春秋”百度杯” 十月份Backdoor Write up 首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](5.png)  猜想是还原版本： git checkout 734d08 然后再看看： ![](6.png)  果然是">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-25T07:23:21.421Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/12.png">
+<meta property="og:updated_time" content="2018-05-25T09:50:18.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="CherryGk&#39;s Blog">
+<meta name="twitter:description" content="##i春秋”百度杯” 十月份Backdoor Write up 首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](5.png)  猜想是还原版本： git checkout 734d08 然后再看看： ![](6.png)  果然是">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/25/Bakcdoor/1.png">
 
 
   <link rel="alternative" href="/atom.xml" title="CherryGk&#39;s Blog" type="application/atom+xml">
@@ -154,11 +163,7 @@
       
         <div style="max-width: 1000px">
       
-          <article id="post-hello-world" class="article article-type-post">
-  
-    <h1 class="article-header">
-      Hello World
-    </h1>
+          <article id="post-Bakcdoor" class="article article-type-post">
   
   
 
@@ -173,15 +178,65 @@
 
   </div>
   <div class="article-entry">
-    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+    <p>##i春秋”百度杯” 十月份Backdoor Write up</p>
+<p>首先题目提示:</p>
+<p><code>敏感文件泄露</code></p>
+<p>.git泄露：<br><img src="1.png" alt=""></p>
+<p>使用githack将网站源码下载下来：<br><img src="2.png" alt=""></p>
+<p>目录下有：<br><img src="3.png" alt=""></p>
+<p>但是都是没有用的信息：<br><img src="4.png" alt=""></p>
+<p>访问</p>
+<pre>.git/logs/refs/heads/master</pre>
+查看缓存文件，可以看到:
+![](5.png)
+
+猜想是还原版本：
+<pre>git checkout 734d08</pre>
+然后再看看：
+![](6.png)
+
+果然是，多试几个之后就出来一个不一样的flag文件：
+![](7.png)
+
+访问`b4ckdo0r.php`:
+![](8.png)
+
+其他地方没给什么提示，就试试有没有`swp/swo`文件：
+swp文件是vim编辑器不正常退出时产生的文件
+<pre>URL/.b4ckdo0r.php.swp
+或者
+URL/.b4ckdo0r.php.swo
+</pre>
+然后可以知道swp文件没有，但是`swo`文件存在
+
+下载下来之后将后缀名`swo更改为swp`
+在`linux`下进行还原
+
+这里附上还原方法：
+<pre>在linux下
+假设你的swp文件叫'.index.php.swp'
+可用带-r参数编辑
+#vi -r index.php
+然后wq保存即可
+或者使用:
+#vi  .index.php.swp
+然后:recover
+最后wq保存
+</pre>
+
+<p>还原出来之后是:<br><img src="9.png" alt=""></p>
+<p>php混淆加密，给出python脚本，<a href="http://www.cnblogs.com/go2bed/p/5920811.html" target="_blank" rel="noopener">参考链接</a><br>将其中的URL换成题目的URL就行：<br><img src="10.png" alt=""></p>
+<p>执行：</p>
+<pre>python 保存的脚本名字.py b4ckdo0r.php</pre>
+可以看到phpshell
+执行
+<pre>system('ls');</pre>
+
+<p><img src="11.png" alt=""></p>
+<p>查看即可得到flag:</p>
+<pre>system('cat this_i5_flag.php');</pre>
+
+<p><img src="12.png" alt=""></p>
 
   </div>
   <footer class="article-footer">
