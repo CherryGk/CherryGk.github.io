@@ -8,17 +8,18 @@
 
 <title>
   
-    归档
+    categories
   
 </title>
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="CherryGk&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="CherryGk&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-26T04:06:01.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CherryGk&#39;s Blog">
+<meta name="twitter:title" content="categories">
 
 
   <link rel="alternative" href="/atom.xml" title="CherryGk&#39;s Blog" type="application/atom+xml">
@@ -110,106 +111,49 @@
       
         <div style="max-width: 1000px">
       
-          
-
+          <article id="page-" class="article article-type-page">
+  
+    <h1 class="article-header">
+      categories
+    </h1>
   
   
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <h1><a href="/archives/2018" class="archive-year">2018</a></h1>
-        </div>
-        <div class="post-list">
-    
-  
 
-    <div class="post-list-item article">
-      <h3 class="article-header">
-        <a href="/2018/05/26/Bakcdooryun/" >
-  
-</a>
-
-      </h3>
-      
-
-      <div class="article-info">
-        <a href="/2018/05/26/Bakcdooryun/"><span class="article-date">
+  <div class="article-info">
+    <span class="article-date">
   2018-05-26
 </span>
-</a>
+
+    
+
+    
+
+  </div>
+  <div class="article-entry">
+    
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.z" target="_blank" title="署名-相同方式共享">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
         
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        本作品采用知识共享 署名-相同方式共享 4.0 国际许可协议进行许可。
+      </span>
+    </a>
+  </div>
 
-        
 
-      </div>
-      <div class="article-entry">
-        
-          <h2 id="i春秋”百度杯”-十月份Backdoor-Write-up"><a href="#i春秋”百度杯”-十月份Backdoor-Write-up" class="headerlink" title="i春秋”百度杯” 十月份Backdoor Write up"></a>i春秋”百度杯” 十月份Backdoor Write up</h2><p>首先题目提示:</p>
-<p><code>敏感文件泄露</code></p>
-<p>.git泄露：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46656696.jpg" alt=""></p>
-<p>使用githack将网站源码下载下来：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46466049.jpg" alt=""></p>
-<p>目录下有：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/35537649.jpg" alt=""></p>
-<p>但是都是没有用的信息：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/23209636.jpg" alt=""></p>
-<p>访问</p>
-<pre>.git/logs/refs/heads/master</pre>
-查看缓存文件，可以看到:
-![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/90408336.jpg)
+    
 
-猜想是还原版本：
-<pre>git checkout 734d08</pre>
-然后再看看：
-![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/62246852.jpg)
+  </footer>
+</article>
 
-果然是，多试几个之后就出来一个不一样的flag文件：
-![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/92702762.jpg)
-
-访问`b4ckdo0r.php`:
-![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/61413589.jpg)
-
-其他地方没给什么提示，就试试有没有`swp/swo`文件：
-swp文件是vim编辑器不正常退出时产生的文件
-<pre>URL/.b4ckdo0r.php.swp
-或者
-URL/.b4ckdo0r.php.swo
-</pre>
-然后可以知道swp文件没有，但是`swo`文件存在
-
-下载下来之后将后缀名`swo更改为swp`
-在`linux`下进行还原
-
-这里附上还原方法：
-<pre>在linux下
-假设你的swp文件叫'.index.php.swp'
-可用带-r参数编辑
-#vi -r index.php
-然后wq保存即可
-或者使用:
-#vi  .index.php.swp
-然后:recover
-最后wq保存
-</pre>
-
-<p>还原出来之后是:<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/32813565.jpg" alt=""></p>
-<p>php混淆加密，给出python脚本，<a href="http://www.cnblogs.com/go2bed/p/5920811.html" target="_blank" rel="noopener">参考链接</a><br>将其中的URL换成题目的URL就行：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/43015341.jpg" alt=""></p>
-<p>执行：</p>
-<pre>python 保存的脚本名字.py b4ckdo0r.php</pre>
-可以看到phpshell
-执行
-<pre>system('ls');</pre>
-
-<p><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/38797290.jpg" alt=""></p>
-<p>查看即可得到flag:</p>
-<pre>system('cat this_i5_flag.php');</pre>
-
-<p><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/70344916.jpg" alt=""></p>
-
-        
-      </div>
-    </div>
-
-  
 
 
 
