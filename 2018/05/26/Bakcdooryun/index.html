@@ -12,26 +12,26 @@
   
 </title>
 
-<meta name="description" content="##i春秋”百度杯” 十月份Backdoor Write up 首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](5.png)  猜想是还原版本： git checkout 734d08 然后再看看： ![](6.png)  果然是">
+<meta name="description" content="i春秋”百度杯” 十月份Backdoor Write up首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/90408336.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CherryGk&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/2018/05/25/Bakcdoor/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/05/26/Bakcdooryun/index.html">
 <meta property="og:site_name" content="CherryGk&#39;s Blog">
-<meta property="og:description" content="##i春秋”百度杯” 十月份Backdoor Write up 首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](5.png)  猜想是还原版本： git checkout 734d08 然后再看看： ![](6.png)  果然是">
+<meta property="og:description" content="i春秋”百度杯” 十月份Backdoor Write up首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/90408336.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/2.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/3.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/4.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/9.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/10.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/11.png">
-<meta property="og:image" content="http://yoursite.com/2018/05/25/Bakcdoor/12.png">
-<meta property="og:updated_time" content="2018-05-25T09:50:18.181Z">
+<meta property="og:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46656696.jpg">
+<meta property="og:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46466049.jpg">
+<meta property="og:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/35537649.jpg">
+<meta property="og:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/23209636.jpg">
+<meta property="og:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/32813565.jpg">
+<meta property="og:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/43015341.jpg">
+<meta property="og:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/38797290.jpg">
+<meta property="og:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/70344916.jpg">
+<meta property="og:updated_time" content="2018-05-26T03:00:07.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CherryGk&#39;s Blog">
-<meta name="twitter:description" content="##i春秋”百度杯” 十月份Backdoor Write up 首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](5.png)  猜想是还原版本： git checkout 734d08 然后再看看： ![](6.png)  果然是">
-<meta name="twitter:image" content="http://yoursite.com/2018/05/25/Bakcdoor/1.png">
+<meta name="twitter:description" content="i春秋”百度杯” 十月份Backdoor Write up首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问 .git/logs/refs/heads/master 查看缓存文件，可以看到: ![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/90408336.">
+<meta name="twitter:image" content="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46656696.jpg">
 
 
   <link rel="alternative" href="/atom.xml" title="CherryGk&#39;s Blog" type="application/atom+xml">
@@ -83,7 +83,7 @@
       
         <div class="avatar">
           
-            <a href="/about"><img src="https://cn.gravatar.com/avatar/35fef74d731255cd569c2c2b0b9e87e4?s=200"></a>
+            <a href="/about"><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/14907588.jpg"></a>
           
         </div>
       
@@ -163,13 +163,13 @@
       
         <div style="max-width: 1000px">
       
-          <article id="post-Bakcdoor" class="article article-type-post">
+          <article id="post-Bakcdooryun" class="article article-type-post">
   
   
 
   <div class="article-info">
     <span class="article-date">
-  2018-05-25
+  2018-05-26
 </span>
 
     
@@ -178,28 +178,27 @@
 
   </div>
   <div class="article-entry">
-    <p>##i春秋”百度杯” 十月份Backdoor Write up</p>
-<p>首先题目提示:</p>
+    <h2 id="i春秋”百度杯”-十月份Backdoor-Write-up"><a href="#i春秋”百度杯”-十月份Backdoor-Write-up" class="headerlink" title="i春秋”百度杯” 十月份Backdoor Write up"></a>i春秋”百度杯” 十月份Backdoor Write up</h2><p>首先题目提示:</p>
 <p><code>敏感文件泄露</code></p>
-<p>.git泄露：<br><img src="1.png" alt=""></p>
-<p>使用githack将网站源码下载下来：<br><img src="2.png" alt=""></p>
-<p>目录下有：<br><img src="3.png" alt=""></p>
-<p>但是都是没有用的信息：<br><img src="4.png" alt=""></p>
+<p>.git泄露：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46656696.jpg" alt=""></p>
+<p>使用githack将网站源码下载下来：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46466049.jpg" alt=""></p>
+<p>目录下有：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/35537649.jpg" alt=""></p>
+<p>但是都是没有用的信息：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/23209636.jpg" alt=""></p>
 <p>访问</p>
 <pre>.git/logs/refs/heads/master</pre>
 查看缓存文件，可以看到:
-![](5.png)
+![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/90408336.jpg)
 
 猜想是还原版本：
 <pre>git checkout 734d08</pre>
 然后再看看：
-![](6.png)
+![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/62246852.jpg)
 
 果然是，多试几个之后就出来一个不一样的flag文件：
-![](7.png)
+![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/92702762.jpg)
 
 访问`b4ckdo0r.php`:
-![](8.png)
+![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/61413589.jpg)
 
 其他地方没给什么提示，就试试有没有`swp/swo`文件：
 swp文件是vim编辑器不正常退出时产生的文件
@@ -224,19 +223,19 @@ URL/.b4ckdo0r.php.swo
 最后wq保存
 </pre>
 
-<p>还原出来之后是:<br><img src="9.png" alt=""></p>
-<p>php混淆加密，给出python脚本，<a href="http://www.cnblogs.com/go2bed/p/5920811.html" target="_blank" rel="noopener">参考链接</a><br>将其中的URL换成题目的URL就行：<br><img src="10.png" alt=""></p>
+<p>还原出来之后是:<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/32813565.jpg" alt=""></p>
+<p>php混淆加密，给出python脚本，<a href="http://www.cnblogs.com/go2bed/p/5920811.html" target="_blank" rel="noopener">参考链接</a><br>将其中的URL换成题目的URL就行：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/43015341.jpg" alt=""></p>
 <p>执行：</p>
 <pre>python 保存的脚本名字.py b4ckdo0r.php</pre>
 可以看到phpshell
 执行
 <pre>system('ls');</pre>
 
-<p><img src="11.png" alt=""></p>
+<p><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/38797290.jpg" alt=""></p>
 <p>查看即可得到flag:</p>
 <pre>system('cat this_i5_flag.php');</pre>
 
-<p><img src="12.png" alt=""></p>
+<p><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/70344916.jpg" alt=""></p>
 
   </div>
   <footer class="article-footer">
