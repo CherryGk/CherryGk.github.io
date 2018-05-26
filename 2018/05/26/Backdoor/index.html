@@ -1,36 +1,32 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>i春秋"百度杯" 十月份Backdoor Write up · CherryGk's Blog</title><meta name="description" content="首先题目提示:
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>i春秋"百度杯" 十月份Backdoor Write up · CherryGk's Blog</title><meta name="description" content="春秋”百度杯” 十月份Backdoor Write up
+首先题目提示:
 敏感文件泄露
 .git泄露：
 使用githack将网站源码下载下来：
 目录下有：
 但是都是没有用的信息：
-访问
+访问：
 .git/logs/refs/heads/master
-查看缓存文件，可以看到
-![](http://cherry-gk.oss-cn-beijing.aliyuncs.c"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">CherryGk's Blog</a></h3></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>i春秋&quot;百度杯&quot; 十月份Backdoor Write up</a></h3></div><div class="post-content"><p>首先题目提示:</p>
+查看缓存文件，可以看到：
+![](http://cher"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">CherryGk's Blog</a></h3></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>i春秋&quot;百度杯&quot; 十月份Backdoor Write up</a></h3></div><div class="post-content"><p>春秋”百度杯” 十月份Backdoor Write up</p>
+<p>首先题目提示:</p>
 <p><code>敏感文件泄露</code></p>
 <p>.git泄露：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46656696.jpg" alt=""></p>
 <p>使用githack将网站源码下载下来：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/46466049.jpg" alt=""></p>
 <p>目录下有：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/35537649.jpg" alt=""></p>
 <p>但是都是没有用的信息：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/23209636.jpg" alt=""></p>
-<p>访问</p>
+<p>访问：</p>
 <pre>.git/logs/refs/heads/master</pre>
-查看缓存文件，可以看到
+查看缓存文件，可以看到：
 ![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/90408336.jpg)
 
 猜想是还原版本：
 <pre>git checkout 734d08</pre>
-然后再看看
-![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/62246852.jpg)
 
-果然是，多试几个之后就出来一个不一样的flag文件
-![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/92702762.jpg)
-
-访问`b4ckdo0r.php`
-![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/61413589.jpg)
-
-其他地方没给什么提示，就试试有没有`swp/swo`文件：
-swp文件是vim编辑器不正常退出时产生的文件
+<p>然后再看看：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/62246852.jpg" alt=""></p>
+<p>果然是，多试几个之后就出来一个不一样的flag文件：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/92702762.jpg" alt=""></p>
+<p>访问<code>b4ckdo0r.php</code>：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/61413589.jpg" alt=""></p>
+<p>其他地方没给什么提示，就试试有没有<code>swp/swo</code>文件：<br>swp文件是vim编辑器不正常退出时产生的文件</p>
 <pre>URL/.b4ckdo0r.php.swp
 或者
 URL/.b4ckdo0r.php.swo
