@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>i春秋 “百度杯”login Writeup · CherryGk's Blog</title><meta name="description" content="首先打开来是一个登陆的页面：
+看看源码有没有什么提示：
+可以看到最后面注释了两个test1
+我们拿test1登陆进去试试：
+登陆成功。左右看看没有什么发现。打开burpsuite抓包试试:
+可以看到响应包有show这个参数，并且等于0我们将show这个参数等于1发送试试:
+发送之后果然出现了一段代码"><meta name="keywords"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">CherryGk's Blog</a></h3></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai </a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>i春秋 “百度杯”login Writeup</a></h3></div><div class="post-content"><p>首先打开来是一个登陆的页面：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/18428115.jpg" alt=""></p>
+<p>看看源码有没有什么提示：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/40754883.jpg" alt=""></p>
+<p>可以看到最后面注释了两个<code>test1</code></p>
+<p>我们拿test1登陆进去试试：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/28913348.jpg" alt=""></p>
+<p>登陆成功。<br>左右看看没有什么发现。<br>打开burpsuite抓包试试:<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/18245448.jpg" alt=""></p>
+<p>可以看到响应包有<code>show</code>这个参数，并且等于<code>0</code><br>我们将<code>show</code>这个参数等于<code>1</code>发送试试:<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/14660146.jpg" alt=""></p>
+<p>发送之后果然出现了一段代码：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/55268993.jpg" alt=""></p>
+<p>这段代码的大概意思是：</p>
+<pre>
+当$login['user']='ichunqiu'的时候，echo flag
+但是login只能从token中获得，并且被几个函数加密了，
+我们只需要照着过程逆回去即可
+</pre>
+payload：
+<pre>
+$arr = array('user'=>'ichunqiu');
+$hello = base64_encode(gzcompress(serialize('$arr')));
+echo $hello;
+</pre>
+
+<p>直接解析之后echo的值就是我们需要的<code>token</code>值,<br>这里解密之后是这个：</p>
+<pre>
+eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
+</pre>
+
+<p>将<code>token</code>放到<code>cookie</code>里发送即可得到flag:<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/65528752.jpg" alt=""></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-05-26</span><i class="fa fa-tag"></i><a class="tag" href="/tags/writeup/" title="writeup">writeup </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" href="http://twitter.com/home?status=,http://yoursite.com/2018/05/26/login/,CherryGk's Blog,i春秋 “百度杯”login Writeup,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2018/05/27/vps/" title="VPS的选择及购买">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2018/05/26/Backdoor/" title="i春秋&quot;百度杯&quot; 十月份Backdoor Write up">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
