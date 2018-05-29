@@ -207,21 +207,60 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             
             <h3 id="1-购买vps"><a href="#1-购买vps" class="headerlink" title="1.购买vps"></a>1.购买vps</h3><p>这里给出<a href="https://cherrygk.github.io/2018/05/27/vps/" target="_blank" rel="noopener">链接</a>，就不仔细介绍了</p>
-<h3 id="2-搭建ssr"><a href="#2-搭建ssr" class="headerlink" title="2.搭建ssr"></a>2.搭建ssr</h3><p>连接上xshell或者其他shell软件之后，复制以下命令：<br><code>wget -N <a href="https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh</a><br>chmod +x ssr.sh<br>bash ssr.sh<br></code><br>一条一条命令执行即可，执行完之后看到的是这个页面：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/30188874.jpg" alt=""></p>
-<p>选择1安装ssr，将端口号设置成443，密码写个自己能记住的密码：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/35840001.jpg" alt=""></p>
-<p>加密方式选择<code>10. aes-256-cfb</code><br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/38496608.jpg" alt=""></p>
+<h3 id="2-搭建ssr"><a href="#2-搭建ssr" class="headerlink" title="2.搭建ssr"></a>2.搭建ssr</h3><p>连接上xshell或者其他shell软件之后，复制以下命令：<br><code>wget -N <a href="https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh" target="_blank" rel="noopener">https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh</a><br>chmod +x ssr.sh<br>bash ssr.sh<br></code><br>一条一条命令执行即可，执行完之后看到的是这个页面：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/30188874.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>选择1安装ssr，将端口号设置成443，密码写个自己能记住的密码：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/35840001.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>加密方式选择<code>10. aes-256-cfb</code><br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/38496608.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
 <p>协议插件和混淆插件分别选择：<br><code>2.auth_sha1_v4和tls1.2_ticket_auth</code></p>
-<p>询问<code>是否兼容原版</code>，原版就是ss，这里选择no，<br>选择yes的话就能支持ss客户端了：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/55693970.jpg" alt=""></p>
-<p>限制的设备数、单线程限速上限、每个端口的总速度，这里都直接回车，选择默认（不限速）：<br>(这里自用，所以没有限速和限流)<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/42615922.jpg" alt=""></p>
-<p>回车之后就可以开始安装了：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/52424243.jpg" alt=""></p>
-<p>出来这个页面的话，证明已经安装完成了，<br>如果嫌麻烦的话，这样已经可以直接用了，<br>但是如果你想<code>多端口配置</code>也是可以的,<br>输入:<br><code>bash ssr.sh</code><br>进入ssr的管理页面,<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/73282461.jpg" alt=""></p>
-<p>如果之前的步骤有些小问题的话这里也是可以修改的，<br>现在我们需要切换成<code>多端口模式</code>：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/42295513.jpg" alt=""></p>
-<p>配置跟之前的单端口一样就行，设置成功后：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/41616348.jpg" alt=""></p>
-<p>直接就有一个端口，这个端口是之前单端口设置的，<br>进入管理页面：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/34687472.jpg" alt=""></p>
-<p>多端口模式下<code>7.用户配置</code>可以添加新的端口：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/43110869.jpg" alt=""></p>
-<p>操作跟之前一样，配置成功后：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/21970127.jpg" alt=""></p>
+<p>询问<code>是否兼容原版</code>，原版就是ss，这里选择no，<br>选择yes的话就能支持ss客户端了：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/55693970.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>限制的设备数、单线程限速上限、每个端口的总速度，这里都直接回车，选择默认（不限速）：<br>(这里自用，所以没有限速和限流)<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/42615922.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>回车之后就可以开始安装了：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/52424243.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>出来这个页面的话，证明已经安装完成了，<br>如果嫌麻烦的话，这样已经可以直接用了，<br>但是如果你想<code>多端口配置</code>也是可以的,<br>输入:<br><code>bash ssr.sh</code><br>进入ssr的管理页面,<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/73282461.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>如果之前的步骤有些小问题的话这里也是可以修改的，<br>现在我们需要切换成<code>多端口模式</code>：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/42295513.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>配置跟之前的单端口一样就行，设置成功后：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/41616348.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>直接就有一个端口，这个端口是之前单端口设置的，<br>进入管理页面：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/34687472.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>多端口模式下<code>7.用户配置</code>可以添加新的端口：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/43110869.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>操作跟之前一样，配置成功后：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/21970127.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
 <h3 id="3-客户端的安装"><a href="#3-客户端的安装" class="headerlink" title="3.客户端的安装"></a>3.客户端的安装</h3><p>Windows：<br><code><a href="https://nofile.io/f/6Jm7WJCyOVv/ShadowsocksR-4.7.0-win.7z" target="_blank" rel="noopener">https://nofile.io/f/6Jm7WJCyOVv/ShadowsocksR-4.7.0-win.7z</a></code><br>安卓：<br><code><a href="https://nofile.io/f/rvTJoj0h5GC/shadowsocksr-release.apk" target="_blank" rel="noopener">https://nofile.io/f/rvTJoj0h5GC/shadowsocksr-release.apk</a></code></p>
-<p>windows版解压完之后直接运行：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/31371154.jpg" alt=""></p>
+<p>windows版解压完之后直接运行：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/31371154.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
 <p>任务栏会出现一个小飞机：<br>首先我们把前面ssr的链接复制下来，然后右键小飞机，选择剪贴板导入即可。</p>
 <p>安卓的比较简单，就不仔细截图了。<br>首先将APK安装-&gt;然后点击顶上方的“▼”-&gt;选择右下方的“+”<br>-&gt;从剪切板导入即可(同样得复制之前的ssr链接)</p>
 <h3 id="4-bbr加速"><a href="#4-bbr加速" class="headerlink" title="4.bbr加速"></a>4.bbr加速</h3><p>这一步主要是给自己的ssr提速<br>复制以下命令到shell里:</p>
@@ -239,7 +278,7 @@ chmod +x bbr.sh
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-05-29T01:44:20.039Z" itemprop="dateUpdated">2018-05-29 09:44:20</time>
+    最后更新时间：<time datetime="2018-05-29T01:44:20.039Z" itemprop="dateUpdated">2018-05-29 09:44:20</time>
 </span><br>
 
 

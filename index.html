@@ -235,10 +235,14 @@
     
     
         打开是个登陆界面：
+                
+                
+            
 查看一下源代码：
-用户信息都在user.php里，密码的结构也告诉你了，猜想是爆破但是现在没有字典，我们先访问一下user.php，发现啥都没有，一开始以为是文件包含，但是没有变量可以用可能是备份文件获取，试试user.php.bak果然：
-将文件下载下来之后发现是用户名的信息，打开burpsuite开始爆破：从1990年开始（大佬们wp写的，我也不知道为什么）
-字典直接...
+                
+                
+            
+用户信息都在user.php里，密码的结构也告诉你了，猜想是爆破但是现在没有字典，我们先访问一下user.php，发现啥都没有，一开始以为是文件包含，但是没有变量可以用...
     
     <a href="/2018/05/28/123/" class="post-more waves-effect waves-button">
             more
@@ -302,9 +306,16 @@
     
     
         打开来是一个不知道什么cms的页面：
+                
+                
+            
 上cms指纹识别：
+                
+                
+            
 但是貌似识别不出来，想想其他方法比如搜一搜传递的变量名，也就是URL后面跟着的一大堆东西
-点进去看了看，跟题目的cms差不多差不多确定是easycms了，搜一搜easycms漏洞但是找到的大多数不能用，最终还是看了大佬们写的writeup在URL/celive/live/header.php处有一个xpath注入漏洞xpath注入科普...
+                
+            ...
     
     <a href="/2018/05/28/YeserCMS/" class="post-more waves-effect waves-button">
             more
@@ -368,10 +379,15 @@
     
     
         首先打开题目：
+                
+                
+            
 发现是一个海洋CMS，但是不太清楚版本往下翻一翻，发现有个年份
+                
+                
+            
 看得出是一个很老的版本了，题目的提示是：善于查资料，你就可以拿一血了好吧直接查资料：海洋cms漏洞利用
-直接一大块的漏洞出来了。这里直接找到payload了：/search.php?searchtype=5&amp;tid=&amp;area=eval($_POST[cmd])
-然后打开菜刀：密码cmd连接即可：...
+           ...
     
     <a href="/2018/05/28/test/" class="post-more waves-effect waves-button">
             more
@@ -436,7 +452,7 @@
     
         1.购买vps这里给出链接，就不仔细介绍了
 2.搭建ssr连接上xshell或者其他shell软件之后，复制以下命令：wget -N https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.shchmod +x ssr.shbash ssr.sh一条一条命令执行即可，执行完之后看到的是这个页面：
-选择1安装ssr，将端口号...
+             ...
     
     <a href="/2018/05/27/ssr/" class="post-more waves-effect waves-button">
             more
@@ -501,8 +517,11 @@
     
         这里主要讲述Vutrl的使用，搬瓦工也是可以的（因为都支持支付宝，简单快捷）
 注册Vultr打开注册链接点击右上方的Create Account注册比较简单，输入邮箱密码创建就行进入邮箱确认，登陆后：
+                
+                
+            
 充值点击Billing,然后点击Make Payment下的Alipay
-选择价格然后充值，第一次使用少充点，10美元就行觉得好用再继续充值就行，然后会跳转到支付宝的支付页面，用支付宝付款即可...
+            ...
     
     <a href="/2018/05/27/vps/" class="post-more waves-effect waves-button">
             more
@@ -566,15 +585,18 @@
     
     
         首先打开来是一个登陆的页面：
+                
+                
+            
 看看源码有没有什么提示：
+                
+                
+            
 可以看到最后面注释了两个test1
 我们拿test1登陆进去试试：
-登陆成功。左右看看没有什么发现。打开burpsuite抓包试试:
-可以看到响应包有show这个参数，并且等于0我们将show这个参数等于1发送试试:
-发送之后果然出现了一段代码：
-这段代码的大概意思是：
-
-当$login['user']='ichunqiu'的时候，ec...
+                
+                
+       ...
     
     <a href="/2018/05/26/login/" class="post-more waves-effect waves-button">
             more
@@ -641,19 +663,16 @@
 首先题目提示:
 敏感文件泄露
 .git泄露：
+                
+                
+            
 使用githack将网站源码下载下来：
+                
+                
+            
 目录下有：
-但是都是没有用的信息：
-访问：
-.git/logs/refs/heads/master
-
-
-猜想是还原版本：
-git checkout 734d08
-
-然后再看看：
-果然是，多试几个之后就出来一个不一样的flag文件：
-访问b4ckdo0...
+                
+        ...
     
     <a href="/2018/05/26/Backdoor/" class="post-more waves-effect waves-button">
             more

@@ -206,18 +206,51 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <p>打开是个登陆界面：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/25548456.jpg" alt=""></p>
-<p>查看一下源代码：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/89077544.jpg" alt=""></p>
-<p>用户信息都在<code>user.php</code>里，<br>密码的结构也告诉你了，猜想是爆破<br>但是现在没有字典，<br>我们先访问一下<code>user.php</code>，发现啥都没有，<br>一开始以为是文件包含，但是没有变量可以用<br>可能是备份文件获取，试试<code>user.php.bak</code><br>果然：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/71911141.jpg" alt=""></p>
-<p>将文件下载下来之后发现是用户名的信息，<br>打开burpsuite开始爆破：<br>从1990年开始（大佬们wp写的，我也不知道为什么）<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/70641293.jpg" alt=""></p>
-<p>字典直接用刚刚的user.php<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/50813700.jpg" alt=""></p>
-<p>开始爆破：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/2436984.jpg" alt=""></p>
+            <p>打开是个登陆界面：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/25548456.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>查看一下源代码：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/89077544.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>用户信息都在<code>user.php</code>里，<br>密码的结构也告诉你了，猜想是爆破<br>但是现在没有字典，<br>我们先访问一下<code>user.php</code>，发现啥都没有，<br>一开始以为是文件包含，但是没有变量可以用<br>可能是备份文件获取，试试<code>user.php.bak</code><br>果然：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/71911141.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>将文件下载下来之后发现是用户名的信息，<br>打开burpsuite开始爆破：<br>从1990年开始（大佬们wp写的，我也不知道为什么）<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/70641293.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>字典直接用刚刚的user.php<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/50813700.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>开始爆破：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/2436984.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
 <p>得到了一个用户<code>lixiuyun</code> 密码 <code>lixiuyun1990</code></p>
-<p>登陆进去之后也是什么都没有，查看源代码：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/84033226.jpg" alt=""></p>
-<p>本地构建html：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/68268069.jpg" alt=""></p>
-<p>php别名：php2, php3, php4, php5, phps, pht, phtm, phtml …<br>都可以试试:<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/2201720.jpg" alt=""></p>
-<p>可以看到有个view.php了，打开看看<br>这次估计真是文件包含了：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/3508568.jpg" alt=""></p>
-<p>这里还有个过滤，将flag过滤了<br>双写flag即可拿到flag：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/23475809.jpg" alt=""></p>
+<p>登陆进去之后也是什么都没有，查看源代码：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/84033226.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>本地构建html：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/68268069.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>php别名：php2, php3, php4, php5, phps, pht, phtm, phtml …<br>都可以试试:<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/2201720.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>可以看到有个view.php了，打开看看<br>这次估计真是文件包含了：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/3508568.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>这里还有个过滤，将flag过滤了<br>双写flag即可拿到flag：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/23475809.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
 
         </div>
         
@@ -225,7 +258,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-05-29T01:44:17.788Z" itemprop="dateUpdated">2018-05-29 09:44:17</time>
+    最后更新时间：<time datetime="2018-05-29T01:44:17.788Z" itemprop="dateUpdated">2018-05-29 09:44:17</time>
 </span><br>
 
 

@@ -206,15 +206,36 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <p>首先打开题目：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/34916792.jpg" alt=""></p>
-<p>发现是一个海洋CMS，但是不太清楚版本<br>往下翻一翻，发现有个年份<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/41559037.jpg" alt=""></p>
-<p>看得出是一个很老的版本了，题目的提示是：<br><code>善于查资料，你就可以拿一血了</code><br>好吧直接查资料：<br><code>海洋cms漏洞利用</code><br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/41559037.jpg" alt=""></p>
+            <p>首先打开题目：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/34916792.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>发现是一个海洋CMS，但是不太清楚版本<br>往下翻一翻，发现有个年份<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/41559037.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>看得出是一个很老的版本了，题目的提示是：<br><code>善于查资料，你就可以拿一血了</code><br>好吧直接查资料：<br><code>海洋cms漏洞利用</code><br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/41559037.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
 <p>直接一大块的漏洞出来了。<br>这里直接找到payload了：<br><code>/search.php?searchtype=5&amp;tid=&amp;area=eval($_POST[cmd])</code></p>
-<p>然后打开菜刀：<br>密码<code>cmd</code>连接即可：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/90521376.jpg" alt=""></p>
-<p>连接成功：<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/9609352.jpg" alt=""></p>
-<p>可以发现在html/data下有个common.inc.php<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/36892120.jpg" alt=""></p>
+<p>然后打开菜刀：<br>密码<code>cmd</code>连接即可：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/90521376.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>连接成功：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/9609352.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>可以发现在html/data下有个common.inc.php<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/36892120.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
 <p>这个是数据库的配置文件</p>
-<p>菜刀连接数据库拿到flag:<br><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/6211372.jpg" alt=""></p>
+<p>菜刀连接数据库拿到flag:<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/6211372.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
 
         </div>
         
@@ -222,7 +243,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-05-29T01:44:21.040Z" itemprop="dateUpdated">2018-05-29 09:44:21</time>
+    最后更新时间：<time datetime="2018-05-29T01:44:21.040Z" itemprop="dateUpdated">2018-05-29 09:44:21</time>
 </span><br>
 
 
