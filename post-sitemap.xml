@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2018/05/28/YeserCMS/</loc>
+        <lastmod>2018-05-30T09:22:43.970Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2018/05/28/123/</loc>
         <lastmod>2018-05-30T05:12:12.377Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -49,14 +57,6 @@
     <url>
         <loc>http://yoursite.com/2018/05/27/vps/</loc>
         <lastmod>2018-05-30T05:12:09.010Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2018/05/28/YeserCMS/</loc>
-        <lastmod>2018-05-30T05:12:08.250Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

