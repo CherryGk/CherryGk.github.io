@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     
     
-    <title>Categories: 技术分享 | CherryGk&#39;s Blog | Welcome!</title>
+    <title>解决burpsuite里中文不显示的方法 | CherryGk&#39;s Blog | Welcome!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="">
+    <meta name="keywords" content="burpsuite">
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.3.1">
     
@@ -33,7 +33,7 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -99,7 +99,7 @@
               </a>
             </li>
         
-            <li class=" active">
+            <li class="">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
                 CATEGORIES
@@ -146,7 +146,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>Categories: 技术分享</span>
+            <span>解决burpsuite里中文不显示的方法</span>
             
         </div>
         
@@ -156,34 +156,24 @@
         
     </div>
 </header>
-<header class="content-header categories-header">
+<header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">Categories: 技术分享</h1>
+        <h1 class="title">解决burpsuite里中文不显示的方法</h1>
         <h5 class="subtitle">
+            
+                <time datetime="2018-05-31T09:12:12.000Z" itemprop="datePublished" class="page-time">
+  2018-05-31
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术分享/">技术分享</a></li></ul>
+
             
         </h5>
         
     </div>
     
-<div class="tabs-bar container">
-    <nav class="tags-list">
-        <a href="/categories" style="-webkit-order:-1;order:-1" class="tags-list-item waves-effect waves-button waves-light
-            ">All</a>
-        
-            <a href="/categories/技术分享/" backup-style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light active">技术分享</a>
-            
-        
-            <a href="/categories/writeup/" backup-style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light">writeup</a>
-            
-        
-    </nav>
-    <!-- PC show more-->
-    <div class="tags-list-more">
-        <a href="javascript:;" class="action tags-list-item waves-effect waves-circle waves-light"><i class="icon icon-ellipsis-h"></i></a>
-    </div>
-</div>
-
 
 </header>
 
@@ -200,109 +190,146 @@
     <div id="local-search-result"></div>
 </div>
 
-<div class="container body-wrap fade">
-    
-            <div class="waterfall">
-                
-                    <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2018-05-31 17:12:12" datetime="2018-05-31T09:12:12.000Z"  itemprop="datePublished">2018-05-31</time>
 
-      
+<div class="container body-wrap">
+    <article id="post-bp"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">解决burpsuite里中文不显示的方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-31 17:12:12" datetime="2018-05-31T09:12:12.000Z"  itemprop="datePublished">2018-05-31</time>
+
+            
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术分享/">技术分享</a></li></ul>
 
 
 
-    </div>
-    
+            
+
+            
 
 
-  
-    <h3 class="post-title " itemprop="name">
-      <a class="post-title-link" href="/2018/05/31/bp/">解决burpsuite里中文不显示的方法</a>
-    </h3>
-  
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>burpsuite中文显示不出，某些时候非常不好用</p>
+<p>这里用的版本是1.7.26，其他的版本修改方式没有大的区别</p>
+<p>打开burpsuite，找到<code>user options</code>:<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/43899203.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>然后在display中的http message display选择成中文字体，<br>这里选择微软雅黑：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/64155627.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>然后就成功了</p>
 
-
-
-    
-    <div class="post-footer">
+        </div>
         
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-05-31T09:15:12.434Z" itemprop="dateUpdated">2018-05-31 17:15:12</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/05/31/bp/" target="_blank" rel="external">http://yoursite.com/2018/05/31/bp/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="">
+            
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/burpsuite/">burpsuite</a></li></ul>
 
-    </div>
+            <div class="page-share-wrap">
     
-  </article>
-</div>
-                
-                    <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2018-05-27 09:31:22" datetime="2018-05-27T01:31:22.000Z"  itemprop="datePublished">2018-05-27</time>
 
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
       
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术分享/">技术分享</a></li></ul>
-
-
-
-    </div>
-    
-
-
-  
-    <h3 class="post-title " itemprop="name">
-      <a class="post-title-link" href="/2018/05/27/ssr/">Centos6&amp;7 搭建ssr科学上网及IPv6免流</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/免流/">免流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/科学上网/">科学上网</a></li></ul>
-
-    </div>
-    
-  </article>
-</div>
-                
-                    <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2018-05-27 09:27:02" datetime="2018-05-27T01:27:02.000Z"  itemprop="datePublished">2018-05-27</time>
-
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/31/bp/&title=《解决burpsuite里中文不显示的方法》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
       
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术分享/">技术分享</a></li></ul>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/31/bp/&title=《解决burpsuite里中文不显示的方法》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/31/bp/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《解决burpsuite里中文不显示的方法》 — CherryGk's Blog&url=http://yoursite.com/2018/05/31/bp/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/31/bp/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
 
 
 
-    </div>
-    
-
-
-  
-    <h3 class="post-title " itemprop="name">
-      <a class="post-title-link" href="/2018/05/27/vps/">VPS的选择及购买</a>
-    </h3>
-  
-
-
-
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vps购买/">vps购买</a></li></ul>
-
-    </div>
-    
-  </article>
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
 </div>
-                
-            </div>
+
+        </div>
         
+            
+
+
+        
+    </div>
     
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2018/05/28/123/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">i春秋 &#34;百度杯&#34; 九月场 123 writeup</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+</article>
+
 </div>
 
         <footer class="footer">
@@ -336,7 +363,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/categories/技术分享/&title=CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/31/bp/&title=《解决burpsuite里中文不显示的方法》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -348,25 +375,25 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/categories/技术分享/&title=CherryGk's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/31/bp/&title=《解决burpsuite里中文不显示的方法》 — CherryGk's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/categories/技术分享/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/31/bp/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=CherryGk's Blog&url=http://yoursite.com/categories/技术分享/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《解决burpsuite里中文不显示的方法》 — CherryGk's Blog&url=http://yoursite.com/2018/05/31/bp/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/categories/技术分享/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/31/bp/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -378,7 +405,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHklEQVR42u3aQW7DMAwEwPz/0y7Qa+F4SdpALY1OgdtIGh8YkdTnE4/jd5w9OYKR/+fftW4bGBgYr2VMlk+Q1ec5GwMDYzdGdeqzZc5e0Pd5knUv9oyBgYERbDRnfw/TGBgYGM8xnkiYMTAwMKpJbDXtvCso35yLY2BgvJAxCYJPf36wv4GBgfESxtEa3+dJgmxepIv2g4GBsTRjUuivlsaqpbrkSZRzY2BgvJyRh7/qqSwv5yUHwYsXjYGBsQ0jKb5Xy17zy2HRDjEwMDZgTJqX1SS2+pqiMI2BgbENo5eO9o6D1VbERSqLgYGxGWNy8WLeqkzWLdcLMTAwFmLkxbW83J8/z+c/bQxgYGAsysjT0ZzdA0xCMwYGBsa8bZkcMauzXfx6YGBgLMfoNRHn7ck87FZbDhgYGKsyelP3mo69YN1MZTEwMJZg9C493Fue6x1Mb7i7gYGB8e8ZydcmyWQ1lc0DNAYGxs6MvKyfbK56deO2gIuBgbEQo9pQ7G0rn636VwwMjB0Y1UCZNzInWyynxBgYGEszJilrj9or6mFgYOzMOIojb3kmaWeVF5XbMDAwlmPko5qaVq+O9VoOZQwGBsZrGXkRrVpiq2LygPtJvoaBgbEco3pVoteGbB7p8isXGBgYGIMifjU0l18HBgYGRrBAr5056l1gYGBsxhjdKRskq3k7oXA5DAMDYznGc0G5Wj7rHVIxMDCWZvwA7HutY4Js+icAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABy0lEQVR42u3aQY7DIBAEwPz/01lpTyslxj0MIK9UnHyIQ+FDC2Z4veLx/h1/nz/H1Vufvxm/tWDg4uK2ue/h+OTmi7maJf8EX+bFxcU9yK2GV2ep+efAxcV9Pjdfxhg6fsbFxf1f3GTMUXBxcZ/JTaZPyhn5hmb7WQ0XF7fBnSuYrn3eXt/FxcVd1JXImyVJg2QccNHsuLi4R7hJ8WLBcSUukUQxh4uLu5mbh8vctYnqkm4OWri4uAe51ZJHJ5LmCqw3OzJcXNyl3Gqs5A3XuWsWUWji4uJu5labFuMgq5ZIyle4cHFxj3M7zc78Yla1S1JIO1xc3EXcHcWLuWJKoeGKi4u7mVstWFTDrryJGb+Fi4t7kLtqW5OXS3BxcZ/PzfcSc7/pFFhxcXHPc/Mty9wljP5ljsIlDFxc3EXc/HCSF0mrBZfCknBxcQ9yO9XWvImSx99NkOHi4h7h5iM/6sxF2GQnFhcXdym3GijJ9OPn5N38H3Bxcfdxz5RFqjcoLmMOFxf3ILfaUKlujCYT9CrIcHFxH8Oda5Z0Wixf/gEXF/eR3M7GpbW5wcXFPc7tXJXIWXOlkMmzGi4uboNbPX50YqsflLi4uJu5P8wP3UTVnp5tAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 

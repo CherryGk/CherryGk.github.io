@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2018/05/31/bp/</loc>
+        <lastmod>2018-05-31T09:15:12.434Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2018/05/28/YeserCMS/</loc>
         <lastmod>2018-05-30T11:55:22.336Z</lastmod>
         <changefreq>weekly</changefreq>

@@ -6,10 +6,37 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-30T11:47:43.241Z</updated>
+  <updated>2018-05-31T09:15:12.434Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决burpsuite里中文不显示的方法</title>
+    <link href="http://yoursite.com/2018/05/31/bp/"/>
+    <id>http://yoursite.com/2018/05/31/bp/</id>
+    <published>2018-05-31T09:12:12.000Z</published>
+    <updated>2018-05-31T09:15:12.434Z</updated>
+    
+    <content type="html"><![CDATA[<p>burpsuite中文显示不出，某些时候非常不好用</p><p>这里用的版本是1.7.26，其他的版本修改方式没有大的区别</p><p>打开burpsuite，找到<code>user options</code>:<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/43899203.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>然后在display中的http message display选择成中文字体，<br>这里选择微软雅黑：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/64155627.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>然后就成功了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;burpsuite中文显示不出，某些时候非常不好用&lt;/p&gt;
+&lt;p&gt;这里用的版本是1.7.26，其他的版本修改方式没有大的区别&lt;/p&gt;
+&lt;p&gt;打开burpsuite，找到&lt;code&gt;user options&lt;/code&gt;:&lt;br&gt;&lt;figure class=&quot;image-bo
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="burpsuite" scheme="http://yoursite.com/tags/burpsuite/"/>
+    
+  </entry>
   
   <entry>
     <title>i春秋 &quot;百度杯&quot; 九月场 123 writeup</title>
@@ -91,9 +118,9 @@
       <category term="writeup" scheme="http://yoursite.com/categories/writeup/"/>
     
     
-      <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
-    
       <category term="命令执行" scheme="http://yoursite.com/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
+    
+      <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
