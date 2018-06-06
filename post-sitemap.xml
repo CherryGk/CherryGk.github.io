@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2018/06/06/bugku/</loc>
+        <lastmod>2018-06-06T11:54:16.760Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2018/05/31/logindft/</loc>
         <lastmod>2018-05-31T11:22:04.986Z</lastmod>
         <changefreq>weekly</changefreq>
