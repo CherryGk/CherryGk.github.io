@@ -278,7 +278,7 @@
 <h2 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a>变量1</h2><p>某春秋原题。<br>flag In the variable !<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8004/index1.php?args=GLOBALS</span><br></pre></td></tr></table></figure></p>
 <p><a href="http://blog.csdn.net/qq_35078631/article/details/62438259" target="_blank" rel="noopener">参考资料</a></p>
 <h2 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h2><p>jsfuck<br>右键查看源代码：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-6/3564194.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-14/20293186.jpg" alt="" title="" class="">
                 <p></p>
             </figure><br>复制下来，F12放到控制台回车，得到flag：<br><figure class="image-box">
                 <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-6/1983962.jpg" alt="" title="" class="">
@@ -316,6 +316,32 @@
 <p>php弱类型比较，在url栏输入：</p>
 <p><code>URL?key1=QNKCDZO&amp;key2=240610708</code></p>
 <p>发现没啥反应，然后看了看源码，发现过滤了<code>key</code><br>双写key绕过，提交得到flag<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://120.24.86.145:8002/web16/index.php?kekeyy1=QNKCDZO&amp;kkeyey2=240610708</span><br></pre></td></tr></table></figure></p>
+<p>##秋名山老司机</p>
+<p>直接访问：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-14/12155851.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>很明显是算不到这么快的。<br>只能写脚本了。<br>附上python脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">url = &apos;http://120.24.86.145:8002/qiumingshan/&apos;</span><br><span class="line">s = requests.Session()</span><br><span class="line">source = s.get(url)</span><br><span class="line">expression = re.search(r&apos;(\d+[+\-*])+(\d+)&apos;, source.text).group()</span><br><span class="line">result = eval(expression)</span><br><span class="line">post = &#123;&apos;value&apos;: result&#125;</span><br><span class="line">print(s.post(url, data = post).text)</span><br></pre></td></tr></table></figure></p>
+<p>这里有个正则匹配来匹配给出的表达式，<br>然后直接用eval计算。<br>最后将<code>value</code> <code>post</code>即可得到flag，<br>但是计算出的表达式长度不一样，可能会超过php的最大长度<br>所以需要多试几遍。<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-14/19420139.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>##速度要快<br>打开来什么都没有，就是一个你得快点：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-14/86374868.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>查看源代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- OK ,now you have to post the margin what you find --&gt;</span><br></pre></td></tr></table></figure></p>
+<p>有一段提示，<code>post</code> <code>margin</code>变量what i find<br>打开bp抓包：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-14/87281166.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>响应头中有个flag,<br>base64之后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">跑的还不错，给你flag吧: NjM4NzUy</span><br></pre></td></tr></table></figure></p>
+<p>估计是把 <code>NjM4NzUy</code>提交上去就行了,<br>但是后面发现还得把<code>NjM4NzUy</code>解一次base64：<code>638752</code><br>这个后面再说原因。<br>直接上python脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import base64</span><br><span class="line">import re</span><br><span class="line">url=&apos;http://120.24.86.145:8002/web6/&apos;</span><br><span class="line">a=requests.session()</span><br><span class="line">r=a.get(url)</span><br><span class="line">FLAG=r.headers[&apos;flag&apos;]</span><br><span class="line">p=re.match(&apos;(.*)(: )(.*)&apos;,base64.b64decode(FLAG))</span><br><span class="line">payload=&#123;&apos;margin&apos;:base64.b64decode(p.group(3))&#125;</span><br><span class="line">r=a.post(url,data=payload)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure></p>
+<p>得到flag:<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-14/21828555.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>这里可以看到我的脚本用了两次base64，<br>如果只用一次的话，题目会提示<code>你需要再快点</code>，具体的这里就不试了<br>同时给出php的脚本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt; </span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">    $url = &quot;http://120.24.86.145:8002/web6/&quot;;</span><br><span class="line">    $contents = file_get_contents($url);</span><br><span class="line">    $header_arr = get_headers($url);</span><br><span class="line">    $cookie = $header_arr[5];</span><br><span class="line">    $cookie = explode(&apos;:&apos;,$cookie)[1];</span><br><span class="line">    $cookie = explode(&apos;;&apos;,$cookie)[0];</span><br><span class="line"></span><br><span class="line">    $flag = $header_arr[9];</span><br><span class="line">    $flag = explode(&apos;:&apos;,$flag)[1];</span><br><span class="line"></span><br><span class="line">    $flag = base64_decode($flag);</span><br><span class="line">    $flag = explode(&apos;: &apos;,$flag)[1];</span><br><span class="line">    $flag = base64_decode($flag);</span><br><span class="line"></span><br><span class="line">    $post_data = array(&quot;margin&quot;=&gt;$flag);</span><br><span class="line">    $ch = curl_init();</span><br><span class="line">    curl_setopt($ch,CURLOPT_URL,$url);</span><br><span class="line">    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);</span><br><span class="line">    curl_setopt($ch,CURLOPT_COOKIE,$cookie);</span><br><span class="line">    curl_setopt($ch,CURLOPT_POSTFIELDS,$post_data);</span><br><span class="line">    $output = curl_exec($ch);</span><br><span class="line">    curl_close($ch);</span><br><span class="line"> </span><br><span class="line">    print_r($output);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1>
         </div>
         
@@ -323,7 +349,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-06-07T04:58:21.719Z" itemprop="dateUpdated">2018-06-07 12:58:21</time>
+    Last updated: <time datetime="2018-06-14T09:10:46.308Z" itemprop="dateUpdated">2018-06-14 17:10:46</time>
 </span><br>
 
 
