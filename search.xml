@@ -52,8 +52,8 @@
         <category>writeup</category>
       </categories>
       <tags>
-        <tag>命令执行</tag>
         <tag>xpath注入</tag>
+        <tag>命令执行</tag>
       </tags>
   </entry>
   <entry>
@@ -64,8 +64,8 @@
         <category>writeup</category>
       </categories>
       <tags>
-        <tag>sql注入</tag>
         <tag>命令执行</tag>
+        <tag>sql注入</tag>
       </tags>
   </entry>
   <entry>
@@ -99,8 +99,8 @@
         <category>writeup</category>
       </categories>
       <tags>
-        <tag>sql注入</tag>
         <tag>反序列化</tag>
+        <tag>sql注入</tag>
       </tags>
   </entry>
   <entry>
