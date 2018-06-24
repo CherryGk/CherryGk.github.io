@@ -27,8 +27,8 @@
         <category>writeup</category>
       </categories>
       <tags>
-        <tag>sql注入</tag>
         <tag>.git泄露</tag>
+        <tag>sql注入</tag>
       </tags>
   </entry>
   <entry>
@@ -110,8 +110,8 @@
         <category>writeup</category>
       </categories>
       <tags>
-        <tag>sql注入</tag>
         <tag>反序列化</tag>
+        <tag>sql注入</tag>
       </tags>
   </entry>
   <entry>
