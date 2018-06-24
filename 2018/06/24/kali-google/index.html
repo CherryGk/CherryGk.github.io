@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>Kali Linux中如何安装Google Chrome并安装插件 | CherryGk&#39;s Blog | Welcome!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="kali">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":"c1ada43c"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname"></h5>
+          <a href="mailto:1196821466@qq.com" title="1196821466@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>8</span>
+            
+              <span>2</span>
+            
+              <span>1</span>
+            
+              <span>4</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                文章分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章总览
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Kali Linux中如何安装Google Chrome并安装插件</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Kali Linux中如何安装Google Chrome并安装插件</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-24T07:15:53.000Z" itemprop="datePublished" class="page-time">
+  2018-06-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术分享/">技术分享</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-kali-google"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Kali Linux中如何安装Google Chrome并安装插件</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-06-24 15:15:53" datetime="2018-06-24T07:15:53.000Z"  itemprop="datePublished">2018-06-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术分享/">技术分享</a></li></ul>
+
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <p>因为一些原因，需要在Windows下Centos的VMware虚拟机中kali的KVM虚拟机中安装Google浏览器，做个笔记</p>
+<h2 id="安装Google-Chrome"><a href="#安装Google-Chrome" class="headerlink" title="安装Google Chrome"></a>安装Google Chrome</h2><p>使用<code>wget</code>命令下载Google Chrome的debian安装包<br>在shell中输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/32975304.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>下载完之后我们准备安装,输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure></p>
+<p>但是此时会出现依赖问题：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/59498188.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>输入以下命令后解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -f install</span><br></pre></td></tr></table></figure>
+<p>选择 y</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/63318071.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>解决完依赖问题后即可正常安装，运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google-chrome</span><br></pre></td></tr></table></figure>
+<p>会提示：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/20807387.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>没有–no-sandbox 不支持root用户使用，虽然可以在后面加上–no-sandbox的命令，但是一般我们使用google浏览器是在GUI界面上使的。<br>所以这里再介绍GUI界面如何解决：</p>
+<p>首先在<code>/usr/share/applications</code>找到<code>Google-Chrome</code><br>然后右键图标-&gt;文件属性-&gt;桌面项-&gt;命令</p>
+<p>在stable后面加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--no-sandbox --user-data-dir&amp;</span><br></pre></td></tr></table></figure>
+<p>注意空格,然后点击确认即可。</p>
+<h2 id="Kali中Google-Chrome安装插件"><a href="#Kali中Google-Chrome安装插件" class="headerlink" title="Kali中Google-Chrome安装插件"></a>Kali中Google-Chrome安装插件</h2><p>可以直接在Kali中的Google-Chrome下载插件，但是需要<code>挂梯子</code>，因为我不会在kali里科学上网，所以只能导入安装包了。</p>
+<p>首先需要得到安装包，而得到安装包的方法一般有两种： </p>
+<ul>
+<li>从网上下载安装包</li>
+<li>从Windows上的Google Chrome中导出安装包</li>
+</ul>
+<p>这里建议从Windows上导出，因为网上下载的.crx文件部分不能用。</p>
+<h3 id="从Windows上的Google-Chrome中导出安装包："><a href="#从Windows上的Google-Chrome中导出安装包：" class="headerlink" title="从Windows上的Google Chrome中导出安装包："></a>从Windows上的Google Chrome中导出安装包：</h3><p>首先你的电脑肯定需要<code>挂梯子</code>，不会的可以<a href="https://cherrygk.github.io/2018/05/27/ssr/" target="_blank" rel="noopener">点此学习ssr的搭建</a><br>然后登录google账户，在应用商店里下载插件。</p>
+<p>下载完需要的插件之后点击浏览器右上方的菜单-&gt;更多工具-&gt;扩展程序。<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/34446398.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>点击打包扩展程序，会让你输入目录，我们先点击取消</p>
+<p>点击所需要安装插件的详细信息，可以看到有个ID值：</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/36091676.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>需要从浏览器安装的插件目录中找到这个ID值,插件安装的位置一般是默认在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\user\AppData\Local\Google\Chrome\User Data\Default\Extensions</span><br></pre></td></tr></table></figure>
+<p>其中user是你电脑的用户名，找到文件夹之后，打开文件夹，里面有个版本的文件夹，继续打开直到:<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/58188056.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>此时将文件夹路径复制下来输入到刚刚填写的目录中，再点击打包扩展程序即可。</p>
+<p>此时会出来扩展程序和秘钥文件：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/20761532.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>我们需要的是.crx文件，将路径记下来，打开xftp连接kali进行文件传输</p>
+<p>将文件传进去即可。<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/15704054.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>然后进入kali的GUI界面打开Google浏览器，打开扩展程序页面：<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/26940313.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+<p>将刚刚的.crx文件拖进去即可完成安装<br><figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-6-24/24082365.jpg" alt="" title="" class="">
+                <p></p>
+            </figure></p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-06-24T07:19:49.791Z" itemprop="dateUpdated">2018-06-24 15:19:49</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/06/24/kali-google/" target="_blank" rel="external">http://yoursite.com/2018/06/24/kali-google/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="">
+            
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/">kali</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/24/kali-google/&title=《Kali Linux中如何安装Google Chrome并安装插件》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/24/kali-google/&title=《Kali Linux中如何安装Google Chrome并安装插件》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/24/kali-google/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Kali Linux中如何安装Google Chrome并安装插件》 — CherryGk's Blog&url=http://yoursite.com/2018/06/24/kali-google/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/24/kali-google/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2018/06/06/bugku/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">bugku writeup合集(杂项、Web）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装Google-Chrome"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装Google Chrome</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Kali中Google-Chrome安装插件"><span class="post-toc-number">2.</span> <span class="post-toc-text">Kali中Google-Chrome安装插件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从Windows上的Google-Chrome中导出安装包："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">从Windows上的Google Chrome中导出安装包：</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/06/24/kali-google/&title=《Kali Linux中如何安装Google Chrome并安装插件》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/06/24/kali-google/&title=《Kali Linux中如何安装Google Chrome并安装插件》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/24/kali-google/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Kali Linux中如何安装Google Chrome并安装插件》 — CherryGk's Blog&url=http://yoursite.com/2018/06/24/kali-google/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/24/kali-google/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3ay07DMBAFUP7/p4vEqlJpeq+dIjo5XkVpCD5ZjDyPr6943X7W/fX9enxy7f6zZ05bGBgYH8u4Ha5HxvG2Emr7fyMqBgbGBRhJkN35Ndlo8uan9zEwMDDK42B7nX8gDAwMjPZ1OwfB42cwMDAwdpLJpCS3VhnLj5UYGBhXY6w1Bv7m+u39DQwMjH/PuC2tNtSuld6K/WBgYIxm5Me+PPgmhbm2CRoFYgwMjKGMpJWYbLrFtx/oBRIDA+MCjHwULG9ntuW8rc+EgYFxeUay0f2tFOH18a8wMDBGM/J0sf01KaUlb8sHNTAwMKYy8nGHnRrX/hHzxZsxMDBGM/Kj2FoLMx8mO8asjalhYGBMZayVxtZCZFvgK9oMGBgYgxhtsrpfbmuHM6IAjYGBMZrxjlfv8PJ0+mnRDQMDYxxjf/ThfQ3LxeYlBgbGUEZeMssL/fvFu2L8AgMD42KMtUbmuQG03gkGBsZoxlnFsrPS1DxwRy1MDAyMQYw2COabyANx+5mKmh8GBsYgRruttYGMrUmQ9jiIgYExiJFj8iJa3pJst17n5RgYGB/OuJUrGYBoE9Q2xP9CwsDAGM3Yj9Y7AxZ58nxWsMbAwPhcxv6RroXlgxRFwMXAwLgAow2ybTOgHpgIGhgYGBgYO+loEo7bT/PiY2FgYGDEx8H2fn64LIYtMDAwhjKSJHYtLK6NndV1QQwMjNGMtjGQJ6XH99uk9wQkBgbG5zG+AUGM2xknZ6XFAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+
+<!-- third-party -->
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "c1ada43c"
+  });
+  daovoice('update');
+</script>
+
+    
+</body>
+</html>

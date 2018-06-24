@@ -37,20 +37,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%E5%85%8D%E6%B5%81/</loc>
-        <lastmod>2018-05-30T11:53:44.849Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</loc>
-        <lastmod>2018-05-30T11:53:44.849Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/vps%E8%B4%AD%E4%B9%B0/</loc>
         <lastmod>2018-05-30T11:54:01.058Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -88,6 +74,27 @@
     <url>
         <loc>http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/</loc>
         <lastmod>2018-05-31T11:22:04.986Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E5%85%8D%E6%B5%81/</loc>
+        <lastmod>2018-06-17T08:08:24.556Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</loc>
+        <lastmod>2018-06-17T08:08:24.556Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/kali/</loc>
+        <lastmod>2018-06-24T07:19:49.791Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

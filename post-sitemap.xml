@@ -7,8 +7,24 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2018/06/24/kali-google/</loc>
+        <lastmod>2018-06-24T07:19:49.791Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2018/05/27/ssr/</loc>
+        <lastmod>2018-06-17T08:08:24.556Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2018/06/06/bugku/</loc>
-        <lastmod>2018-06-16T10:54:07.978Z</lastmod>
+        <lastmod>2018-06-17T06:18:47.530Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -49,14 +65,6 @@
     <url>
         <loc>http://yoursite.com/2018/05/27/vps/</loc>
         <lastmod>2018-05-30T11:54:01.058Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2018/05/27/ssr/</loc>
-        <lastmod>2018-05-30T11:53:44.849Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
