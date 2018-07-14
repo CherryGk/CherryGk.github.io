@@ -7,8 +7,24 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2018/07/13/hackinglab/</loc>
+        <lastmod>2018-07-14T09:31:36.251Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2018/07/12/phpagree/</loc>
-        <lastmod>2018-07-12T05:54:43.834Z</lastmod>
+        <lastmod>2018-07-14T09:26:55.753Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2018/06/06/bugku/</loc>
+        <lastmod>2018-07-13T09:06:34.112Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -41,14 +57,6 @@
     <url>
         <loc>http://yoursite.com/2018/05/27/ssr/</loc>
         <lastmod>2018-06-17T08:08:24.556Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2018/06/06/bugku/</loc>
-        <lastmod>2018-06-17T06:18:47.530Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

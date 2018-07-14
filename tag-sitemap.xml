@@ -122,14 +122,14 @@
 
     <url>
         <loc>http://yoursite.com/tags/php/</loc>
-        <lastmod>2018-07-12T05:54:43.834Z</lastmod>
+        <lastmod>2018-07-14T09:26:55.753Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/%E4%BC%AA%E5%8D%8F%E8%AE%AE/</loc>
-        <lastmod>2018-07-12T05:54:43.834Z</lastmod>
+        <lastmod>2018-07-14T09:26:55.753Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

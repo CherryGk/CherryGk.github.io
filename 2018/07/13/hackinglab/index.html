@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>hackinglab网络安全实验室writeup | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":true,"app_id":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","app_key":"twfcGffxeJ6Bfm4fpJUQ256M","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","appkey":"twfcGffxeJ6Bfm4fpJUQ256M","notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":"c1ada43c"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname"></h5>
+          <a href="mailto:1196821466@qq.com" title="1196821466@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>8</span>
+            
+              <span>2</span>
+            
+              <span>1</span>
+            
+              <span>4</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                文章分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章总览
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>hackinglab网络安全实验室writeup</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">hackinglab网络安全实验室writeup</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-13T10:15:59.000Z" itemprop="datePublished" class="page-time">
+  2018-07-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/writeup/">writeup</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-hackinglab"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">hackinglab网络安全实验室writeup</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-13 18:15:59" datetime="2018-07-13T10:15:59.000Z"  itemprop="datePublished">2018-07-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/writeup/">writeup</a></li></ul>
+
+
+
+            
+	<span id="/2018/07/13/hackinglab/" class="leancloud_visitors" data-flag-title="hackinglab网络安全实验室writeup" title="hackinglab网络安全实验室writeup">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/07/13/hackinglab/#comment">
+            <span class="valine-comment-count" data-xid="/2018/07/13/hackinglab/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h3 id="基础关"><a href="#基础关" class="headerlink" title="基础关"></a>基础关</h3><h4 id="key在哪里"><a href="#key在哪里" class="headerlink" title="key在哪里?"></a>key在哪里?</h4><p>查看源代码，直接找到flag</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/9556473.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="再加密一次你就得到key啦"><a href="#再加密一次你就得到key啦" class="headerlink" title="再加密一次你就得到key啦~"></a>再加密一次你就得到key啦~</h4><p>给出的提示是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">加密之后的数据为xrlvf23xfqwsxsqf</span><br></pre></td></tr></table></figure></p>
+<p>看起来像凯撒加密，题目说的是再，估计是在前一题key的基础上加密的<br>前一题的<code>key</code>是<code>jflsjklejflkdsjfklds</code>，移了13位，<a href="http://ctf.ssleye.com/caesar.html" target="_blank" rel="noopener">在线加密</a>选择移位<code>13</code>即可得到<code>key</code></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/47606007.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="猜猜这是经过了多少次加密？"><a href="#猜猜这是经过了多少次加密？" class="headerlink" title="猜猜这是经过了多少次加密？"></a>猜猜这是经过了多少次加密？</h4><p>一看就是<code>base64</code>，一直base64解码即可拿到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/40593997.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="据说MD5加密很安全，真的是么？"><a href="#据说MD5加密很安全，真的是么？" class="headerlink" title="据说MD5加密很安全，真的是么？"></a>据说MD5加密很安全，真的是么？</h4><p><a href="http://www.somd5.com/" target="_blank" rel="noopener">md5解密</a></p>
+<p>直接得到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/58077638.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="种族歧视"><a href="#种族歧视" class="headerlink" title="种族歧视"></a>种族歧视</h4><p>打开之后提示<code>only for Foreigner</code></p>
+<p>拿bp抓个包，将<code>Accept-Language:</code>这一栏的内容删掉即可</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/77260861.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="HAHA浏览器"><a href="#HAHA浏览器" class="headerlink" title="HAHA浏览器"></a>HAHA浏览器</h4><p>Hint:<br>据说信息安全小组最近出了一款新的浏览器，叫HAHA浏览器，有些题目必须通过HAHA浏览器才能答对。小明同学坚决不要装HAHA浏览器，怕有后门，但是如何才能过这个需要安装HAHA浏览器才能过的题目呢？<br>估计是改<code>user-agent</code><br>抓包,只要<code>user-agent</code>里出现<code>HAHA</code>即可得到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/25075365.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="key究竟在哪里呢？"><a href="#key究竟在哪里呢？" class="headerlink" title="key究竟在哪里呢？"></a>key究竟在哪里呢？</h4><p>访问后提示：Key就在这里，猜猜这里是哪里呢？(Web找key加强版)<br>抓个包，查看之后发现在响应头里：</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/44802568.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="key又找不到了"><a href="#key又找不到了" class="headerlink" title="key又找不到了"></a>key又找不到了</h4><p>照常抓包，发现一个<code>key_is_here_now_.php</code>,估计是个<code>302跳转</code>，用<code>bp</code>访问一下，即可得到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/52715712.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="冒充登陆用户"><a href="#冒充登陆用户" class="headerlink" title="冒充登陆用户"></a>冒充登陆用户</h4><p>访问后提示：<code>您还没有登陆呢！</code><br>抓包后发现<code>cookie</code>中有一个<code>login=0</code>的参数，改为<code>1</code>即可得到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/72734267.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="比较数字大小"><a href="#比较数字大小" class="headerlink" title="比较数字大小"></a>比较数字大小</h4><p>题目给了一个输入框，但是限制了长度，同样的，抓包，把<code>v</code>的值网大传，即可得到flag</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/62716700.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="本地的诱惑"><a href="#本地的诱惑" class="headerlink" title="本地的诱惑"></a>本地的诱惑</h4><p>题目坏了，但是这题的解题方法就是XFF，在发送包中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For:127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>即可得到key</p>
+<h4 id="就不让你访问"><a href="#就不让你访问" class="headerlink" title="就不让你访问"></a>就不让你访问</h4><p>题目提示：小明设计了一个网站，因为总是遭受黑客攻击后台，所以这次他把后台放到了一个无论是什么人都找不到的地方….可最后还是被黑客找到了，并被放置了一个黑页，写到:find you ,no more than 3 secs!</p>
+<p>直接扫估计是不行的，试试<code>robots</code>，还真有<br>内容是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow: /</span><br><span class="line">Crawl-delay: 120</span><br><span class="line">Disallow: /9fb97531fe95594603aff7e794ab2f5f/</span><br><span class="line">Sitemap: http://www.hackinglab.sinaapp.com/sitemap.xml</span><br></pre></td></tr></table></figure></p>
+<p>访问<code>/9fb97531fe95594603aff7e794ab2f5f/</code>,提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">you find me,but I am not the login page. keep search.</span><br></pre></td></tr></table></figure></p>
+<p>提示在<code>login page</code>，直接访问<code>login.php</code>，得到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/89095162.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h3 id="脚本关"><a href="#脚本关" class="headerlink" title="脚本关"></a>脚本关</h3><h4 id="key又又找不到了"><a href="#key又又找不到了" class="headerlink" title="key又又找不到了"></a>key又又找不到了</h4><p>也是抓包，但是直接看到key了…不清楚原因</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/75077819.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="快速口算"><a href="#快速口算" class="headerlink" title="快速口算"></a>快速口算</h4><p>请在2秒内口算结果并提交！</p>
+<p>在2s内算出来机会不大，所以需要写脚本了，附上py脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import re </span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">s = requests.Session()  </span><br><span class="line">url = &apos;http://1.hacklist.sinaapp.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php&apos;</span><br><span class="line">r = s.get(url)</span><br><span class="line">num = re.findall(re.compile(r&apos;&lt;br/&gt;\s+(.*)=&lt;input&apos;), r.text)[0]  #正则匹配，可以先看看源代码</span><br><span class="line">r = s.post(url, data=&#123;&apos;v&apos;: eval(num)&#125;)  #计算表达式的值，并将结果提交  抓包可看出要用v提交</span><br><span class="line">print (r.text)  #输出结果</span><br></pre></td></tr></table></figure>
+<p>运行后得到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/66300172.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="这个题目是空的"><a href="#这个题目是空的" class="headerlink" title="这个题目是空的"></a>这个题目是空的</h4><p>这题有点坑，答案就是<code>null</code>小写</p>
+<h4 id="怎么就是不弹出key呢？"><a href="#怎么就是不弹出key呢？" class="headerlink" title="怎么就是不弹出key呢？"></a>怎么就是不弹出key呢？</h4><p>点了几次不行之后，看看源代码：</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/34069482.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>可以看到各种<code>return false</code>，但是既然是js的代码，我们就可以在本地搭建<br>将代码复制到本地，然后把前面三个<code>return false</code>的函数干掉</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/55634205.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>然后本地访问就行了</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/32380741.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>注意是从<code>chars</code>之后开始的14位</p>
+<h4 id="逗比验证码第一期"><a href="#逗比验证码第一期" class="headerlink" title="逗比验证码第一期"></a>逗比验证码第一期</h4><p>这题的验证码验证一次之后不过期，所以。。<br>抓包爆破即可</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/87191568.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>爆破之后，密码是1238，拿到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/91760909.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="逗比验证码第二期"><a href="#逗比验证码第二期" class="headerlink" title="逗比验证码第二期"></a>逗比验证码第二期</h4><p>题目给提示，验证就失效，但是实际上验证一次之后验证码就不需要了，令值为空即可开始爆破。</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/65751756.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>爆破后得到密码1228，拿到key</p>
+<h4 id="逗比的验证码第三期（SESSION）"><a href="#逗比的验证码第三期（SESSION）" class="headerlink" title="逗比的验证码第三期（SESSION）"></a>逗比的验证码第三期（SESSION）</h4><p>这题做法与上题一样，密码是1298，拿到key</p>
+<h4 id="微笑一下就能过关了"><a href="#微笑一下就能过关了" class="headerlink" title="微笑一下就能过关了"></a>微笑一下就能过关了</h4><p><code>源代码</code>处点击可以看到源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">    header(&quot;Content-type: text/html; charset=utf-8&quot;);</span><br><span class="line">    if (isset($_GET[&apos;view-source&apos;])) &#123; </span><br><span class="line">        show_source(__FILE__); </span><br><span class="line">        exit(); </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    include(&apos;flag.php&apos;); </span><br><span class="line"></span><br><span class="line">    $smile = 1;  </span><br><span class="line"></span><br><span class="line">   if (!isset ($_GET[&apos;^_^&apos;])) $smile = 0;  </span><br><span class="line">    if (preg_match (&apos;/\./&apos;, $_GET[&apos;^_^&apos;])) $smile = 0;  </span><br><span class="line">    if (preg_match (&apos;/%/&apos;, $_GET[&apos;^_^&apos;])) $smile = 0;  </span><br><span class="line">    if (preg_match (&apos;/[0-9]/&apos;, $_GET[&apos;^_^&apos;])) $smile = 0;  </span><br><span class="line">    if (preg_match (&apos;/http/&apos;, $_GET[&apos;^_^&apos;]) ) $smile = 0;  </span><br><span class="line">    if (preg_match (&apos;/https/&apos;, $_GET[&apos;^_^&apos;]) ) $smile = 0;  </span><br><span class="line">    if (preg_match (&apos;/ftp/&apos;, $_GET[&apos;^_^&apos;])) $smile = 0;  </span><br><span class="line">    if (preg_match (&apos;/telnet/&apos;, $_GET[&apos;^_^&apos;])) $smile = 0;  </span><br><span class="line">    if (preg_match (&apos;/_/&apos;, $_SERVER[&apos;QUERY_STRING&apos;])) $smile = 0; </span><br><span class="line">    if ($smile) &#123; </span><br><span class="line">        if (@file_exists ($_GET[&apos;^_^&apos;])) $smile = 0;  </span><br><span class="line">    &#125;  </span><br><span class="line">    if ($smile) &#123; </span><br><span class="line">        $smile = @file_get_contents ($_GET[&apos;^_^&apos;]);  </span><br><span class="line">        if ($smile === &quot;(●&apos;◡&apos;●)&quot;) die($flag);  </span><br><span class="line">    &#125;  </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这题比较复杂，</p>
+<p>首先<code>get</code>提交的参数中不能有特殊字符，数字<br>而且<code>http</code>、<code>https</code>、<code>ftp</code>等协议不能用，<br><code>$_SERVER[&#39;QUERY_STRING&#39;]</code>中不能出现<code>_</code>字符，但是提交的变量却是<code>^_^</code><br>并且不能是文件,但是却有个<code>file_get_contents</code>函数，</p>
+<p>绕过<code>$_SERVER[&#39;QUERY_STRING&#39;]</code>很简单，因为<code>QUERY_STRING</code>会把<code>.</code>、<code>[</code>等符号解析成<code>_</code><br>，所以将提交的参数改为<code>^.^</code>、<code>^[^</code>等即可，<br>而绕过<code>file_exists</code>，就是用php的<code>data</code>伪协议，详情请点击<a href="https://cherrygk.github.io/2018/07/12/phpagree/" target="_blank" rel="noopener">php伪协议学习</a></p>
+<p>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[^=data://text/plain;charset=unicode,(●&apos;◡&apos;●)</span><br></pre></td></tr></table></figure></p>
+<h4 id="逗比的手机验证码"><a href="#逗比的手机验证码" class="headerlink" title="逗比的手机验证码"></a>逗比的手机验证码</h4><p>这题不清楚为什么要出，没什么技术含量，<br>直接用13388886666手机号获取验证码，然后用13388886667<code>submit</code>就可以得到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/14383853.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="基情燃烧的岁月"><a href="#基情燃烧的岁月" class="headerlink" title="基情燃烧的岁月"></a>基情燃烧的岁月</h4><p>这题点击获取手机验证码之后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">手机验证码是：验证码发到手机上了，你看不到..是3位纯数字，开头不为0</span><br></pre></td></tr></table></figure></p>
+<p>看不到，估计是爆破了，但是在爆破之前需要点击一下获取验证码，不然会一直提示错误，<br>然后第一次爆破的结果是：</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/20411096.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>又得到一个手机号<code>13399999999</code>，同样的方法再爆破一次就能拿到key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/62788792.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h4><p>这题前面的方法都不能用，只能老老实实的识别验证码了，因为全是数字，所以比较好识别，这里用的工具是<code>Pkav HTTP Fuzzer</code><br>使用方法：<br>将抓到的数据包内容复制粘贴进<code>请求包</code>处</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/74877318.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>下方的使用与bp差不多，手机验证码变量<code>添加标记</code>即可，验证码变量<code>添加验证码</code>即可，<br>然后将验证码图片的地址复制下来，工具底部有<code>图片型验证码</code>，将地址复制进去，<br>在头部请求加上自己的cookie,<br>在下方点击识别测试：</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/37045585.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>回到<code>变体设置</code>，设置自己payload，在重放设置栏选择数字自增长模式，</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/35105536.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>在<code>重放选项</code>处将线程设置为<code>单线程</code>，因为速度过快可能会报错<br>然后底下选择<code>发包器</code>,点击启动即可，一段时间后得到flag</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/1709369.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="XSS基础关"><a href="#XSS基础关" class="headerlink" title="XSS基础关"></a>XSS基础关</h4><p>XSS的题目在<code>Google浏览器</code>里做不了，所以只能在其他浏览器下做了，这里用的是<code>火狐浏览器</code><br>XSS可以先看看js的代码，在<code>http://lab1.xseclab.com/xssjs/xss_check.php</code>处可以看到给出key的代码，先试试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(HackingLab)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>直接就success，得到了key</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/67919307.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="XSS基础2-简单绕过"><a href="#XSS基础2-简单绕过" class="headerlink" title="XSS基础2:简单绕过"></a>XSS基础2:简单绕过</h4><p>这题用上题的payload的话会报错，多试几次发现是过滤了<code>&lt;script&gt;</code>，<br>用<code>&lt;img&gt;</code>就能绕过<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=haha onerror=alert(HackingLab)&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/52247146.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="XSS基础3-检测与构造"><a href="#XSS基础3-检测与构造" class="headerlink" title="XSS基础3:检测与构造"></a>XSS基础3:检测与构造</h4><p>这题输入的值会在下方的<code>input</code>框展示出来，<br>同样过滤了<code>&lt;script&gt;</code>、<code>javascript</code>、<code>&lt;img src&gt;</code> ，但是当查看源代码的时候可以发现，<br><code>&#39;</code>没有过滤，所以可以用一下<code>闭合</code>的思想，用bp抓包试验一下</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/63393393.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>输入<code>alert(HackingLab)</code>发现没有过滤<code>alert</code>，但是输入<code>onmouseover=alert(HackingLab)</code>，发现被检测到了，最终发现一个问题，当输入<code>alert</code>时，后面的添加的事件不会被过滤<br>构造payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert&apos;onmouseover=alert(HackingLab)&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后把鼠标移到第二个输入框即可弹窗，得到key:</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/48168602.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="Principle很重要的XSS"><a href="#Principle很重要的XSS" class="headerlink" title="Principle很重要的XSS"></a>Principle很重要的XSS</h4><p>这题跟上题类似，但是只是<code>input框</code>变成了<code>href</code>,我用上题的payload直接就得到key了。不清楚为什么给了这么多hint</p>
+<figure class="image-box">
+                <img src="31.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>这些XSS的题目都可以用bp抓<code>响应包</code>来做，应该是后端没有做防护，这里就用最后一个题目做示范<br>首先抓到<code>请求包</code>，右键选择</p>
+<figure class="image-box">
+                <img src="32.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>点击<code>Forward</code>，此时可以看到<code>响应包</code>也就是<code>response</code>包，<br>在下方输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=haha onerror=alert(HackingLab)&gt;</span><br></pre></td></tr></table></figure></p>
+<p>再点击<code>Forward</code>，因为数据包有点多，所以一直点击<code>Forward</code>直到弹窗就行，弹窗之后还需要点击<code>Forward</code>得到后台给的key，同样能得到<code>key</code></p>
+<figure class="image-box">
+                <img src="33.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h3 id="注入关"><a href="#注入关" class="headerlink" title="注入关"></a>注入关</h3><p>注入关暂时做不了，题目服务器有问题</p>
+<h3 id="上传关"><a href="#上传关" class="headerlink" title="上传关"></a>上传关</h3><h4 id="请上传一张jpg格式的图片1"><a href="#请上传一张jpg格式的图片1" class="headerlink" title="请上传一张jpg格式的图片1"></a>请上传一张jpg格式的图片1</h4><p>这题试了几次之后发现是前端验证,上传一个jpg，然后用bp抓包改一下即可拿到key</p>
+<figure class="image-box">
+                <img src="34.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="请上传一张jpg格式的图片2"><a href="#请上传一张jpg格式的图片2" class="headerlink" title="请上传一张jpg格式的图片2"></a>请上传一张jpg格式的图片2</h4><p>跟第一题一样的做法。</p>
+<h4 id="请上传一张jpg格式的图片3"><a href="#请上传一张jpg格式的图片3" class="headerlink" title="请上传一张jpg格式的图片3"></a>请上传一张jpg格式的图片3</h4><p>这题后端也做了验证，可以先用前面题目的方法试试，发现提交成功但是没有返回key</p>
+<figure class="image-box">
+                <img src="35.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>试了试加一个.jpg</p>
+<figure class="image-box">
+                <img src="36.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>后端代码可能是验证文件名有没有<code>.jpg</code>，拿到key</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-07-14T09:31:36.251Z" itemprop="dateUpdated">2018-07-14 17:31:36</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/07/13/hackinglab/" target="_blank" rel="external">http://yoursite.com/2018/07/13/hackinglab/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="">
+            
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/13/hackinglab/&title=《hackinglab网络安全实验室writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/13/hackinglab/&title=《hackinglab网络安全实验室writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/13/hackinglab/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hackinglab网络安全实验室writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/07/13/hackinglab/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/13/hackinglab/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2018/07/12/phpagree/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">php伪协议学习</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基础关"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key在哪里"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">key在哪里?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#再加密一次你就得到key啦"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">再加密一次你就得到key啦~</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#猜猜这是经过了多少次加密？"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">猜猜这是经过了多少次加密？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#据说MD5加密很安全，真的是么？"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">据说MD5加密很安全，真的是么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#种族歧视"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">种族歧视</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HAHA浏览器"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">HAHA浏览器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key究竟在哪里呢？"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">key究竟在哪里呢？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key又找不到了"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">key又找不到了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#冒充登陆用户"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">冒充登陆用户</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#比较数字大小"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">比较数字大小</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#本地的诱惑"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">本地的诱惑</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#就不让你访问"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">就不让你访问</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#脚本关"><span class="post-toc-number">2.</span> <span class="post-toc-text">脚本关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key又又找不到了"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">key又又找不到了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#快速口算"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">快速口算</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#这个题目是空的"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">这个题目是空的</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#怎么就是不弹出key呢？"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">怎么就是不弹出key呢？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比验证码第一期"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">逗比验证码第一期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比验证码第二期"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">逗比验证码第二期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比的验证码第三期（SESSION）"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">逗比的验证码第三期（SESSION）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#微笑一下就能过关了"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">微笑一下就能过关了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比的手机验证码"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">逗比的手机验证码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基情燃烧的岁月"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">基情燃烧的岁月</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#验证码识别"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">验证码识别</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础关"><span class="post-toc-number">2.12.</span> <span class="post-toc-text">XSS基础关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础2-简单绕过"><span class="post-toc-number">2.13.</span> <span class="post-toc-text">XSS基础2:简单绕过</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础3-检测与构造"><span class="post-toc-number">2.14.</span> <span class="post-toc-text">XSS基础3:检测与构造</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Principle很重要的XSS"><span class="post-toc-number">2.15.</span> <span class="post-toc-text">Principle很重要的XSS</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注入关"><span class="post-toc-number">3.</span> <span class="post-toc-text">注入关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上传关"><span class="post-toc-number">4.</span> <span class="post-toc-text">上传关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片1"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">请上传一张jpg格式的图片1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片2"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">请上传一张jpg格式的图片2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片3"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">请上传一张jpg格式的图片3</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/07/13/hackinglab/&title=《hackinglab网络安全实验室writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/07/13/hackinglab/&title=《hackinglab网络安全实验室writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/07/13/hackinglab/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hackinglab网络安全实验室writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/07/13/hackinglab/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/07/13/hackinglab/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxElEQVR42u3awY6DMAxFUf7/p6k0q1kUuM8Ohko3q4qkzSkLK7azbXjsf4Ov/L+ePFk85MqV2+bup+OIezR7RDn/TWKQK1fuPPc8eJHNyEq+5vC5XLlyX8atnUN4+JMrV+4vcvn2q16HXLlyn+WS5KfznBdKluVqcuXKbXDTgukdn2+s78qVKzfk7uHg3yK4eHe5cuWOcEmbhLda09m0zCpXrtwZLi928MsTJGkhs4chTK5cuSPcfjpESiTpmi97yZUr91FuJ7HptFsuwqVcuXLHuSQF4hc609dBdpQrV+4Ml6RAnRDW75JsPLuSK1fuIi4KHGExtHaRAv1VuXLlDnJrl6guipu4QRLsKFeu3BEu2ZLHllogkytX7tu4PDylwSsNguiAJVeu3BFu2gTlxP41jqChIleu3KVcchCpNU7IsSYNmnLlyp3kbo3RSXLi5EquXLmDXD7i0BOGsFYrRa5cuYu4aUCptWk5nc/KlSv3bi4PXum1iVqD9uLYJFeu3EFuWuaIt6lF0FpMlStX7iA3aIWCX661beTKlftObu2AsuBwI1eu3HFuWgblV7J4QkWucciVK3eGO1MwTXFy5cp9iPsBIjIGHEiCpD0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+
+<!-- third-party -->
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.1"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.1"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "c1ada43c"
+  });
+  daovoice('update');
+</script>
+
+    
+</body>
+</html>
