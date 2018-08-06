@@ -110,9 +110,9 @@
       <category term="python" scheme="http://yoursite.com/categories/python/"/>
     
     
-      <category term="sublime" scheme="http://yoursite.com/tags/sublime/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="sublime" scheme="http://yoursite.com/tags/sublime/"/>
     
   </entry>
   
