@@ -6,10 +6,36 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-06T07:04:15.918Z</updated>
+  <updated>2018-08-25T08:43:27.801Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pwn入坑之fd writeup</title>
+    <link href="http://yoursite.com/2018/08/25/fd/"/>
+    <id>http://yoursite.com/2018/08/25/fd/</id>
+    <published>2018-08-25T08:42:43.000Z</published>
+    <updated>2018-08-25T08:43:27.801Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先连上ssh，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure><figure class="image-box">                <img src="1.jpg" alt="" title="" class="">                <p></p>            </figure><p>查看一下各个文件的权限，这里可以发现flag文件是没有权限看的，但是有对fd.c的读取权限的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">fd@ubuntu:~$ cat fd.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">char buf[32];</span><br><span class="line">int main(int argc, char* argv[], char* envp[])&#123;</span><br><span class="line">        if(argc&lt;2)&#123;</span><br><span class="line">                printf(&quot;pass argv[1] a number\n&quot;);</span><br><span class="line">                return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int fd = atoi( argv[1] ) - 0x1234;</span><br><span class="line">        int len = 0;</span><br><span class="line">        len = read(fd, buf, 32);</span><br><span class="line">        if(!strcmp(&quot;LETMEWIN\n&quot;, buf))&#123;</span><br><span class="line">                printf(&quot;good job :)\n&quot;);</span><br><span class="line">                system(&quot;/bin/cat flag&quot;);</span><br><span class="line">                exit(0);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;learn about Linux file IO\n&quot;);</span><br><span class="line">        return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>对于一个pwn菜鸡来说，各种看不懂，首先接触到的是c的<a href="http://www.runoob.com/cprogramming/c-command-line-arguments.html" target="_blank" rel="noopener">命令行参数</a>，<br>这个很容易学，然后仔细看看代码，找到能输出flag的语句，<br>然后一直往上跟踪，发现当<code>buf</code>等于<code>LETMEWIN\n</code>时，输出flag<br>但是现在怎么控制<code>buf</code>的值是一个问题，找到前面的<code>read函数</code>，能控制<code>buf</code>的值<br>read函数介绍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> read（）函数</span><br><span class="line"> read(int fd, void *buf, size_t count);</span><br><span class="line">参数：  </span><br><span class="line">fd： 将要读取数据的文件描述词。</span><br><span class="line">buf：指缓冲区，即读取的数据会被放到这个缓冲区中去。</span><br><span class="line">count： 表示调用一次read操作，应该读多少数量的字符。</span><br></pre></td></tr></table></figure></p><p>先来解释一下<a href="https://www.kancloud.cn/kancloud/understanding-linux-processes/52168" target="_blank" rel="noopener">linux下的文件修饰符</a>,简单来说就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0 输入 stdin</span><br><span class="line">1 输出 stdout</span><br><span class="line">2 错误 stderr</span><br></pre></td></tr></table></figure></p><p>我们需要的是fd为0，使其可以输入<code>LETMEWIN</code>放到buf里，<br>然后再往上看到<code>fd</code>，决定<code>fd</code>值的是我们传入的<code>argv[]</code>，到这就很简单了，<br>将argv[1]的值传入为0x1234，也就是4660，</p><h3 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h3><p>很简单，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./fd 4660</span><br><span class="line">然后输出LETMEWIN,回车</span><br></pre></td></tr></table></figure></p><figure class="image-box">                <img src="2.jpg" alt="" title="" class="">                <p></p>            </figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h3&gt;&lt;p&gt;首先连上ssh，&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut
+      
+    
+    </summary>
+    
+      <category term="pwn" scheme="http://yoursite.com/categories/pwn/"/>
+    
+    
+      <category term="pwn" scheme="http://yoursite.com/tags/pwn/"/>
+    
+  </entry>
   
   <entry>
     <title>ActiveMQ 反序列化漏洞（CVE-2015-5254）利用</title>
@@ -135,9 +161,9 @@
       <category term="python" scheme="http://yoursite.com/categories/python/"/>
     
     
-      <category term="sublime" scheme="http://yoursite.com/tags/sublime/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="sublime" scheme="http://yoursite.com/tags/sublime/"/>
     
   </entry>
   
@@ -433,9 +459,9 @@
       <category term="writeup" scheme="http://yoursite.com/categories/writeup/"/>
     
     
-      <category term="反序列化" scheme="http://yoursite.com/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    
       <category term="sql注入" scheme="http://yoursite.com/tags/sql%E6%B3%A8%E5%85%A5/"/>
+    
+      <category term="反序列化" scheme="http://yoursite.com/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
     
   </entry>
   
