@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2018/06/06/bugku/</loc>
+        <lastmod>2018-08-26T09:02:27.737Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2018/08/25/fd/</loc>
         <lastmod>2018-08-26T05:01:56.741Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -25,14 +33,6 @@
     <url>
         <loc>http://yoursite.com/2018/08/05/CVE-2016-3088/</loc>
         <lastmod>2018-08-05T09:09:19.092Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2018/06/06/bugku/</loc>
-        <lastmod>2018-08-04T07:47:33.975Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
