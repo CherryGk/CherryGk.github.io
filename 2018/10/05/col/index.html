@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     
-    <title>pwn入坑之fd writeup | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
+    <title>pwn入坑之col writeup | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content="pwn">
@@ -146,7 +146,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>pwn入坑之fd writeup</span>
+            <span>pwn入坑之col writeup</span>
             
         </div>
         
@@ -159,11 +159,11 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">pwn入坑之fd writeup</h1>
+        <h1 class="title">pwn入坑之col writeup</h1>
         <h5 class="subtitle">
             
-                <time datetime="2018-08-25T08:42:43.000Z" itemprop="datePublished" class="page-time">
-  2018-08-25
+                <time datetime="2018-10-05T07:58:53.000Z" itemprop="datePublished" class="page-time">
+  2018-10-05
 </time>
 
 
@@ -192,12 +192,12 @@
 
 
 <div class="container body-wrap">
-    <article id="post-fd"
+    <article id="post-col"
   class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">pwn入坑之fd writeup</h1>
+        <h1 class="post-card-title">pwn入坑之col writeup</h1>
         <div class="post-meta">
-            <time class="post-time" title="2018-08-25 16:42:43" datetime="2018-08-25T08:42:43.000Z"  itemprop="datePublished">2018-08-25</time>
+            <time class="post-time" title="2018-10-05 15:58:53" datetime="2018-10-05T07:58:53.000Z"  itemprop="datePublished">2018-10-05</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/pwn/">pwn</a></li></ul>
@@ -205,7 +205,7 @@
 
 
             
-	<span id="/2018/08/25/fd/" class="leancloud_visitors" data-flag-title="pwn入坑之fd writeup" title="pwn入坑之fd writeup">
+	<span id="/2018/10/05/col/" class="leancloud_visitors" data-flag-title="pwn入坑之col writeup" title="pwn入坑之col writeup">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -216,8 +216,8 @@
             
     <span class="leancloud-comment">
         <i class="icon icon-comment-o"></i>
-        <a href="/2018/08/25/fd/#comment">
-            <span class="valine-comment-count" data-xid="/2018/08/25/fd/"></span>
+        <a href="/2018/10/05/col/#comment">
+            <span class="valine-comment-count" data-xid="/2018/10/05/col/"></span>
         </a>
     </span>
 
@@ -227,19 +227,23 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先连上ssh，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+            <p>由于开学事情比较多，没时间写wp，现在补一补</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先照常连上shell，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al</span><br></pre></td></tr></table></figure></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-8-26/49871992.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-10-5/57182378.jpg" alt="" title="" class="">
                 <p></p>
             </figure>
-<p>查看一下各个文件的权限，这里可以发现flag文件是没有权限看的，但是有对fd.c的读取权限的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">fd@ubuntu:~$ cat fd.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">char buf[32];</span><br><span class="line">int main(int argc, char* argv[], char* envp[])&#123;</span><br><span class="line">        if(argc&lt;2)&#123;</span><br><span class="line">                printf(&quot;pass argv[1] a number\n&quot;);</span><br><span class="line">                return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int fd = atoi( argv[1] ) - 0x1234;</span><br><span class="line">        int len = 0;</span><br><span class="line">        len = read(fd, buf, 32);</span><br><span class="line">        if(!strcmp(&quot;LETMEWIN\n&quot;, buf))&#123;</span><br><span class="line">                printf(&quot;good job :)\n&quot;);</span><br><span class="line">                system(&quot;/bin/cat flag&quot;);</span><br><span class="line">                exit(0);</span><br><span class="line">        &#125;</span><br><span class="line">        printf(&quot;learn about Linux file IO\n&quot;);</span><br><span class="line">        return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>对于一个pwn菜鸡来说，各种看不懂，首先接触到的是c的<a href="http://www.runoob.com/cprogramming/c-command-line-arguments.html" target="_blank" rel="noopener">命令行参数</a>，<br>这个很容易学，然后仔细看看代码，找到能输出flag的语句，<br>然后一直往上跟踪，发现当<code>buf</code>等于<code>LETMEWIN\n</code>时，输出flag<br>但是现在怎么控制<code>buf</code>的值是一个问题，找到前面的<code>read函数</code>，能控制<code>buf</code>的值<br>read函数介绍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> read（）函数</span><br><span class="line"> read(int fd, void *buf, size_t count);</span><br><span class="line">参数：  </span><br><span class="line">fd： 将要读取数据的文件描述词。</span><br><span class="line">buf：指缓冲区，即读取的数据会被放到这个缓冲区中去。</span><br><span class="line">count： 表示调用一次read操作，应该读多少数量的字符。</span><br></pre></td></tr></table></figure></p>
-<p>先来解释一下<a href="https://www.kancloud.cn/kancloud/understanding-linux-processes/52168" target="_blank" rel="noopener">linux下的文件修饰符</a>,简单来说就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0 输入 stdin</span><br><span class="line">1 输出 stdout</span><br><span class="line">2 错误 stderr</span><br></pre></td></tr></table></figure></p>
-<p>我们需要的是fd为0，使其可以输入<code>LETMEWIN</code>放到buf里，<br>然后再往上看到<code>fd</code>，决定<code>fd</code>值的是我们传入的<code>argv[]</code>，到这就很简单了，<br>将argv[1]的值传入为0x1234，也就是4660，</p>
-<h3 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h3><p>很简单，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./fd 4660</span><br><span class="line">然后输出LETMEWIN,回车</span><br></pre></td></tr></table></figure></p>
+<p>跟fd一样，能看到的只有源代码，看一看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">col@ubuntu:~$ cat col.c</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">unsigned long hashcode = 0x21DD09EC;</span><br><span class="line">unsigned long check_password(const char* p)&#123;</span><br><span class="line">        int* ip = (int*)p;</span><br><span class="line">        int i;</span><br><span class="line">        int res=0;</span><br><span class="line">        for(i=0; i&lt;5; i++)&#123;</span><br><span class="line">                res += ip[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[])&#123;</span><br><span class="line">        if(argc&lt;2)&#123;</span><br><span class="line">                printf(&quot;usage : %s [passcode]\n&quot;, argv[0]);</span><br><span class="line">                return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if(strlen(argv[1]) != 20)&#123;</span><br><span class="line">                printf(&quot;passcode length should be 20 bytes\n&quot;);</span><br><span class="line">                return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(hashcode == check_password( argv[1] ))&#123;</span><br><span class="line">                system(&quot;/bin/cat flag&quot;);</span><br><span class="line">                return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">                printf(&quot;wrong passcode.\n&quot;);</span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有两个点，第一个是<code>password</code>长度只能是20位，<br>第二个点是<code>check_password( argv[1] )</code>需要等于<code>0x21DD09EC</code>,<br>先来看看这个函数，将传入的字符分为5个部分进行累加，结果必须为<code>0x21DD09EC</code>,<br>所以方法就是将<code>0x21DD09EC</code>拆分成5个int型的数，<br>因为不会做16进制的除法，所以先转为10进制:<code>568134124</code>然后除5等于<code>113626824</code>余<code>4</code>，<br>最后得到:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x06C5CEC8*4+0x06C5CECC</span><br></pre></td></tr></table></figure>
+<p>这里先说下<code>0x06C5CEC8</code>长度问题，自己不太明白所以问了大佬，大佬给出的解释是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一个字节是八位,</span><br><span class="line">八位也就是八个二进制位,</span><br><span class="line">而四个二进制位就是一个十六进制位,</span><br><span class="line">所以两个十六进制位就代表一个字节</span><br></pre></td></tr></table></figure></p>
+<p>所以<code>0x06C5CEC8</code>占用的是4个字节，5个就是20个字节<br>(这里其实不太重要，大家应该都懂，只是因为自己这块知识比较薄弱，所以就当写笔记了)</p>
+<p>又因为标准输入中是输入不了我们刚刚算出的字符串的，因为他的值超过了ascll的范围<br>所以这里借助<code>python</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;print &apos;\xc8\xce\xc5\x06&apos;*4 + &apos;\xcc\xce\xc5\x06&apos;&quot;</span><br></pre></td></tr></table></figure></p>
+<p>\x代表的是16进制，并且目标机器用的小端序，所以payload需要些变化</p>
+<h3 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h3><p>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./col `python -c &quot;print &apos;\xc8\xce\xc5\x06&apos;*4 + &apos;\xcc\xce\xc5\x06&apos;&quot;`</span><br></pre></td></tr></table></figure></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-8-26/41062921.jpg" alt="" title="" class="">
+                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-10-5/64744428.jpg" alt="" title="" class="">
                 <p></p>
             </figure>
         </div>
@@ -248,12 +252,12 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-08-26T05:01:56.741Z" itemprop="dateUpdated">2018-08-26 13:01:56</time>
+    Last updated: <time datetime="2018-10-05T08:01:15.332Z" itemprop="dateUpdated">2018-10-05 16:01:15</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2018/08/25/fd/" target="_blank" rel="external">http://yoursite.com/2018/08/25/fd/</a>
+        转载注明出处，原文地址：<a href="/2018/10/05/col/" target="_blank" rel="external">http://yoursite.com/2018/10/05/col/</a>
         
     </div>
     <footer>
@@ -276,7 +280,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/08/25/fd/&title=《pwn入坑之fd writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/05/col/&title=《pwn入坑之col writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -288,25 +292,25 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/08/25/fd/&title=《pwn入坑之fd writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/05/col/&title=《pwn入坑之col writeup》 — CherryGk's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/25/fd/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/05/col/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pwn入坑之fd writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/08/25/fd/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pwn入坑之col writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/10/05/col/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/25/fd/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/05/col/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -331,21 +335,14 @@
         
     </div>
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="prev">
-      <a href="/2018/10/05/col/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">pwn入坑之col writeup</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="next">
-      <a href="/2018/08/06/CVE-2015-5254/" id="post-next" class="post-nav-link">
+      <a href="/2018/08/25/fd/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">ActiveMQ 反序列化漏洞（CVE-2015-5254）利用</h4>
+        <h4 class="title">pwn入坑之fd writeup</h4>
       </a>
     </div>
   
@@ -397,7 +394,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/08/25/fd/&title=《pwn入坑之fd writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/05/col/&title=《pwn入坑之col writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -409,25 +406,25 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/08/25/fd/&title=《pwn入坑之fd writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/05/col/&title=《pwn入坑之col writeup》 — CherryGk's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/08/25/fd/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/05/col/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pwn入坑之fd writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/08/25/fd/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《pwn入坑之col writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/10/05/col/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/08/25/fd/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/05/col/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -439,7 +436,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByElEQVR42u3aS2oDMRAFQN//0g5kFQgevyeNGieUVmbAVnkWTf8ej/g8v8/1k1ff+nl+P3+cOLi4uNvc5+XJcdeU699MDLi4uPPc6+CVIPK/mr8OXFzcz+fmSUySGOHi4v4Pbo5rKbi4uJ/JTdKUJInJE5rjtRouLu4Gt22Ynvh8sL+Li4tbcp/lacNTUggVt+Pi4o5w2wHqvWVMkvRszXtxcXGXuHmDY20E2z5/04TFxcUd5LatjbXU55qS3I6LizvJbYuW5G+srVm8KaVwcXFHuPtJTLvIlYez4h3j4uLeys1TmTYMtcOSYhqMi4s7wl1LbnaWLdbuwsXFneEmF+RrUmuDlrpkwsXFPcxtWxjJ0KVIWXBxcT+YuzM4aYufhBWNUnBxcY9x95ck1uqUtijCxcWd5LYj0nw0m5dAhQEXF3eQ2zYv8vWsvDlbBDJcXNwRbn6SMiYfz9QBERcXd4TbBpS1RY2dEUs9gsXFxb2JmwSvdsTStkWKsIiLizvIzdORNlVaXMDaGaXg4uIOcnfCVpsevXxBuLi4f4SbtEdvSG5wcXHHuWvBZa1J2rZCFms1XFzcDe7a8kS+tJEPY9pUCRcX9wD3CxWxBhwq0dOuAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3aS27DMAwFwNz/0inQVYFC6iNlsw4wWgWJrYy9IPjR6xWv9/fa//pzrX5dfXPxwsXFPea+t2vF3V//+679nokBFxd3nrsPXskD7GNOEtqiAIqLi/sw7knWsd8TFxf3c7lJAROlKbi4uB/CTYqfZCXo6v64uLjz3GrD9I7PN/Z3cXFxi9x3ceWNjyRZKf87Li7uCHe/UbUc6nHLDVlcXNybuSclTa9henSYAxcXd5ybHLFK0Pt9kuMdy51xcXEHued/mYS2JHn6I2ji4uKOcPOSJv+mGgqTELZ8x7i4uOPcahg6mecUxqu4uLg3c/flR+/ARPlt5Q+Ji4v7r9zq/CIvY6rXL9siuLi4t3F7A9SroLi4uM/kVoedvaHISSKFi4s7zz1pX1aTnt7RrujMCC4u7qXc8wFq71BFr72Ci4s7ye0VPNXwlIStKJDh4uKOcKuJS97sqA50m5NYXFzcS7nVgHLS7KjOTI+OdODi4h5z8+DVK37ysid6YFxc3EFuL3j1SqCTjAUXF/dp3OqBy6TJUi6ucHFxH8ztjWPz5AYXF/cJ3MKwM74rH7UWrsTFxR3hXtUwzR+1OqbFxcUd5H4BvwDyWfN4FwAAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
