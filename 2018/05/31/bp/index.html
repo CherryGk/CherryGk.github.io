@@ -9,7 +9,8 @@
     
     <meta name="keywords" content="burpsuite">
     <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    <link rel="stylesheet" href="/css/third-party/swipebox.min.css?v=1.3.2">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.2">
     
     <script type="text/javascript">
         // Data Center
@@ -25,7 +26,7 @@
         window.lazyScripts=[];
     </script>
     
-        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.2"></script>
     
 </head>
 
@@ -230,11 +231,11 @@
             <p>burpsuite中文显示不出，某些时候非常不好用</p>
 <p>这里用的版本是1.7.26，其他的版本修改方式没有大的区别</p>
 <p>打开burpsuite，找到<code>user options</code>:<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/43899203.jpg" alt="" title="" class="">
+                <a rel=解决burpsuite里中文不显示的方法 href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/43899203.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/43899203.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>然后在display中的http message display选择成中文字体，<br>这里选择微软雅黑：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/64155627.jpg" alt="" title="" class="">
+                <a rel=解决burpsuite里中文不显示的方法 href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/64155627.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/64155627.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>然后就成功了</p>
@@ -372,6 +373,21 @@
             
             
             
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
         </p>
     </div>
 </footer>
@@ -434,21 +450,33 @@
 
     
     <!-- main-js -->
-<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/jquery.swipebox.min.js?v=1.3.2"></script>
 
 <script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
-<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
-<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/method.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.2"></script>
 
 <!-- third-party -->
+<script type="text/javascript">
+;( function( $ ) {
+
+	$( '.swipebox' ).swipebox({
+		hideCloseButtonOnMobile: true
+	});
+
+} )( jQuery );
+</script>
 
 
 
 
 
-<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.2"></script>
 <script type="text/javascript">
 	var search_path = "search.xml";
 	if (search_path.length === 0) {
@@ -460,17 +488,21 @@
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
     
         <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.2"></script>
     
     
 
 
 
 <script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.2"></script>
 
 
 
@@ -509,5 +541,5 @@
 </script>
 
     
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
 </html>

