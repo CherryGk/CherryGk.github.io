@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>bugku writeup(分析） | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/third-party/swipebox.min.css?v=1.3.2">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.2">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":true,"app_id":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","app_key":"twfcGffxeJ6Bfm4fpJUQ256M","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","appkey":"twfcGffxeJ6Bfm4fpJUQ256M","notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":"c1ada43c"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.2"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname"></h5>
+          <a href="mailto:1196821466@qq.com" title="1196821466@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>8</span>
+            
+              <span>2</span>
+            
+              <span>1</span>
+            
+              <span>4</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                文章分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章总览
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>bugku writeup(分析）</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">bugku writeup(分析）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-15T09:41:16.000Z" itemprop="datePublished" class="page-time">
+  2018-10-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/writeup/">writeup</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-bugku3"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">bugku writeup(分析）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-15 17:41:16" datetime="2018-10-15T09:41:16.000Z"  itemprop="datePublished">2018-10-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/writeup/">writeup</a></li></ul>
+
+
+
+            
+	<span id="/2018/10/15/bugku3/" class="leancloud_visitors" data-flag-title="bugku writeup(分析）" title="bugku writeup(分析）">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/10/15/bugku3/#comment">
+            <span class="valine-comment-count" data-xid="/2018/10/15/bugku3/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h2 id="flag被盗"><a href="#flag被盗" class="headerlink" title="flag被盗"></a>flag被盗</h2><p>将流量包下载下来用wireshark打开之后，过滤器:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http contains flag</span><br></pre></td></tr></table></figure>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396856381.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396856381.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>直接得到flag</p>
+<h2 id="中国菜刀"><a href="#中国菜刀" class="headerlink" title="中国菜刀"></a>中国菜刀</h2><p>既然是菜刀，估计就有eval了，所以我们先试试过滤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http contains eval</span><br></pre></td></tr></table></figure>
+<p>找到一个数据包，追踪http流后发现一段base64</p>
+<p>base64解码之后:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@ini_set(&quot;display_errors&quot;,&quot;0&quot;);</span><br><span class="line">@set_time_limit(0);</span><br><span class="line">if(PHP_VERSION&lt;&apos;5.3.0&apos;)&#123;</span><br><span class="line">@set_magic_quotes_runtime(0);</span><br><span class="line">&#125;;</span><br><span class="line">echo(&quot;X@Y&quot;);</span><br><span class="line">$F=&apos;C:\\wwwroot\\3.php&apos;;</span><br><span class="line">$P=@fopen($F,&apos;r&apos;);</span><br><span class="line">echo(@fread($P,filesize($F)));</span><br><span class="line">@fclose($P);;</span><br><span class="line">echo(&quot;X@Y&quot;);</span><br><span class="line">die();</span><br></pre></td></tr></table></figure>
+<p>虽然代码有点怪异，但是可以知道这一步是在上传文件，并且在执行成功后会回显<code>X@Y</code>,<br>所以我们将过滤规则改为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http contains &quot;X@Y&quot;</span><br></pre></td></tr></table></figure>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396888227.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396888227.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>在第一个数据包里可以看到<code>flag.tar.gz</code></p>
+<p>继续往下看到第三个数据包可以看到内容:</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396888288.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396888288.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>这个大概率是一个压缩包，我们导出来看看(看分组字节流时需要从第三位后开始，因为有个<code>X@Y</code>，并且解码为压缩)</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396888409.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396888409.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>得到flag</p>
+<h2 id="这么多数据包"><a href="#这么多数据包" class="headerlink" title="这么多数据包"></a>这么多数据包</h2><p>提示了先找到getshell的流,先将过滤规则设置为<code>tcp</code>：</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968892111.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968892111.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>看的出来这是一个<code>192.168.116.138</code>在扫描<code>192.168.116.159</code>的端口,</p>
+<p>将过滤规则改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp and ip.src==192.168.116.138</span><br></pre></td></tr></table></figure>
+<p>中间有一段数据包可以看出来3389是开着的，然后攻击机好像在爆破3389，但是最后失败了，<br>现在我们需要的是一个有多次消息连通的端口，继续往下找可以发现445也是开着的，但是好像也失败了，<br>继续往下，有一段4444端口连到1040的，估计这段已经是找到漏洞并且在利用了，因为连接很稳定，并且也没有失败的情况，继续往下可以看到：</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968892712.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968892712.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>这段有点奇怪，大概率是拿到shell了，追踪一下流:</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968893413.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968893413.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>居然直接就找到了flag，那段base64解码之后就行了。</p>
+<h2 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h2><p>(貌似是做不了了)<br>网上的wp是说找到b站的up之后进去个人主页可以拿到flag，现在个性签名已经改了。</p>
+<h2 id="手机热点"><a href="#手机热点" class="headerlink" title="手机热点"></a>手机热点</h2><p>先仔细看看提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有一天皓宝宝没了流量只好手机来共享，顺便又从手机发了点小秘密到电脑，你能找到它吗？</span><br></pre></td></tr></table></figure>
+<p>首先我们需要知道，电脑连手机热点上网不仅仅只有WIFI，还有蓝牙共享。<br>先打开流量包，冒出来一大堆不懂的协议，找了找资料之后知道了<code>L2CAP</code>是在蓝牙里用的协议，<br>然后再试试有没有<code>wpa</code>协议，结果是没有，所以现在确定下来是用蓝牙传输的文件了，<br>所以还是先看看蓝牙的协议吧,<a href="https://www.cnblogs.com/zjutlitao/p/4742428.html" target="_blank" rel="noopener">原文出处</a>:</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968894014.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968894014.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>从文章中可以知道蓝牙传输协议用的是<code>OBEX</code>，所以我们将过滤规则改为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obex</span><br></pre></td></tr></table></figure>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968895015.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968895015.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>可以看到发送了一个<code>secret.rar</code>，所以打开这个数据包看看:</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968895616.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968895616.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>已经可以看到flag.gif了，接下来我们需要将这个文件导出来，看分组字节流之后选择原始数据并保存为一secret.rar:</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968896117.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968896117.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>打开压缩包，图片上就是flag</p>
+<h2 id="抓到一只苍蝇"><a href="#抓到一只苍蝇" class="headerlink" title="抓到一只苍蝇"></a>抓到一只苍蝇</h2><p>这题在做的过程中有点恶心人，<br>首先打开数据包，题目提示了抓到一只苍蝇，抱着试一试的想法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http contains &quot;苍蝇&quot;</span><br></pre></td></tr></table></figure>
+<p>没想到还真有:</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968896718.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968896718.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>仔细分析一下发现是在发qq邮件，并且还发了文件，所以我们现在试试:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http.request.method==POST</span><br></pre></td></tr></table></figure>
+<p>可以看到第一个数据包是传文件的，然后下面几个可能就是文件内容了：</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968897519.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968897519.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>具体是几个，仔细看看URL，738号数据包有个需要调用函数<code>CheckFile</code>，并且前面的5个数据包url的路径一样，<br>所以从第一个开始，后5个数据包是文件内容，但是由于TCP包有文件头，我们需要去掉文件头才能将原始数据合成一个文件，<br>从第一个数据包可以看出来：</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968898120.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968898120.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>文件大小是<code>525701</code>字节，我们需要的这5个数据包的大小是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">131436*4+1777=527521</span><br></pre></td></tr></table></figure>
+<p>用527521-525701=1820,然后再除以5就是tcp包的文件头了–364<br>我们将分组字节流中的原始数据分别保存为1、2、3、4、5，方便操作<br>然后使用linux的一些工具进行操作即可得到flag.rar<br>这里使用<code>dd</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=1 bs=1 skip=364 of=1.1</span><br></pre></td></tr></table></figure>
+<p>这条命令中if是文件名，bs是多少个字节，skip是多少位，of是保存为哪个文件<br>然后再用linux的输入流来合并成一个文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 1.1 2.1 3.1 4.1 5.1 &gt; fly.rar</span><br></pre></td></tr></table></figure>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968904321.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968904321.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>然后fly.rar又被伪加密了，所以需要将这个文件用winhex打开后，用其中的74 84改为74 80就能打开了，</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968904922.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/153968904922.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>flag.exe打开是乱码，mzp文件头，改为exe可执行文件后。。。一堆苍蝇出现了。<br>将这个文件扔到kali中foremost一下，得到一个二维码，扫码得到flag。</p>
+<h2 id="信息提取"><a href="#信息提取" class="headerlink" title="信息提取"></a>信息提取</h2><p>题目提示了sqlmap,先过滤一下http</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396861452.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396861452.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>一开始的几个数据包可以看出来是在找注入点，并且测试注入点能不能用，<br>一直往后翻看sql语句可以发现这是个盲注，当为真时，回显:</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396861823.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396861823.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>为否则是其它东西，既然要找flag，那就直接看到最后爆列的语句:</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396884324.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396884324.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>这里已经到最后一位了，又因为回显是可以看出来是否成功的，所以我们再加一条过滤规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http and ip.src==10.0.0.201</span><br></pre></td></tr></table></figure>
+<p>建议从后往前看，因为前面的数据包还有爆列爆库的语句，为了更简单拿到flag，<br>我们直接从后往前看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Message #1 AND ORD(MID((SELECT IFNULL(CAST(`value` AS CHAR),0x20) FROM isg.flags ORDER BY `value` LIMIT 0,1),34,1))&gt;1:</span><br></pre></td></tr></table></figure></p>
+<p>懂注入的应该知道，其中34是代表着第34位，&gt;1是代表着这个字符的ascll&gt;1，但是第34位没有回显刚刚成功的语句，就证明了flag是33位的，往上看看</p>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396886185.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396886185.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<figure class="image-box">
+                <a rel=bugku writeup(分析） href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396888066.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15396888066.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>第33位124回显成功，但是125回显的是失败的,所以证明了这一位的ascll码是125，以此往上推，<br>最终的flag是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ISG&#123;BLind_SQl_InJEcTi0N_DeTEcTEd&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-10-16T11:24:15.986Z" itemprop="dateUpdated">2018-10-16 19:24:15</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/10/15/bugku3/" target="_blank" rel="external">http://yoursite.com/2018/10/15/bugku3/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="">
+            
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/15/bugku3/&title=《bugku writeup(分析）》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/15/bugku3/&title=《bugku writeup(分析）》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/15/bugku3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《bugku writeup(分析）》 — CherryGk's Blog&url=http://yoursite.com/2018/10/15/bugku3/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/15/bugku3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2018/10/05/col/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">pwn入坑之col writeup</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#flag被盗"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">flag被盗</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#中国菜刀"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">中国菜刀</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#这么多数据包"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">这么多数据包</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#流量分析"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">流量分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#手机热点"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">手机热点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#抓到一只苍蝇"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">抓到一只苍蝇</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#信息提取"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">信息提取</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/15/bugku3/&title=《bugku writeup(分析）》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/15/bugku3/&title=《bugku writeup(分析）》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/15/bugku3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《bugku writeup(分析）》 — CherryGk's Blog&url=http://yoursite.com/2018/10/15/bugku3/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/15/bugku3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABtUlEQVR42u3aS27DMAwFwNz/0inQVTdRHkWLdoHRygjsaLQh+NHrFa/37/r7nP+SvH/xwsXFbXPfy5VzPx0v+Sox4OLiznOrwSv/vUr/YsPFxX0YN0lQ1onL+j9xcXH/IzdJgPID4OLiPp+bNzJOtEWO1Gq4uLgN7l7D9Nrn4/1dXFzci6YSSWtj3QRJmqqF3XFxcUe4+SAkH47mZUx1PIOLizvDzcuSJN/oH+nLGAYXF3eQm4xFqwErv2aRJ0O4uLjz3M5m14bFjwERFxf3Ju5VTdJOevTxGLi4uCPcavBKypXOqCZKs3BxcUe4ecOiPyDp7IuLizvP7V+fqiY0rZIJFxf3MLf6Qf99XFzcJ3PzIUenLdI5Ni4u7jy3fIer2AQ50nDBxcU9zE2CV7mJuTWMicIoLi7uILd/9Sr5tnNgXFzceW6+8jJpfdT8/WgSi4uLeym3k6ysmxdJKZVf6tocweLi4ja4efA61xbJyyFcXNxJbjV4lbfZiqC4uLjP53bCVlJ0RUURLi7u47nrxmi/sYKLi3svt7rB3nWNvVbIZq2Gi4vb4FYbpp2UJcfh4uLexP0BmNBN1G1PbX8AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/jquery.swipebox.min.js?v=1.3.2"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.2"></script>
+
+<!-- third-party -->
+<script type="text/javascript">
+;( function( $ ) {
+
+	$( '.swipebox' ).swipebox({
+		hideCloseButtonOnMobile: true
+	});
+
+} )( jQuery );
+</script>
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.2"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.2"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.2"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "c1ada43c"
+  });
+  daovoice('update');
+</script>
+
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
+</html>
