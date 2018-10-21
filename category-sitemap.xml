@@ -28,13 +28,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/pwn/</loc>
-        <lastmod>2018-10-05T08:01:15.332Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/categories/writeup/</loc>
         <lastmod>2018-10-16T11:24:15.986Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -51,6 +44,13 @@
     <url>
         <loc>http://yoursite.com/categories/WooYun/</loc>
         <lastmod>2018-10-18T08:40:05.806Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/categories/pwn/</loc>
+        <lastmod>2018-10-21T09:07:25.486Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
