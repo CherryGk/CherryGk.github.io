@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     
-    <title>prompt to win(1) writeup | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
+    <title>prompt(1) to win writeup | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="keywords" content="xss">
@@ -147,7 +147,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>prompt to win(1) writeup</span>
+            <span>prompt(1) to win writeup</span>
             
         </div>
         
@@ -160,7 +160,7 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">prompt to win(1) writeup</h1>
+        <h1 class="title">prompt(1) to win writeup</h1>
         <h5 class="subtitle">
             
                 <time datetime="2018-12-23T05:39:50.000Z" itemprop="datePublished" class="page-time">
@@ -196,7 +196,7 @@
     <article id="post-prompt"
   class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">prompt to win(1) writeup</h1>
+        <h1 class="post-card-title">prompt(1) to win writeup</h1>
         <div class="post-meta">
             <time class="post-time" title="2018-12-23 13:39:50" datetime="2018-12-23T05:39:50.000Z"  itemprop="datePublished">2018-12-23</time>
 
@@ -206,7 +206,7 @@
 
 
             
-	<span id="/2018/12/23/prompt/" class="leancloud_visitors" data-flag-title="prompt to win(1) writeup" title="prompt to win(1) writeup">
+	<span id="/2018/12/23/prompt/" class="leancloud_visitors" data-flag-title="prompt(1) to win writeup" title="prompt(1) to win writeup">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -251,13 +251,13 @@
 <p>这里代码较长，经过分析和测试，知道了是<br>    <a href="http://httpbin.org/post#{&quot;name&quot;:&quot;Matt&quot;}" target="_blank" rel="noopener">http://httpbin.org/post#{&quot;name&quot;:&quot;Matt&quot;}</a><br>这样的形式，<code>http://httpbin.org/post</code>是表单中的<code>action</code>,<code>name</code>和<code>Matt</code>分别是表单的<code>name</code>、<code>value</code><br>这里经常用的方法是直接用JavaScript的伪协议:<br>    javascript:prompt(1)<br>但是题目也做了防护，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (!/script:|data:/i.test(document.forms[0].action)) \n\</span><br><span class="line">        document.forms[0].submit();                       \n\</span><br><span class="line">    else                                                  \n\</span><br><span class="line">        document.write(&quot;Action forbidden.&quot;)</span><br></pre></td></tr></table></figure></p>
 <p>如果直接用的话会出forbidden，这里绕过的方法利用了Javascirpt中表单DOM操作时，会先将<code>form</code>中的name属性作为action的输入框，<br>如果没有的话，再选择action属性进行输入。可以用下列代码实例，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=&quot;javascript:prompt(1)&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;action&quot; value=1&gt;&lt;/input&gt;&lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    alert(document.forms[0].action);      </span><br><span class="line">&lt;/script&gt;  </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
 <p>这样的效果是:<br><figure class="image-box">
-                <a rel=prompt to win(1) writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455355831.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455355831.jpg" alt="" title="" class=""></a>
+                <a rel=prompt(1) to win writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455355831.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455355831.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure></p>
 <p>再将代码换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=&quot;javascript:prompt(1)&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;1&quot; value=1&gt;&lt;/input&gt;&lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    alert(document.forms[0].action);      </span><br><span class="line">&lt;/script&gt;  </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
 <p>这样的效果是:</p>
 <figure class="image-box">
-                <a rel=prompt to win(1) writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455357592.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455357592.jpg" alt="" title="" class=""></a>
+                <a rel=prompt(1) to win writeup href="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455357592.jpg" class="swipebox" title=undefined><img src="http://cherry-gk.oss-cn-beijing.aliyuncs.com/15455357592.jpg" alt="" title="" class=""></a>
                 <p></p>
             </figure>
 <p>payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:prompt(1)#&#123;&quot;action&quot;:&quot;1&quot;&#125;</span><br></pre></td></tr></table></figure></p>
@@ -275,7 +275,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-12-23T05:41:26.229Z" itemprop="dateUpdated">2018-12-23 13:41:26</time>
+    最后更新时间：<time datetime="2018-12-23T07:25:12.542Z" itemprop="dateUpdated">2018-12-23 15:25:12</time>
 </span><br>
 
 
@@ -303,7 +303,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt to win(1) writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt(1) to win writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -315,7 +315,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt to win(1) writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt(1) to win writeup》 — CherryGk's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -327,7 +327,7 @@
       </li>
       
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《prompt to win(1) writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/12/23/prompt/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《prompt(1) to win writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/12/23/prompt/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -432,7 +432,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt to win(1) writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt(1) to win writeup》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -444,7 +444,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt to win(1) writeup》 — CherryGk's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/23/prompt/&title=《prompt(1) to win writeup》 — CherryGk's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -456,7 +456,7 @@
       </li>
       
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《prompt to win(1) writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/12/23/prompt/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《prompt(1) to win writeup》 — CherryGk's Blog&url=http://yoursite.com/2018/12/23/prompt/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>

