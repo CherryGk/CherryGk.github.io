@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    
+    <title>thinkcmfx 任意文件包含&amp;任意命令执行漏洞复现分析 | CherryGk&#39;s Blog | If you have any questions, please contact QQ1196821466 or leave message in the upper right.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="命令执行,文件包含">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/third-party/swipebox.min.css?v=1.3.2">
+    <link rel="stylesheet" href="/css/style.css?v=1.3.2">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":true,"app_id":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","app_key":"twfcGffxeJ6Bfm4fpJUQ256M","icon":true}'),
+            v: JSON.parse('{"enable":true,"appid":"BgxLbK8bfVBhr3OOhIdHmoKz-gzGzoHsz","appkey":"twfcGffxeJ6Bfm4fpJUQ256M","notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":"c1ada43c"}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+        <script type="text/javascript" src="/js/plugins/daovoice.js?v=1.3.2"></script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname"></h5>
+          <a href="mailto:1196821466@qq.com" title="1196821466@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>1</span>
+            
+              <span>9</span>
+            
+              <span>6</span>
+            
+              <span>8</span>
+            
+              <span>2</span>
+            
+              <span>1</span>
+            
+              <span>4</span>
+            
+              <span>6</span>
+            
+              <span>6</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                文章分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章总览
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/links"  >
+                <i class="icon icon-lg icon-plus-square"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>thinkcmfx 任意文件包含&amp;任意命令执行漏洞复现分析</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">thinkcmfx 任意文件包含&amp;任意命令执行漏洞复现分析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-28T11:36:14.000Z" itemprop="datePublished" class="page-time">
+  2019-10-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/漏洞分析/">漏洞分析</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-thinkcmfx-1025"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">thinkcmfx 任意文件包含&任意命令执行漏洞复现分析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-28 19:36:14" datetime="2019-10-28T11:36:14.000Z"  itemprop="datePublished">2019-10-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/漏洞分析/">漏洞分析</a></li></ul>
+
+
+
+            
+	<span id="/2019/10/28/thinkcmfx-1025/" class="leancloud_visitors" data-flag-title="thinkcmfx 任意文件包含&任意命令执行漏洞复现分析" title="thinkcmfx 任意文件包含&任意命令执行漏洞复现分析">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+    <span class="leancloud-comment">
+        <i class="icon icon-comment-o"></i>
+        <a href="/2019/10/28/thinkcmfx-1025/#comment">
+            <span class="valine-comment-count" data-xid="/2019/10/28/thinkcmfx-1025/"></span>
+        </a>
+    </span>
+
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><p>说在前头，这篇文章与其说是对漏洞的分析，不如说是对thinkphp和mvc框架的学习</p>
+<h4 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h4><p>网站源码在github下载，<a href="https://github.com/thinkcmf/cmfx" target="_blank" rel="noopener">下载链接</a></p>
+<p>影响版本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ThinkCMF X1.6.0</span><br><span class="line">ThinkCMF X2.1.0</span><br><span class="line">ThinkCMF X2.2.0</span><br><span class="line">ThinkCMF X2.2.1</span><br><span class="line">ThinkCMF X2.2.2</span><br><span class="line">ThinkCMF X2.2.3</span><br></pre></td></tr></table></figure></p>
+<p>这里用的2.2.2版本</p>
+<p>下载安装完之后显示：</p>
+<figure class="image-box">
+                <a rel=thinkcmfx 任意文件包含&任意命令执行漏洞复现分析 href="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029111933.png" class="swipebox" title=undefined><img src="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029111933.png" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<h4 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h4><p>打开网站，安装成功后页面如下：</p>
+<p>任意文件读取payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/index.php?a=display&amp;templateFile=README.md</span><br></pre></td></tr></table></figure></p>
+<figure class="image-box">
+                <a rel=thinkcmfx 任意文件包含&任意命令执行漏洞复现分析 href="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029112024.png" class="swipebox" title=undefined><img src="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029112024.png" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<p>远程代码执行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/index.php?a=fetch&amp;content=&lt;?php code</span><br></pre></td></tr></table></figure></p>
+<p>由于没有回显，所以只能采用dnslog或者生成文件之类的方式进行验证<br><figure class="image-box">
+                <a rel=thinkcmfx 任意文件包含&任意命令执行漏洞复现分析 href="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029112352.png" class="swipebox" title=undefined><img src="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029112352.png" alt="" title="" class=""></a>
+                <p></p>
+            </figure></p>
+<figure class="image-box">
+                <a rel=thinkcmfx 任意文件包含&任意命令执行漏洞复现分析 href="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029112436.png" class="swipebox" title=undefined><img src="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029112436.png" alt="" title="" class=""></a>
+                <p></p>
+            </figure>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><h4 id="任意文件包含"><a href="#任意文件包含" class="headerlink" title="任意文件包含"></a>任意文件包含</h4><p>由于已知了漏洞的触发点，根据index.php的配置，<br><figure class="image-box">
+                <a rel=thinkcmfx 任意文件包含&任意命令执行漏洞复现分析 href="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029112553.png" class="swipebox" title=undefined><img src="https://cherry-gk.oss-cn-beijing.aliyuncs.com/20191029112553.png" alt="" title="" class=""></a>
+                <p></p>
+            </figure><br>打开application-&gt;Portal-&gt;IndexController.class.php<br>可以发现这个类是继承的HomebaseController控制器类，</p>
+<p>这个类的位置在application/Common/Controller/HomebaseController.class.php,<br>打开在112行可以看到display方法，下方有fetch方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public function display($templateFile = &apos;&apos;, $charset = &apos;&apos;, $contentType = &apos;&apos;, $content = &apos;&apos;, $prefix = &apos;&apos;) &#123;</span><br><span class="line">	parent::display($this-&gt;parseTemplate($templateFile), $charset, $contentType,$content,$prefix);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 获取输出页面内容</span><br><span class="line"> * 调用内置的模板引擎fetch方法，</span><br><span class="line"> * @access protected</span><br><span class="line"> * @param string $templateFile 指定要调用的模板文件</span><br><span class="line"> * 默认为空 由系统自动定位模板文件</span><br><span class="line"> * @param string $content 模板输出内容</span><br><span class="line"> * @param string $prefix 模板缓存前缀*</span><br><span class="line"> * @return string</span><br><span class="line"> */</span><br><span class="line">public function fetch($templateFile=&apos;&apos;,$content=&apos;&apos;,$prefix=&apos;&apos;)&#123;</span><br><span class="line">    $templateFile = empty($content)?$this-&gt;parseTemplate($templateFile):&apos;&apos;;</span><br><span class="line">	return parent::fetch($templateFile,$content,$prefix);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先看到display方法，调用的是父类的display函数，跟上去看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protected function display($templateFile=&apos;&apos;,$charset=&apos;&apos;,$contentType=&apos;&apos;,$content=&apos;&apos;,$prefix=&apos;&apos;) &#123;</span><br><span class="line">    $this-&gt;view-&gt;display($templateFile,$charset,$contentType,$content,$prefix);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法的作用是显示模板，调用的是内置的模板引擎，继续跟进，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public function display($templateFile=&apos;&apos;,$charset=&apos;&apos;,$contentType=&apos;&apos;,$content=&apos;&apos;,$prefix=&apos;&apos;) &#123;</span><br><span class="line">    G(&apos;viewStartTime&apos;);</span><br><span class="line">    // 视图开始标签</span><br><span class="line">    Hook::listen(&apos;view_begin&apos;,$templateFile);</span><br><span class="line">    // 解析并获取模板内容</span><br><span class="line">    $content = $this-&gt;fetch($templateFile,$content,$prefix);</span><br><span class="line">    // 输出模板内容</span><br><span class="line">    $this-&gt;render($content,$charset,$contentType);</span><br><span class="line">    // 视图结束标签</span><br><span class="line">    Hook::listen(&apos;view_end&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在第一个payload:<code>/index.php?a=display&amp;templateFile=README.md</code>情况下<br>此时$templateFile的值是<code>README.md</code>，在经过了<code>$content = $this-&gt;fetch($templateFile,$content,$prefix);</code>之后，$content的值已经被赋予了，这里着重看一下$this-&gt;fetch方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public function fetch($templateFile=&apos;&apos;,$content=&apos;&apos;,$prefix=&apos;&apos;) &#123;</span><br><span class="line">    if(empty($content)) &#123;</span><br><span class="line">        $templateFile   =   $this-&gt;parseTemplate($templateFile);</span><br><span class="line">        // 模板文件不存在直接返回</span><br><span class="line">        if(!is_file($templateFile)) E(L(&apos;_TEMPLATE_NOT_EXIST_&apos;).&apos;:&apos;.$templateFile);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        defined(&apos;THEME_PATH&apos;) or    define(&apos;THEME_PATH&apos;, $this-&gt;getThemePath());</span><br><span class="line">    &#125;</span><br><span class="line">    // 页面缓存</span><br><span class="line">    ob_start();</span><br><span class="line">    ob_implicit_flush(0);</span><br><span class="line">    if(&apos;php&apos; == strtolower(C(&apos;TMPL_ENGINE_TYPE&apos;))) &#123; // 使用PHP原生模板</span><br><span class="line">        $_content   =   $content;</span><br><span class="line">        // 模板阵列变量分解成为独立变量</span><br><span class="line">        extract($this-&gt;tVar, EXTR_OVERWRITE);</span><br><span class="line">        // 直接载入PHP模板</span><br><span class="line">        empty($_content)?include $templateFile:eval(&apos;?&gt;&apos;.$_content);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        // 视图解析标签</span><br><span class="line">        $params = array(&apos;var&apos;=&gt;$this-&gt;tVar,&apos;file&apos;=&gt;$templateFile,&apos;content&apos;=&gt;$content,&apos;prefix&apos;=&gt;$prefix);</span><br><span class="line">        Hook::listen(&apos;view_parse&apos;,$params);</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取并清空缓存</span><br><span class="line">    $content = ob_get_clean();</span><br><span class="line">    // 内容过滤标签</span><br><span class="line">    Hook::listen(&apos;view_filter&apos;,$content);</span><br><span class="line">    // 输出模板文件</span><br><span class="line">    return $content;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很多人看到了中间有个eval函数之后就感觉这个地方是漏洞主要的触发点了，然后就没分析了，仔细看这个eval是在if下的，这个时候<code>C(&#39;TMPL_ENGINE_TYPE&#39;)</code>的返回值是为空的，所以压根就没进这个if，更不用说eval了；</p>
+<p>继续看到else之后的<code>Hook::listen(&#39;view_parse&#39;,$params);</code>,由于thinkcmf是基于thinkphp的，看到Hook名字是view_parse，由于对thinkphp了解的不太深，Hook被我简单的理解成直接调用某个方法，看名字的大概意思是模板解析，跟进一下，在simplewind/Core/Library/Think/Hook.class.php可以看到Hook的定义,看到listen方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">static public function listen($tag, &amp;$params=NULL) &#123;</span><br><span class="line">    if(isset(self::$tags[$tag])) &#123;</span><br><span class="line">        if(APP_DEBUG) &#123;</span><br><span class="line">            G($tag.&apos;Start&apos;);</span><br><span class="line">            trace(&apos;[ &apos;.$tag.&apos; ] --START--&apos;,&apos;&apos;,&apos;INFO&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">        foreach (self::$tags[$tag] as $name) &#123;</span><br><span class="line">            APP_DEBUG &amp;&amp; G($name.&apos;_start&apos;);</span><br><span class="line">            $result =   self::exec($name, $tag,$params);</span><br><span class="line">            if(APP_DEBUG)&#123;</span><br><span class="line">                G($name.&apos;_end&apos;);</span><br><span class="line">                trace(&apos;Run &apos;.$name.&apos; [ RunTime:&apos;.G($name.&apos;_start&apos;,$name.&apos;_end&apos;,6).&apos;s ]&apos;,&apos;&apos;,&apos;INFO&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">            if(false === $result) &#123;</span><br><span class="line">                // 如果返回false 则中断插件执行</span><br><span class="line">                return ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(APP_DEBUG) &#123; // 记录行为的执行日志</span><br><span class="line">            trace(&apos;[ &apos;.$tag.&apos; ] --END-- [ RunTime:&apos;.G($tag.&apos;Start&apos;,$tag.&apos;End&apos;,6).&apos;s ]&apos;,&apos;&apos;,&apos;INFO&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们传入的<code>view_parse</code>在经过<code>APP_DEBUG &amp;&amp; G($name.&#39;_start&#39;);</code>之后，$name被赋值成<code>ParseTemplateBehavior</code>,随后进入exec执行</p>
+<p><code>$result =   self::exec($name, $tag,$params);</code></p>
+<p>exec方法的定义如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    static public function exec($name, $tag,&amp;$params=NULL) &#123;</span><br><span class="line">        if(&apos;Behavior&apos; == substr($name,-8) )&#123;</span><br><span class="line">            // 行为扩展必须用run入口方法</span><br><span class="line">        	$class = $name;</span><br><span class="line">            $tag    =   &apos;run&apos;;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">        	$class   =  &quot;plugins\\&#123;$name&#125;\\&#123;$name&#125;Plugin&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        if(class_exists($class))&#123; //ThinkCMF NOTE 插件或者行为存在时才执行</span><br><span class="line">        	$addon   = new $class();</span><br><span class="line">        	return $addon-&gt;$tag($params);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>作用是执行某个hook，我们这里的就是<code>view_parse</code>，对应的行为是ParseTemplateBehavior，<br>在最后<code>$addon-&gt;$tag($params);</code>时调用了ParseTemplateBehavior的run方法，<br>看到run方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public function run(&amp;$_data)&#123;</span><br><span class="line">       $engine             =   strtolower(C(&apos;TMPL_ENGINE_TYPE&apos;));</span><br><span class="line">       $_content           =   empty($_data[&apos;content&apos;])?$_data[&apos;file&apos;]:$_data[&apos;content&apos;];</span><br><span class="line">       $_data[&apos;prefix&apos;]    =   !empty($_data[&apos;prefix&apos;])?$_data[&apos;prefix&apos;]:C(&apos;TMPL_CACHE_PREFIX&apos;);</span><br><span class="line">       if(&apos;think&apos;==$engine)&#123; // 采用Think模板引擎</span><br><span class="line">           if((!empty($_data[&apos;content&apos;]) &amp;&amp; $this-&gt;checkContentCache($_data[&apos;content&apos;],$_data[&apos;prefix&apos;])) </span><br><span class="line">               ||  $this-&gt;checkCache($_data[&apos;file&apos;],$_data[&apos;prefix&apos;])) &#123; // 缓存有效</span><br><span class="line">               //载入模版缓存文件</span><br><span class="line">               Storage::load(C(&apos;CACHE_PATH&apos;).$_data[&apos;prefix&apos;].md5($_content).C(&apos;TMPL_CACHFILE_SUFFIX&apos;),$_data[&apos;var&apos;]);</span><br><span class="line">           &#125;else&#123;</span><br><span class="line">               $tpl = Think::instance(&apos;Think\\Template&apos;);</span><br><span class="line">               // 编译并加载模板文件</span><br><span class="line">               $tpl-&gt;fetch($_content,$_data[&apos;var&apos;],$_data[&apos;prefix&apos;]);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;else&#123;</span><br><span class="line">           // 调用第三方模板引擎解析和输出</span><br><span class="line">           if(strpos($engine,&apos;\\&apos;))&#123;</span><br><span class="line">               $class  =   $engine;</span><br><span class="line">           &#125;else&#123;</span><br><span class="line">               $class   =  &apos;Think\\Template\\Driver\\&apos;.ucwords($engine);                </span><br><span class="line">           &#125;            </span><br><span class="line">           if(class_exists($class)) &#123;</span><br><span class="line">               $tpl   =  new $class;</span><br><span class="line">               $tpl-&gt;fetch($_content,$_data[&apos;var&apos;]);</span><br><span class="line">           &#125;else &#123;  // 类没有定义</span><br><span class="line">               E(L(&apos;_NOT_SUPPORT_&apos;).&apos;: &apos; . $class);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>经过一些列操作之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$tpl = Think::instance(&apos;Think\\Template&apos;);</span><br><span class="line">    // 编译并加载模板文件</span><br><span class="line">$tpl-&gt;fetch($_content,$_data[&apos;var&apos;],$_data[&apos;prefix&apos;]);</span><br></pre></td></tr></table></figure></p>
+<p>实例化了Template类，$tpl就是Template实例化的对象，并能够调用静态方法，<br>Template的fetch方法定义如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public function fetch($templateFile,$templateVar,$prefix=&apos;&apos;) &#123;</span><br><span class="line">    $this-&gt;tVar         =   $templateVar;</span><br><span class="line">    $templateCacheFile  =   $this-&gt;loadTemplate($templateFile,$prefix);</span><br><span class="line">    Storage::load($templateCacheFile,$this-&gt;tVar,null,&apos;tpl&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到又调用了loadTemplate方法，此时参数$templateFile的值为’README.md’，<br>loadTemplate方法中的部分代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public function loadTemplate ($templateFile,$prefix=&apos;&apos;) &#123;</span><br><span class="line">        if(is_file($templateFile)) &#123;</span><br><span class="line">            $this-&gt;templateFile    =  $templateFile;</span><br><span class="line">            // 读取模板文件内容</span><br><span class="line">            $tmplContent =  file_get_contents($templateFile);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            $tmplContent =  $templateFile;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p>终于看到了file_get_contents函数，这个时候读取完文件再经过<br>View.class中的<code>$content = ob_get_clean();</code>，return之后就到display中，即完成了整个文件包含的过程。</p>
+<h4 id="任意代码执行"><a href="#任意代码执行" class="headerlink" title="任意代码执行"></a>任意代码执行</h4><p>先来看看网上流传的payload:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?a=fetch&amp;templateFile=public/index&amp;prefix=%27%27&amp;content=&lt;php&gt;file_put_contents(%27xxx.php%27,%27code%27)&lt;/php&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到采用的是写文件的操作，我们来看看fetch方法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public function fetch($templateFile=&apos;&apos;,$content=&apos;&apos;,$prefix=&apos;&apos;)&#123;</span><br><span class="line">    $templateFile = empty($content)?$this-&gt;parseTemplate($templateFile):&apos;&apos;;</span><br><span class="line">	return parent::fetch($templateFile,$content,$prefix);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>仔细看一看其实是不需要templateFile和prefix参数的，简短的payload应该是最开始的那个payload:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/index.php?a=fetch&amp;content=&lt;php&gt;file_put_contents(%27xxx.php%27,%27code%27)&lt;/php&gt;</span><br></pre></td></tr></table></figure>
+<p>回到正题，继续跟进他的父类方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protected function fetch($templateFile=&apos;&apos;,$content=&apos;&apos;,$prefix=&apos;&apos;) &#123;</span><br><span class="line">    return $this-&gt;view-&gt;fetch($templateFile,$content,$prefix);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实这个方法就是前面造成文件包含的fetch方法，只不过缺少了个给视图做标签的过程，直接到了解析模板的过程，<br>其中的过程都差不多，区别在于在ParseTemplateBehavior的run方法中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if(&apos;think&apos;==$engine)&#123; // 采用Think模板引擎</span><br><span class="line">            if((!empty($_data[&apos;content&apos;]) &amp;&amp; $this-&gt;checkContentCache($_data[&apos;content&apos;],$_data[&apos;prefix&apos;])) </span><br><span class="line">                ||  $this-&gt;checkCache($_data[&apos;file&apos;],$_data[&apos;prefix&apos;])) &#123; // 缓存有效</span><br><span class="line">                //载入模版缓存文件</span><br><span class="line">                Storage::load(C(&apos;CACHE_PATH&apos;).$_data[&apos;prefix&apos;].md5($_content).C(&apos;TMPL_CACHFILE_SUFFIX&apos;),$_data[&apos;var&apos;]);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                $tpl = Think::instance(&apos;Think\\Template&apos;);</span><br><span class="line">                // 编译并加载模板文件</span><br><span class="line">                $tpl-&gt;fetch($_content,$_data[&apos;var&apos;],$_data[&apos;prefix&apos;]);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure></p>
+<p>此时的$content不为空，所以直接进入了if并执行了<code>Storage::load(C(&#39;CACHE_PATH&#39;).$_data[&#39;prefix&#39;].md5($_content).C(&#39;TMPL_CACHFILE_SUFFIX&#39;),$_data[&#39;var&#39;]);</code><br>同样由于采用的thinkphp框架，这里的作用是写入一个缓存文件，跟进一下，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    static public function __callstatic($method,$args)&#123;</span><br><span class="line">        //调用缓存驱动的方法</span><br><span class="line">        if(method_exists(self::$handler, $method))&#123;</span><br><span class="line">           return call_user_func_array(array(self::$handler,$method), $args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此时call_user_func_array的参数$method是load，也就是load方法，$args是生成的缓存文件路径，跟进load方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public function load($_filename,$vars=null)&#123;</span><br><span class="line">    if(!is_null($vars))&#123;</span><br><span class="line">        extract($vars, EXTR_OVERWRITE);</span><br><span class="line">    &#125;</span><br><span class="line">    include $_filename;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>到这里已经很明显了，直接inlcude包含这个临时文件，造成了代码执行，分析过程到这里差不多结束了。</p>
+<h3 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h3><p>修复其实很简单，只需要外部调用不了这两个函数即可，将public改成protected即可。</p>
+<p>本来一个漏洞分析，只不过分析的越来越偏，跟着跟着就变成了thinkphp框架学习了emmm。</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-10-29T03:28:31.078Z" itemprop="dateUpdated">2019-10-29 11:28:31</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/10/28/thinkcmfx-1025/" target="_blank" rel="external">http://yoursite.com/2019/10/28/thinkcmfx-1025/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="">
+            
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/命令执行/">命令执行</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件包含/">文件包含</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/10/28/thinkcmfx-1025/&title=《thinkcmfx 任意文件包含&任意命令执行漏洞复现分析》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/10/28/thinkcmfx-1025/&title=《thinkcmfx 任意文件包含&任意命令执行漏洞复现分析》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/10/28/thinkcmfx-1025/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《thinkcmfx 任意文件包含&任意命令执行漏洞复现分析》 — CherryGk's Blog&url=http://yoursite.com/2019/10/28/thinkcmfx-1025/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/10/28/thinkcmfx-1025/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+    <div id="comment"></div>
+
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="next">
+      <a href="/2018/12/23/prompt/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">prompt(1) to win writeup</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#漏洞复现"><span class="post-toc-number">1.</span> <span class="post-toc-text">漏洞复现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#搭建环境"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">搭建环境</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#复现"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">复现</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#任意文件包含"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">任意文件包含</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#任意代码执行"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">任意代码执行</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修复"><span class="post-toc-number">3.</span> <span class="post-toc-text">修复</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+</div>
+
+        <footer class="footer">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                 &copy; 2017 - 2019
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/10/28/thinkcmfx-1025/&title=《thinkcmfx 任意文件包含&任意命令执行漏洞复现分析》 — CherryGk's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/10/28/thinkcmfx-1025/&title=《thinkcmfx 任意文件包含&任意命令执行漏洞复现分析》 — CherryGk's Blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/10/28/thinkcmfx-1025/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《thinkcmfx 任意文件包含&任意命令执行漏洞复现分析》 — CherryGk's Blog&url=http://yoursite.com/2019/10/28/thinkcmfx-1025/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/10/28/thinkcmfx-1025/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3a0U7DMAwF0P3/T5dXpNFw7WSIJidPCLrOp0iWXfv1is/1dr7/fnz9+5X5pxYfDAyMxzKu4UmuGYc1fhDJY4q+EQMD4wBGEsT4+iTcuzv0UjMGBgbG+Na9MvHuPklBiYGBgdFj5OVgHigGBgbGTBObv++aCevjvTgGBsYDGflb97//+SPzDQwMjEcxruJZ1ZQmpWEhKgwMjK0ZM2VfUgjOJ+5CGYqBgbEpo9q+Vtcveim72hhjYGDszegl03ypq5pkZ0YIGBgYJzDmx5C9kWdePpYrXAwMjI0Yq26XjxtXLZm9PvFUMDAw/j0jT6z5C7KclD+m8n8AAwPjsYy8Hc3TaDXhVpvbHz6FgYFxACMfDMyseeWjzRyAgYFxAqO33JCH1Wt9q/UeBgbGaYzqqsTM0kZ1dBotW2BgYGzK6A0Jeq1pr6xchsHAwHgso5ock9TZg0Ul4LiJxcDAOIDRW7CYX4/Im+Tbb8TAwDiGsSqI/JVZr6C87cUxMDC2ZvR632pzWx1z5m0wBgbGCYzeSCBfmOjdszzfwMDAOIBRHRL0/po3wIU4MTAwNmVcxVMdcM4k0wIVAwNja0Z12WK+sOs1xot3RjAwMB7IyFvNPNXmaxPLykcMDIwDGL1Embes1XFCuUnGwMDAmCj+VoX7S/rGwMDAKAY3LuyqJWP0WQwMjAMY+UpEdXmiF255nImBgbE1Y6ZQS9JrEkQ+MJgaamJgYDyP8QVlwSLg0HjlwgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/plugins/jquery.swipebox.min.js?v=1.3.2"></script>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.3.2"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.3.2"></script>
+
+<!-- third-party -->
+<script type="text/javascript">
+;( function( $ ) {
+
+	$( '.swipebox' ).swipebox({
+		hideCloseButtonOnMobile: true
+	});
+
+} )( jQuery );
+</script>
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.3.2"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+        <script type="text/javascript" src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript" src="/js/plugins/valine.js?v=1.3.2"></script>
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.3.2"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+    <script type="text/javascript">
+  daovoice('init', {
+    app_id: "c1ada43c"
+  });
+  daovoice('update');
+</script>
+
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":120,"height":240},"mobile":{"show":true},"log":false});</script></body>
+</html>
