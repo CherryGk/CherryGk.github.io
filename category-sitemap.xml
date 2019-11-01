@@ -7,13 +7,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/</loc>
-        <lastmod>2018-06-24T10:52:52.226Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/categories/python/</loc>
         <lastmod>2018-07-10T05:19:37.056Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -56,8 +49,8 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/</loc>
-        <lastmod>2019-10-29T03:28:31.078Z</lastmod>
+        <loc>http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/</loc>
+        <lastmod>2019-11-01T04:25:54.667Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
