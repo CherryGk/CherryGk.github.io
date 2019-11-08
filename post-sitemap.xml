@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2019/10/28/thinkcmfx-1025/</loc>
+        <lastmod>2019-11-01T10:13:00.648Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2018/05/27/ssr/</loc>
         <lastmod>2019-11-01T04:25:54.667Z</lastmod>
         <changefreq>weekly</changefreq>
